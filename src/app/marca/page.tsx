@@ -6,6 +6,7 @@ import { ServiceGlyph } from "@/components/ui/icons";
 import { PageHeader } from "@/components/ui/page-header";
 import { Tag } from "@/components/ui/tag";
 import { services } from "@/content/services";
+import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = pageMetadata({
@@ -52,7 +53,11 @@ function Block({ id, title, children }: { id: string; title: string; children: R
   );
 }
 
+// Manual interno: solo visible en local o si se activa expresamente.
+const brandPageEnabled = process.env.NODE_ENV !== "production" || process.env.SHOW_BRAND_PAGE === "true";
+
 export default function BrandPage() {
+  if (!brandPageEnabled) notFound();
   return (
     <>
       <PageHeader
