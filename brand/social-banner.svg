@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" role="img" aria-label="Cota"><title>Cota</title><rect x="0" y="0" width="1500" height="500" rx="0" fill="#0C0D0C"/><g transform="translate(120 160) scale(1.4)">
+  <g fill="none" stroke="#ECEAE4" stroke-width="8">
+    <path d="M35.79 49.57A18 18 0 1 1 35.79 26.43"/>
+    <circle cx="70" cy="38" r="18"/>
+    <path d="M110 2V60M98 20H124"/>
+    <circle cx="153" cy="38" r="18"/>
+    <path d="M171 16V60"/>
+  </g>
+  <path d="M2 70V90M173 70V90" stroke="#ECEAE4" stroke-width="2.5" fill="none"/>
+  <path d="M2 84H173" stroke="#ECEAE4" stroke-width="2" fill="none"/>
+  <path d="M-3 89L7 79M168 89L178 79" stroke="#FF5A36" stroke-width="4" fill="none"/></g>
+     <text x="1380" y="380" text-anchor="end" fill="#ECEAE4" fill-opacity=".7" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="22" letter-spacing="2">SOFTWARE · IA · IOT — DE PRINCIPIO A FIN</text>
+</svg>

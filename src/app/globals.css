@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   COTA — Design tokens
+   Una sola fuente de verdad: los tokens se exponen como utilidades de Tailwind
+   (bg-ink, text-paper, border-line, text-accent…) y como variables CSS.
+   ========================================================================== */
+
+@theme {
+  /* Superficies (grafito cálido) */
+  --color-ink: #0c0d0c;
+  --color-ink-1: #121312;
+  --color-ink-2: #181a18;
+  --color-ink-3: #202220;
+  /* Líneas */
+  --color-line: #2a2d2a;
+  --color-line-strong: #3d413d;
+  /* Texto (papel) */
+  --color-paper: #eceae4;
+  --color-paper-muted: #a9a8a0;
+  --color-paper-subtle: #8a8a83;
+  /* Acento: bermellón de cota (las cotas de un plano se trazan en rojo) */
+  --color-accent: #ff5a36;
+  --color-accent-strong: #ff7a5c;
+  --color-accent-ink: #1a0904;
+  /* Secundario técnico: acero, solo para diagramas */
+  --color-steel: #93aab5;
+  /* Estado */
+  --color-ok: #9fd18b;
+  --color-error: #ff8a7a;
+
+  /* Tipografía */
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* Escala tipográfica (ratio ~1.25, fluida en display) */
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1rem;
+  --text-display-s: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  --text-display-s--line-height: 1.02;
+  --text-display-m: clamp(2.5rem, 1.6rem + 4vw, 4.75rem);
+  --text-display-m--line-height: 0.98;
+  --text-display-l: clamp(2.6rem, 1.1rem + 4vw, 5rem);
+  --text-display-l--line-height: 0.96;
+
+  /* Geometría: precisión antes que suavidad */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* Movimiento */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --animate-pulse-dot: pulse-dot 2.4s var(--ease-in-out-cubic) infinite;
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  :root {
+    color-scheme: dark;
+    --header-h: 4rem;
+  }
+  html {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    background: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100dvh;
+  }
+  ::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.025em; }
+  p { text-wrap: pretty; }
+}
+
+/* ---------- Utilidades de marca ---------- */
+@layer components {
+  /* Etiqueta técnica en monoespaciada: el "rotulado" del plano */
+  .label {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    line-height: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-paper-subtle);
+  }
+
+  /* Retícula de fondo tipo papel milimetrado, muy tenue */
+  .grid-paper {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-paper) 4%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-paper) 4%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out-quint);
+  }
+  .link-underline:hover, .link-underline:focus-visible { background-size: 100% 1px; }
+
+  /* Contenido largo (legales, casos) */
+  .prose-cota { color: var(--color-paper-muted); line-height: 1.7; }
+  .prose-cota h2 { color: var(--color-paper); font-size: 1.375rem; font-weight: 600; margin: 2.5rem 0 0.75rem; }
+  .prose-cota p, .prose-cota ul { margin: 0 0 1rem; }
+  .prose-cota ul { list-style: none; padding: 0; }
+  .prose-cota li { padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+  .prose-cota li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.6rem; height: 1px; background: var(--color-accent); }
+  .prose-cota a { color: var(--color-paper); text-decoration: underline; text-underline-offset: 3px; }
+}
+
+/* ---------- Motion ---------- */
+/* Revelado al hacer scroll: lo activa <Reveal> añadiendo data-in="true". */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 0.9s var(--ease-out-quint),
+    transform 0.9s var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal][data-in="true"] { opacity: 1; transform: none; }
+
+/* Trazado de líneas de cota (stroke draw) */
+.draw-line {
+  stroke-dasharray: var(--len, 1000);
+  stroke-dashoffset: var(--len, 1000);
+  animation: draw 1.4s var(--ease-out-quint) forwards;
+  animation-delay: var(--draw-delay, 0ms);
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* Titular: las líneas suben desde una máscara */
+.line-mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.line-rise {
+  display: block;
+  transform: translate3d(0, 105%, 0);
+  animation: rise 1.1s var(--ease-out-quint) forwards;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@keyframes rise { to { transform: none; } }
+
+.fade-in {
+  opacity: 0;
+  animation: fade 1s var(--ease-out-quint) forwards;
+  animation-delay: var(--fade-delay, 0ms);
+}
+@keyframes fade { to { opacity: 1; } }
+
+/* Pulsos del diagrama (SMIL animateMotion); se ocultan con movimiento reducido */
+.signal { opacity: 0; animation: fade 0.6s 2.2s forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .draw-line { animation: none; stroke-dashoffset: 0; }
+  .line-rise { animation: none; transform: none; }
+  .fade-in { animation: none; opacity: 1; }
+  .signal { display: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 386 64" role="img" aria-label="Cota — Software Engineering"><title>Cota — Software Engineering</title><g transform="translate(-4 4) scale(1.1667)">
+  <path d="M33.2 33.2A13 13 0 1 1 33.2 14.8" stroke="#ECEAE4" stroke-width="5.5" fill="none"/>
+  <path d="M31 29L43 17" stroke="#FF5A36" stroke-width="5.5" fill="none"/></g>
+     <g transform="translate(64 8) scale(0.8)">
+  <g fill="none" stroke="#ECEAE4" stroke-width="8">
+    <path d="M35.79 49.57A18 18 0 1 1 35.79 26.43"/>
+    <circle cx="70" cy="38" r="18"/>
+    <path d="M110 2V60M98 20H124"/>
+    <circle cx="153" cy="38" r="18"/>
+    <path d="M171 16V60"/>
+  </g></g>
+     <path d="M220 14V54" stroke="#ECEAE4" stroke-opacity=".35" stroke-width="1.5"/>
+     <text x="236" y="30" fill="#ECEAE4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12.5" letter-spacing="1.2">SOFTWARE</text>
+     <text x="236" y="47" fill="#ECEAE4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12.5" letter-spacing="1.2">ENGINEERING</text>
+</svg>
