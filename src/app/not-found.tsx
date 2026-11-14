@@ -11,7 +11,7 @@ export default function NotFound() {
         <CotaLine className="mt-10 max-w-md" start="Tú" end="Inicio" label="1 clic" />
         <p className="mt-8 max-w-md text-paper-muted">La dirección no existe o ha cambiado. Desde el inicio puedes llegar a todo lo demás.</p>
         <div className="mt-10 flex flex-wrap gap-4">
-          <ButtonLink href="/" arrow>Volver al inicio</ButtonLink>
+          <ButtonLink href="/">Volver al inicio</ButtonLink>
           <ButtonLink href="/contacto" variant="secondary">Contactar</ButtonLink>
         </div>
       </Container>

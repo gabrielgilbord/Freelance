@@ -154,7 +154,7 @@ export function ContactForm({ defaultProjectType = "" }: { defaultProjectType?: 
 
       <div className="flex flex-col gap-4 border-t border-line pt-7 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-paper-subtle">Sin compromiso. Tus datos solo se usan para responderte.</p>
-        <Button type="submit" disabled={pending} arrow={!pending} aria-live="polite">
+        <Button type="submit" disabled={pending} aria-live="polite">
           {pending ? "Enviando…" : "Enviar solicitud"}
         </Button>
       </div>

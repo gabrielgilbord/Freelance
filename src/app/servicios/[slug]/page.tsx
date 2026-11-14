@@ -55,7 +55,7 @@ export default async function ServicePage({ params }: Props) {
         }
       >
         <div className="fade-in mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4" style={{ "--fade-delay": "450ms" } as React.CSSProperties}>
-          <ButtonLink href={`/contacto?servicio=${service.slug}`} arrow>Hablemos de tu proyecto</ButtonLink>
+          <ButtonLink href={`/contacto?servicio=${service.slug}`}>Hablemos de tu proyecto</ButtonLink>
           <ButtonLink href="#como-trabajo" variant="secondary">Cómo trabajo</ButtonLink>
         </div>
       </PageHeader>
@@ -112,12 +112,14 @@ export default async function ServicePage({ params }: Props) {
       <section id="como-trabajo" aria-labelledby="como-title" className="border-t border-line py-14 sm:py-28">
         <Container>
           <h2 id="como-title" className="max-w-[22ch] text-display-s font-[450] text-paper">Paso a paso, con entregas que puedes ver.</h2>
-          <ol className="rail -mx-4 mt-8 px-4 md:mx-0 md:mt-14 md:grid md:grid-cols-2 md:gap-px md:overflow-hidden md:rounded-sm md:border md:border-line md:bg-line md:px-0 lg:grid-cols-4">
+          <ol className="mt-8 border-t border-line md:mt-14 md:grid md:grid-cols-2 md:gap-px md:overflow-hidden md:rounded-sm md:border md:border-line md:bg-line lg:grid-cols-4">
             {service.steps.map((st, i) => (
-              <Reveal as="li" key={st.title} delay={i * 70} className="relative w-[76%] rounded-md border border-line bg-ink p-5 md:w-auto md:rounded-none md:border-0 md:p-8">
+              <Reveal as="li" key={st.title} delay={i * 70} className="relative grid grid-cols-[2rem_1fr] gap-x-2 border-b border-line bg-ink py-4 md:block md:border-b-0 md:p-8">
                 <span className="font-mono text-sm text-paper-subtle">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-4 text-lg font-medium text-paper md:mt-8">{st.title}</h3>
-                <p className="mt-2 text-paper-muted">{st.text}</p>
+                <div>
+                  <h3 className="text-lg font-medium text-paper md:mt-8">{st.title}</h3>
+                  <p className="mt-1 text-[0.9375rem] leading-snug text-paper-muted md:mt-2 md:text-base md:leading-normal">{st.text}</p>
+                </div>
               </Reveal>
             ))}
           </ol>
@@ -134,8 +136,8 @@ export default async function ServicePage({ params }: Props) {
         <section aria-labelledby="casos-title" className="border-t border-line py-14 sm:py-28">
           <Container>
             <h2 id="casos-title" className="text-display-s font-[450] text-paper">Así se plantea en la práctica.</h2>
-            <ul className="rail -mx-4 mt-8 px-4 md:mx-0 md:mt-14 md:grid md:grid-cols-2 md:gap-12 md:px-0">
-              {related.map((p) => <li key={p.slug} className="w-[84%] md:w-auto"><ProjectCard project={p} /></li>)}
+            <ul className="mt-8 grid gap-10 md:mt-14 md:grid-cols-2 md:gap-12">
+              {related.map((p) => <li key={p.slug}><ProjectCard project={p} /></li>)}
             </ul>
           </Container>
         </section>

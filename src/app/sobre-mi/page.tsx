@@ -1,7 +1,6 @@
 import { principles } from "@/content/principles";
 import { layers } from "@/content/capabilities";
 import { Container } from "@/components/ui/container";
-import { CotaLine } from "@/components/ui/cota-line";
 import { PageHeader } from "@/components/ui/page-header";
 import { Reveal } from "@/components/ui/reveal";
 import { FinalCta } from "@/components/sections/final-cta";
@@ -74,17 +73,14 @@ export default function AboutPage() {
           <div className="lg:col-span-4">
             <h2 id="principios" className="text-display-s font-[450] text-paper">Cómo trabajo.</h2>
           </div>
-          <ol className="border-t border-line lg:col-span-8">
-            {principles.map((p, i) => (
-              <Reveal as="li" key={p.title} className="grid gap-2 border-b border-line py-8 sm:grid-cols-[4rem_1fr]">
-                <span className="font-mono text-sm text-accent">{String(i + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3 className="text-xl font-medium text-paper">{p.title}</h3>
-                  <p className="mt-2 max-w-[60ch] text-paper-muted">{p.text}</p>
-                </div>
+          <ul className="border-t border-paper/80 lg:col-span-8">
+            {principles.map((p) => (
+              <Reveal as="li" key={p.title} className="grid gap-2 border-b border-line py-6 sm:grid-cols-[14rem_1fr] sm:gap-8 sm:py-8">
+                <h3 className="text-lg font-medium text-paper sm:text-xl">{p.title}</h3>
+                <p className="max-w-[60ch] text-paper-muted">{p.text}</p>
               </Reveal>
             ))}
-          </ol>
+          </ul>
         </Container>
       </section>
 
@@ -98,7 +94,18 @@ export default function AboutPage() {
               En un plano técnico, una <em className="not-italic text-paper">cota</em> es la línea que indica una medida exacta: dónde empieza algo,
               dónde termina y cuánto mide. Sin cotas, un plano es un dibujo; con ellas, es algo que se puede construir.
             </p>
-            <CotaLine className="my-10" start="Problema" end="Sistema en producción" label="Cota" />
+            <figure className="-mx-4 my-8 sm:mx-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/art/caliper.svg"
+                alt="Un calibre digital midiendo una pieza mecanizada naranja; la pantalla marca 60.00 milímetros."
+                width={720}
+                height={520}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full"
+              />
+            </figure>
             <p className="text-lg leading-relaxed text-paper-muted">
               Es la forma en que entiendo cada proyecto: medir bien antes de construir y hacerme cargo de todo el recorrido,
               del primer extremo al último.

@@ -57,10 +57,10 @@ export function Footer() {
           <Wordmark className="h-auto w-full text-paper" title="" />
           <div className="relative mt-[2.5%] h-4 sm:h-6">
             <span className="absolute inset-y-0 left-[0.4%] w-px bg-line-strong" />
-            <span className="absolute inset-y-0 right-[0.4%] w-px bg-line-strong" />
-            <span className="absolute inset-x-[0.4%] top-1/2 h-px bg-paper-subtle/70" />
-            <span className="absolute left-[0.4%] top-1/2 h-4 w-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent" />
-            <span className="absolute right-[0.4%] top-1/2 h-4 w-[2px] translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent" />
+            <span className="absolute inset-y-0 right-[2.2%] w-px bg-line-strong" />
+            <span className="absolute inset-x-[2.2%] top-1/2 h-px bg-paper-subtle/70" />
+            <span className="absolute left-[2.2%] top-1/2 h-4 w-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent" />
+            <span className="absolute right-[2.2%] top-1/2 h-4 w-[2px] translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent" />
           </div>
         </div>
 

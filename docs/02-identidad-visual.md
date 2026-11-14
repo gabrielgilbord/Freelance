@@ -1,4 +1,6 @@
-# 02 · Identidad visual y design system
+# 02 · Identidad visual y design system (v1)
+
+> **Superado.** La identidad vigente es la v2 "calibrada": consulta [`brand/IDENTITY.md`](../brand/IDENTITY.md) (logotipo, calibre, color, tipografía y normas) y [`DESIGN.md`](../DESIGN.md) (sistema web). Este documento se conserva como registro de la v1, archivada en `brand/archive/v1/`.
 
 La versión navegable de este documento está en la propia web: **`/marca`** (excluida de buscadores).
 

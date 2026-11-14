@@ -30,11 +30,11 @@ export function Manifesto() {
             </p>
             <CotaLine className="mt-8 hidden max-w-xs sm:flex" />
           </div>
-          <ul className="rail -mx-4 px-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-px sm:overflow-hidden sm:border-y sm:border-line sm:px-0 lg:col-span-8">
+          <ul className="border-y border-line sm:grid sm:grid-cols-3 sm:gap-px sm:overflow-hidden lg:col-span-8">
             {startingPoints.map((p) => (
-              <li key={p.title} className="w-[76%] rounded-md border border-line bg-ink-1/50 p-5 sm:w-auto sm:rounded-none sm:border-0 sm:bg-transparent sm:px-6 sm:py-6 sm:first:pl-0 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-line">
+              <li key={p.title} className="py-4 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-line sm:px-6 sm:py-6 sm:first:pl-0 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-t-0">
                 <p className="font-medium text-paper">{p.title}</p>
-                <p className="mt-2 text-paper-muted">{p.text}</p>
+                <p className="mt-1 text-[0.9375rem] leading-snug text-paper-muted sm:mt-2 sm:text-base sm:leading-normal">{p.text}</p>
               </li>
             ))}
           </ul>

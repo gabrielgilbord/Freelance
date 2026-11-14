@@ -36,7 +36,9 @@ const logos = [
   { file: "logo-horizontal-light.svg", label: "Horizontal · claro", bg: "bg-[#F4F2EC]" },
   { file: "logo-compact-dark.svg", label: "Compacta", bg: "bg-ink" },
   { file: "logo-primary-mono-black.svg", label: "Monocromo negro", bg: "bg-white" },
-  { file: "logo-primary-mono-white.svg", label: "Monocromo blanco", bg: "bg-[#FF5A36]" },
+  { file: "logo-primary-mono-white.svg", label: "Monocromo blanco", bg: "bg-ink" },
+  { file: "logo-compact-on-accent.svg", label: "Negativo sobre naranja", bg: "bg-[#FF5A36]" },
+  { file: "logo-vertical-light.svg", label: "Vertical · claro", bg: "bg-[#F4F2EC]" },
   { file: "isotipo-dark.svg", label: "Isotipo", bg: "bg-ink" },
   { file: "favicon.svg", label: "Favicon", bg: "bg-ink-2" },
   { file: "avatar.svg", label: "Avatar redes", bg: "bg-ink-2" },
@@ -155,9 +157,9 @@ export default function BrandPage() {
 
       <Block id="componentes" title="Componentes">
         <div className="flex flex-wrap items-center gap-4">
-          <ButtonLink href="/contacto" arrow>Primario</ButtonLink>
+          <ButtonLink href="/contacto">Primario</ButtonLink>
           <ButtonLink href="/servicios" variant="secondary">Secundario</ButtonLink>
-          <ButtonLink href="/proyectos" variant="text" arrow>Texto</ButtonLink>
+          <ButtonLink href="/proyectos" variant="text">Texto</ButtonLink>
           <Button disabled>Deshabilitado</Button>
         </div>
         <div className="mt-8 flex flex-wrap gap-2">

@@ -212,7 +212,7 @@ function iot(c) {
   out.push(L(k.planOutline(WIN, 52.4, P, 3), { tone: "lo" }));
   for (let i = 0; i < 4; i++) {
     const x = WIN.x + 6 + i * 8;
-    out.push(c.led(L(k.onTop([[x, WIN.y + 6], [x + 5, WIN.y + 6], [x + 5, WIN.y + 16], [x, WIN.y + 16]], 52.4, P), { tone: "lit", free: true })));
+    out.push(L(k.onTop([[x, WIN.y + 6], [x + 5, WIN.y + 6], [x + 5, WIN.y + 16], [x, WIN.y + 16]], 52.4, P), { tone: "hi", free: true }));
   }
   out.push(blink([LID.x + LID.w - 10, LID.y + LID.d - 10, 52], { period: 2400 }));
   // the cable gland on the lid
@@ -273,7 +273,7 @@ function architecture(c) {
     out.push(svg);
   }
   out.push(L(k.ring(DX, DY, 18, 67, P, 48), { tone: "faint" }));
-  out.push(brand(S(k.cylinder(DX, DY, 6, 67, 4, P, 32, 0.4), { tone: "hi" })));
+  out.push(S(k.cylinder(DX, DY, 6, 67, 4, P, 32, 0.4), { tone: "hi", lit: true }));
   out.push(D([at([DX, DY, 71])], { size: 0.7, tone: "hi" }));
   return out.join("");
 }
@@ -439,7 +439,7 @@ function coldroom(c) {
   const PANEL = { x: ROOM.x + 154, y: ROOM.y + ROOM.d, w: 32, d: 3, r: 1 };
   out.push(S(k.slabOf(PANEL, 58, 24, P, 2, 0.3), { tone: "lo" }));
   out.push(
-    `<g class="ac-led">${k.faceTextSvg(k.sideMatrix([PANEL.x + 16, PANEL.y + 3, 70], 70, P, "left"), "-18.4°", { size: 7, tone: "lit", anchor: "middle" })}</g>`,
+    k.faceTextSvg(k.sideMatrix([PANEL.x + 16, PANEL.y + 3, 70], 70, P, "left"), "-18.4°", { size: 7, tone: "hi", anchor: "middle" }),
   );
   // the wall sensor on the side (+x) face
   const SEN = { x: ROOM.x + ROOM.w, y: ROOM.y + 40, w: 4, d: 18, r: 1 };
@@ -468,7 +468,7 @@ function coldroom(c) {
   out.push(blink([GW.x + 40, GW.y + 32, 30], { period: 2600, delay: 900 }));
   out.push(S(k.cylinder(GW.x + 38, GW.y + 10, 2.6, 30, 2, P, 16), { tone: "lo" }));
   out.push(S(k.cylinder(GW.x + 38, GW.y + 10, 1.2, 32, 34, P, 14), { tone: "mid", crease: "none" }));
-  out.push(brand(S(k.cylinder(GW.x + 38, GW.y + 10, 2.4, 66, 3, P, 16, 0.3), { tone: "hi" })));
+  out.push(S(k.cylinder(GW.x + 38, GW.y + 10, 2.4, 66, 3, P, 16, 0.3), { tone: "hi", lit: true }));
   return out.join("");
 }
 
