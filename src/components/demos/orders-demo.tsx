@@ -69,9 +69,9 @@ function Orders() {
               const visible = i < shown;
               const low = f.conf < 0.8;
               return (
-                <tr key={f.k} className={`border-b border-line transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-25"}`}>
+                <tr key={f.k} className="border-b border-line">
                   <th scope="row" className="py-2 pr-3 text-left font-normal text-paper-subtle">{f.k}</th>
-                  <td className="py-2 pr-3 text-paper">{visible ? f.v : "—"}</td>
+                  <td className={`py-2 pr-3 transition-colors duration-300 ${visible ? "text-paper" : "text-paper-subtle"}`}>{visible ? f.v : "pendiente"}</td>
                   <td className="py-2 text-right font-mono tabular-nums">
                     {visible &&
                       (low && !reviewed ? (
