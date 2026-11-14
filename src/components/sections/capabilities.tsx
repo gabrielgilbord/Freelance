@@ -8,7 +8,7 @@ import { Container } from "@/components/ui/container";
  */
 export function Capabilities() {
   return (
-    <section aria-labelledby="capacidades-title" className="chapter-sheet py-24 sm:py-32">
+    <section aria-labelledby="capacidades-title" className="chapter-sheet py-16 sm:py-32">
       <Container>
         <div className="grid gap-8 lg:grid-cols-12">
           <h2 id="capacidades-title" className="text-display-m font-medium lg:col-span-7">

@@ -15,7 +15,7 @@ export async function FeaturedProjects() {
   const allConcepts = projects.every((p) => p.status === "concept");
 
   return (
-    <section aria-labelledby="proyectos-title" className="border-t border-line py-24 sm:py-32">
+    <section aria-labelledby="proyectos-title" className="border-t border-line py-16 sm:py-32">
       <Container>
         <div className="grid gap-6 lg:grid-cols-12">
           <h2 id="proyectos-title" className="text-display-m font-medium text-paper lg:col-span-7">
@@ -28,7 +28,7 @@ export async function FeaturedProjects() {
           </p>
         </div>
 
-        <div className="mt-20 space-y-28 sm:space-y-36">
+        <div className="mt-12 space-y-20 sm:mt-20 sm:space-y-36">
           {projects.map((p, i) => {
             const Demo = projectDemos[p.slug];
             const flip = i % 2 === 1;

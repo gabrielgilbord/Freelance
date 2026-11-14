@@ -10,7 +10,7 @@ export function FinalCta({
   text = "Una idea, un problema o un sistema que se ha quedado corto. En una primera conversación sin compromiso vemos si tiene sentido trabajar juntos y cuál sería el primer paso.",
 }: Props) {
   return (
-    <section aria-labelledby="cta-title" className="chapter-accent relative overflow-hidden py-24 sm:py-36">
+    <section aria-labelledby="cta-title" className="chapter-accent relative overflow-hidden py-16 sm:py-36">
       <Container className="relative">
         <h2 id="cta-title" className="max-w-[14ch] text-display-l font-medium">
           {title}

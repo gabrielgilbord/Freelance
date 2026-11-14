@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 /** El estudio: una declaración y los principios como reglas, sin tarjetas. */
 export function AboutTeaser() {
   return (
-    <section aria-labelledby="estudio-title" className="border-t border-line py-24 sm:py-32">
+    <section aria-labelledby="estudio-title" className="border-t border-line py-16 sm:py-32">
       <Container className="grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <h2 id="estudio-title" className="text-display-m font-medium text-paper">

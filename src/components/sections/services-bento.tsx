@@ -4,9 +4,9 @@ import { ServiceCatalog } from "./service-catalog";
 
 export function ServicesBento() {
   return (
-    <section id="servicios" aria-labelledby="servicios-title" className="border-t border-line py-24 sm:py-32">
+    <section id="servicios" aria-labelledby="servicios-title" className="border-t border-line py-16 sm:py-32">
       <Container>
-        <div className="mb-14 grid gap-6 lg:mb-20 lg:grid-cols-12">
+        <div className="mb-10 grid gap-6 lg:mb-20 lg:grid-cols-12">
           <h2 id="servicios-title" className="text-display-m font-medium text-paper lg:col-span-7">
             Seis disciplinas, un mismo banco de trabajo.
           </h2>

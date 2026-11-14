@@ -29,7 +29,7 @@ export function Process({ id = "proceso" }: { id?: string }) {
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-line py-24 sm:py-32">
+    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-line py-16 sm:py-32">
       <Container className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-[calc(var(--header-h)+3rem)]">

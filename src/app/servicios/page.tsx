@@ -60,7 +60,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="modelos-title" className="border-t border-line py-24 sm:py-32">
+      <section aria-labelledby="modelos-title" className="border-t border-line py-16 sm:py-32">
         <Container>
           <SectionHeader
             id="modelos-title"

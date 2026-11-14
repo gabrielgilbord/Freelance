@@ -12,7 +12,7 @@ const startingPoints = [
 
 export function Manifesto() {
   return (
-    <section aria-labelledby="manifiesto-title" className="py-28 sm:py-40">
+    <section aria-labelledby="manifiesto-title" className="pt-20 pb-14 sm:py-40">
       <Container>
         <h2 id="manifiesto-title" className="sr-only">
           Por qué COTA
@@ -23,7 +23,7 @@ export function Manifesto() {
           ))}
         </p>
 
-        <div className="mt-20 grid gap-12 lg:mt-28 lg:grid-cols-12">
+        <div className="mt-14 grid gap-8 lg:mt-28 lg:gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="max-w-[30ch] text-xl font-medium leading-snug text-paper">
               No necesitas llegar con un proyecto definido. Puedes llegar con:
@@ -32,7 +32,7 @@ export function Manifesto() {
           </div>
           <ul className="grid gap-px overflow-hidden border-y border-line sm:grid-cols-3 lg:col-span-8">
             {startingPoints.map((p) => (
-              <li key={p.title} className="py-6 sm:px-6 sm:first:pl-0 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-line">
+              <li key={p.title} className="py-6 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-line sm:px-6 sm:first:pl-0 sm:[&:not(:first-child)]:border-t-0 sm:[&:not(:first-child)]:border-l">
                 <p className="font-medium text-paper">{p.title}</p>
                 <p className="mt-2 text-paper-muted">{p.text}</p>
               </li>
