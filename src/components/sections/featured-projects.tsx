@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { projectRepository, statusLabel } from "@/lib/projects/repository";
 import { projectDemos } from "@/components/demos";
-import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Tag } from "@/components/ui/tag";
 import { ProjectCover } from "@/components/project/project-cover";
@@ -21,11 +20,16 @@ export async function FeaturedProjects() {
           <h2 id="proyectos-title" className="text-display-m font-medium text-paper lg:col-span-7">
             Sistemas completos, explicados en marcha.
           </h2>
-          <p className="max-w-[46ch] self-end text-lg leading-relaxed text-paper-muted lg:col-span-5">
-            {allConcepts
-              ? "Estos casos son conceptos técnicos, no trabajos para clientes. Las demos usan datos simulados para enseñar cómo funcionaría cada sistema."
-              : "Una selección de proyectos con el problema de partida, la solución construida y lo que ha cambiado después."}
-          </p>
+          <div className="self-end lg:col-span-5">
+            <p className="max-w-[46ch] text-lg leading-relaxed text-paper-muted">
+              {allConcepts
+                ? "Estos casos son conceptos técnicos, no trabajos para clientes. Las demos usan datos simulados para enseñar cómo funcionaría cada sistema."
+                : "Una selección de proyectos con el problema de partida, la solución construida y lo que ha cambiado después."}
+            </p>
+            <Link href="/proyectos" className="link-underline mt-5 inline-block font-medium text-paper hover:text-accent">
+              Ver todos los proyectos
+            </Link>
+          </div>
         </div>
 
         <div className="mt-12 space-y-20 sm:mt-20 sm:space-y-36">
@@ -62,11 +66,6 @@ export async function FeaturedProjects() {
           })}
         </div>
 
-        <div className="mt-24">
-          <ButtonLink href="/proyectos" variant="secondary">
-            Todos los proyectos
-          </ButtonLink>
-        </div>
       </Container>
     </section>
   );
