@@ -30,13 +30,13 @@ export function Process({ id = "proceso" }: { id?: string }) {
 
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="border-t border-line py-16 sm:py-32">
-      <Container className="grid gap-12 lg:grid-cols-12">
+      <Container className="grid gap-8 md:gap-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-[calc(var(--header-h)+3rem)]">
-            <h2 id={`${id}-title`} className="text-display-m font-medium text-paper">
+            <h2 id={`${id}-title`} className="text-display-m font-[450] text-paper">
               Seis fases. Ninguna sorpresa.
             </h2>
-            <p className="mt-6 max-w-[40ch] text-lg leading-relaxed text-paper-muted">
+            <p className="mt-4 max-w-[40ch] text-lg leading-relaxed text-paper-muted md:mt-6">
               Sabes en todo momento qué se está haciendo, por qué y qué recibes al terminar cada fase.
             </p>
             <div className="mt-12 hidden items-end gap-4 lg:flex" aria-hidden="true">
@@ -49,7 +49,27 @@ export function Process({ id = "proceso" }: { id?: string }) {
           </div>
         </div>
 
-        <ol className="relative lg:col-span-6 lg:col-start-7">
+        {/* Móvil: las seis fases en un raíl horizontal */}
+        <ol className="rail -mx-4 px-4 md:hidden" aria-label="Fases del proceso">
+          {workProcess.map((step, i) => (
+            <li key={step.key} className="flex w-[78%] flex-col rounded-md border border-line bg-ink-1/50 p-5">
+              <p className="flex items-baseline justify-between font-mono text-sm text-paper-subtle">
+                <span>{step.name}</span>
+                <span className="text-accent">
+                  {pad(i + 1)}/{pad(total)}
+                </span>
+              </p>
+              <h3 className="mt-4 text-xl font-medium tracking-[-0.02em] text-paper">{step.title}</h3>
+              <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-muted">{step.text}</p>
+              <p className="mt-auto pt-4 text-sm text-paper">
+                <span className="text-paper-subtle">Recibes: </span>
+                {step.output}
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <ol className="relative hidden md:block lg:col-span-6 lg:col-start-7">
           <span className="absolute bottom-0 left-[0.3125rem] top-2 w-px bg-line-strong" aria-hidden="true" />
           <span
             className="absolute left-[0.3125rem] top-2 w-px bg-accent transition-[height] duration-700 ease-out-quint"

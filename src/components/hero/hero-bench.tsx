@@ -18,25 +18,30 @@ const parts = [
 
 type PartId = (typeof parts)[number]["id"];
 
-export function HeroBench({ children }: { children: ReactNode }) {
+export function HeroBench({ title, body }: { title: ReactNode; body: ReactNode }) {
   const [active, setActive] = useState<PartId | null>(null);
 
   return (
     <div className="relative">
-      <div className="lg:grid lg:grid-cols-12 lg:items-start">
-      <div className="relative z-10 lg:col-span-5 lg:pt-6 xl:pt-12">{children}</div>
-      <figure className="relative mx-auto mt-6 w-full max-w-[64rem] lg:col-span-7 lg:-mt-6 lg:-ml-[24%] lg:-mr-[7%] lg:w-auto lg:max-w-none xl:-mt-14">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+      {/* Móvil: titular → objeto → texto. Escritorio: texto a la izquierda, objeto protagonista detrás. */}
+      <div className="flex flex-col lg:grid lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:items-start">
+      <div className="relative z-10 lg:col-span-5 lg:row-start-1 lg:pt-6 xl:pt-12">{title}</div>
+      <div className="relative z-10 order-3 lg:order-none lg:col-span-5 lg:row-start-2">{body}</div>
+      <figure className="relative order-2 -mx-4 mt-2 w-[calc(100%+2rem)] max-w-[64rem] sm:mx-auto sm:mt-6 sm:w-full lg:order-none lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:-mt-6 lg:-ml-[24%] lg:-mr-[7%] lg:w-auto lg:max-w-none xl:-mt-14">
+        {/* Móvil: la misma ilustración rasterizada y estática (pinta mucho antes en CPU lenta y
+            ahorra batería). Escritorio: el SVG vectorial con su movimiento ambiental. */}
+        <picture>
+        <source media="(max-width: 639px)" srcSet="/art/hero-mobile.webp" type="image/webp" />
         <img
           src="/art/hero.svg"
           width={1000}
           height={760}
           alt="Un banco de pruebas mecanizado con los módulos de un sistema real: cómputo de IA con ventilador, rack de datos, placa IoT con antena, módulo de interfaz con pantalla y, en naranja, un módulo flotando sobre su zócalo vacío."
-          className="h-auto w-full select-none"
+          className="h-auto w-full"
           fetchPriority="high"
-          decoding="async"
           draggable={false}
         />
+        </picture>
         {parts.map((p) => {
           const pos = spots[p.id];
           const on = active === p.id;
@@ -50,7 +55,7 @@ export function HeroBench({ children }: { children: ReactNode }) {
               onMouseLeave={() => setActive(null)}
               onFocus={() => setActive(p.id)}
               onBlur={() => setActive(null)}
-              className="fade-in absolute flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+              className="fade-in absolute hidden h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center sm:flex"
               style={{ left: `${pos.x}%`, top: `${pos.y}%`, "--fade-delay": "1300ms" } as React.CSSProperties}
             >
               <span
@@ -66,7 +71,7 @@ export function HeroBench({ children }: { children: ReactNode }) {
       </figure>
       </div>
 
-      <ol className="mt-10 grid gap-x-8 gap-y-5 border-t border-line pt-6 sm:grid-cols-2 lg:grid-cols-5">
+      <ol className="mt-10 hidden gap-x-8 gap-y-5 border-t border-line pt-6 sm:grid sm:grid-cols-2 lg:grid-cols-5">
         {parts.map((p) => {
           const on = active === p.id;
           return (

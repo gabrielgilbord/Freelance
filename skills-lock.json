@@ -1,11 +1,41 @@
 {
   "version": 2,
   "skills": {
+    "SVG Logo Designer": {
+      "source": "rknall/claude-skills",
+      "sourceType": "github",
+      "skillPath": "svg-logo-designer/SKILL.md",
+      "computedHash": "e418b0b698948259a10a537a46e81b61ae385dd508889c267c2b3b7acd6680cc"
+    },
     "anatomy-asset": {
       "source": "Teddarific/skills",
       "sourceType": "github",
       "skillPath": "skills/anatomy-asset/SKILL.md",
       "computedHash": "ba1402f01e522b61cdae3b40266d89995803782c6e6afdadcf39cfdad920592d"
+    },
+    "better-typography": {
+      "source": "jakubkrehel/skills",
+      "sourceType": "github",
+      "skillPath": "skills/better-typography/SKILL.md",
+      "computedHash": "85b6c26d65e0bcf11fb97f03ec91c057d5adc5d87bdffdee2eb14e0fac59c0a8"
+    },
+    "brand-identity": {
+      "source": "arnabbagxd/brand-building-skills",
+      "sourceType": "github",
+      "skillPath": "skills/brand-identity/SKILL.md",
+      "computedHash": "cc7cfba9ec4c23654417fc2faeab118fd32cd6cf10eb325753667794246e0695"
+    },
+    "design-critique": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "skillPath": "design/skills/design-critique/SKILL.md",
+      "computedHash": "b9647396db0c7a2208519ae3e8313646705aef4b9a2ddab82088b54fe2404f05"
+    },
+    "design-system": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "skillPath": "design/skills/design-system/SKILL.md",
+      "computedHash": "ea43527b6f738c03f2a5fbaf76a2567b0271ebbb0d158aa9c618321366aaaff8"
     },
     "frontend-design": {
       "source": "anthropics/skills",

@@ -17,7 +17,7 @@ export async function FeaturedProjects() {
     <section aria-labelledby="proyectos-title" className="border-t border-line py-16 sm:py-32">
       <Container>
         <div className="grid gap-6 lg:grid-cols-12">
-          <h2 id="proyectos-title" className="text-display-m font-medium text-paper lg:col-span-7">
+          <h2 id="proyectos-title" className="text-display-m font-[450] text-paper lg:col-span-7">
             Sistemas completos, explicados en marcha.
           </h2>
           <div className="self-end lg:col-span-5">
@@ -32,7 +32,26 @@ export async function FeaturedProjects() {
           </div>
         </div>
 
-        <div className="mt-12 space-y-20 sm:mt-20 sm:space-y-36">
+        {/* Móvil: casos compactos en un raíl; la demo completa vive en cada caso */}
+        <ul className="rail -mx-4 mt-8 px-4 sm:hidden">
+          {projects.map((p) => (
+            <li key={p.slug} className="w-[84%]">
+              <Link href={`/proyectos/${p.slug}`} className="group block">
+                <span className="block overflow-hidden rounded-md border border-line bg-ink-1/40">
+                  <ProjectCover project={p} />
+                </span>
+                <span className="mt-4 flex items-center gap-2 text-sm text-paper-subtle">
+                  <Tag tone={p.status === "concept" ? "default" : "accent"}>{statusLabel[p.status]}</Tag>
+                </span>
+                <span className="mt-3 block text-xl font-medium leading-snug tracking-[-0.02em] text-paper group-active:text-accent">{p.title}</span>
+                <span className="mt-2 line-clamp-2 text-[0.9375rem] leading-snug text-paper-muted">{p.summary}</span>
+                <span className="mt-3 inline-block text-sm font-medium text-accent">Ver caso y demo</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-12 hidden space-y-20 sm:mt-20 sm:block sm:space-y-36">
           {projects.map((p, i) => {
             const Demo = projectDemos[p.slug];
             const flip = i % 2 === 1;
@@ -53,7 +72,7 @@ export async function FeaturedProjects() {
                     <Tag tone={p.status === "concept" ? "default" : "accent"}>{statusLabel[p.status]}</Tag>
                     <span className="text-sm text-paper-subtle">{p.sector}</span>
                   </div>
-                  <h3 id={`case-${p.slug}`} className="mt-5 text-display-s font-medium text-paper">
+                  <h3 id={`case-${p.slug}`} className="mt-5 text-display-s font-[450] text-paper">
                     {p.title}
                   </h3>
                   <p className="mt-5 max-w-[48ch] text-lg leading-relaxed text-paper-muted">{p.summary}</p>

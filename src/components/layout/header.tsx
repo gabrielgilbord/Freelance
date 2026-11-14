@@ -11,7 +11,7 @@ export function Header() {
     <HeaderShell>
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link href="/" className="relative z-50 -m-2 p-2 text-paper" aria-label="Cota, inicio">
-          <LogoCompact />
+          <LogoCompact title="" />
         </Link>
 
         <nav aria-label="Principal" className="hidden md:block">
@@ -29,13 +29,12 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden md:block">
-          <ButtonLink href="/contacto" className="!h-10 !px-4 text-sm">
+        <div className="flex items-center gap-4">
+          <ButtonLink href="/contacto" className="!h-9 !px-3.5 text-sm md:!h-10 md:!px-4">
             Hablemos
           </ButtonLink>
+          <MobileNav />
         </div>
-
-        <MobileNav />
       </Container>
       {/* La cota del header: se completa al llegar al final de la página */}
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px">

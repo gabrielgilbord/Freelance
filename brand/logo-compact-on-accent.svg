@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -2 259 66" role="img" aria-label="Cota"><title>Cota</title>
+  <path d="M35.79 49.57A18 18 0 1 1 35.79 26.43" stroke="#1A0904" stroke-width="8" fill="none"/>
+  <path d="M30 47L50 27" stroke="#1A0904" stroke-width="8" fill="none"/><g transform="translate(76 0)">
+  <g fill="none" stroke="#1A0904" stroke-width="8">
+    <path d="M35.79 49.57A18 18 0 1 1 35.79 26.43"/>
+    <circle cx="70" cy="38" r="18"/>
+    <path d="M110 2V60M98 20H124"/>
+    <circle cx="153" cy="38" r="18"/>
+    <path d="M171 16V60"/>
+  </g></g>
+</svg>

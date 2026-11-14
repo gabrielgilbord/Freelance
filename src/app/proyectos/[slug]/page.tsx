@@ -96,7 +96,7 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </Container>
 
-      <section aria-labelledby="problema" className="py-20 sm:py-28">
+      <section aria-labelledby="problema" className="py-14 sm:py-28">
         <Container className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <h2 id="problema" className="text-xl font-medium text-accent">El problema</h2>
@@ -109,9 +109,9 @@ export default async function ProjectPage({ params }: Props) {
         </Container>
       </section>
 
-      <section aria-labelledby="arquitectura" className="border-t border-line bg-ink-1/40 py-20 sm:py-28">
+      <section aria-labelledby="arquitectura" className="border-t border-line bg-ink-1/40 py-14 sm:py-28">
         <Container>
-          <h2 id="arquitectura" className=" text-display-s font-medium text-paper">Cómo está construido.</h2>
+          <h2 id="arquitectura" className=" text-display-s font-[450] text-paper">Cómo está construido.</h2>
           <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-flow-col lg:auto-cols-fr lg:gap-0">
             {project.architecture.map((layer, i) => (
               <Reveal as="li" key={layer.name} delay={i * 80} className="relative lg:pr-8">
@@ -137,10 +137,10 @@ export default async function ProjectPage({ params }: Props) {
         </Container>
       </section>
 
-      <section aria-labelledby="resultados" className="border-t border-line py-20 sm:py-28">
+      <section aria-labelledby="resultados" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="resultados" className=" text-display-s font-medium text-paper">
+            <h2 id="resultados" className=" text-display-s font-[450] text-paper">
               {project.results?.length ? "Lo que ha cambiado." : "Cómo se mediría."}
             </h2>
             {!project.results?.length && (
@@ -155,7 +155,7 @@ export default async function ProjectPage({ params }: Props) {
                 {project.results.map((r) => (
                   <div key={r.metric} className="bg-ink p-6 sm:p-8">
                     <dt className="label">{r.metric}</dt>
-                    <dd className="mt-3 text-display-s font-medium text-paper">{r.value}</dd>
+                    <dd className="mt-3 text-display-s font-[450] text-paper">{r.value}</dd>
                     {r.note && <dd className="mt-2 text-sm text-paper-subtle">{r.note}</dd>}
                   </div>
                 ))}
@@ -175,9 +175,9 @@ export default async function ProjectPage({ params }: Props) {
       </section>
 
       {project.gallery && project.gallery.length > 0 && (
-        <section aria-labelledby="galeria" className="border-t border-line py-20 sm:py-28">
+        <section aria-labelledby="galeria" className="border-t border-line py-14 sm:py-28">
           <Container>
-            <h2 id="galeria" className="text-display-s font-medium text-paper">Galería</h2>
+            <h2 id="galeria" className="text-display-s font-[450] text-paper">Galería</h2>
             <ul className="mt-10 grid gap-6 md:grid-cols-2">
               {project.gallery.map((g, i) => (
                 <li key={g.src} className={i === 0 ? "md:col-span-2" : ""}>
@@ -200,7 +200,7 @@ export default async function ProjectPage({ params }: Props) {
             <Link href={`/proyectos/${next.slug}`} className="group flex flex-col gap-3 py-14 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="label">Siguiente caso</p>
-                <p className="mt-3 text-display-s font-medium text-paper transition-colors group-hover:text-accent">{next.title}</p>
+                <p className="mt-3 text-display-s font-[450] text-paper transition-colors group-hover:text-accent">{next.title}</p>
               </div>
               <ArrowRight size={32} className="text-paper-subtle transition-transform duration-500 group-hover:translate-x-2 group-hover:text-accent" />
             </Link>

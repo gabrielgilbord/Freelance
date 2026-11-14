@@ -178,6 +178,33 @@
 }
 @keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
+
+
+/* Menú móvil: el panel aparece y los elementos entran escalonados */
+@media (prefers-reduced-motion: no-preference) {
+  .menu-panel { animation: menu-in 0.45s var(--ease-out-quint) both; }
+  .menu-item { animation: menu-item-in 0.6s var(--ease-out-quint) both; animation-delay: calc(80ms + var(--i, 0) * 45ms); }
+}
+@keyframes menu-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes menu-item-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+
+@layer components {
+/* Raíl horizontal con imán: la composición compacta de móvil para listas (proceso,
+   proyectos, puntos de partida). En pantallas grandes cada componente usa su rejilla. */
+.rail {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { scroll-snap-align: start; flex-shrink: 0; }
+}
+
 /* ---------- Motion ---------- */
 /* Revelado al hacer scroll: lo activa <Reveal> añadiendo data-in="true". */
 [data-reveal] {

@@ -7,7 +7,7 @@ export default function NotFound() {
     <section className="flex min-h-[80dvh] items-center pt-[var(--header-h)]">
       <Container>
         <p className="label text-accent">Error 404</p>
-        <h1 className="mt-6 max-w-[16ch] text-display-m font-medium">Esta página está fuera de cota.</h1>
+        <h1 className="mt-6 max-w-[16ch] text-display-m font-[450]">Esta página está fuera de cota.</h1>
         <CotaLine className="mt-10 max-w-md" start="Tú" end="Inicio" label="1 clic" />
         <p className="mt-8 max-w-md text-paper-muted">La dirección no existe o ha cambiado. Desde el inicio puedes llegar a todo lo demás.</p>
         <div className="mt-10 flex flex-wrap gap-4">

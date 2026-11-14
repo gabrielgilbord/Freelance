@@ -47,3 +47,18 @@ One authored moment per chapter, no generic fade-ups:
 - Process: the counter follows the step in view.
 - Demos: data runs only while visible.
 All of it stops under `prefers-reduced-motion`, showing the final readable state. No animation libraries.
+
+---
+
+## v2.1 · Luxury refinement (noviembre 2026)
+- **Marca:** logotipo v2 "calibrado" (el isotipo es la "c" del wordmark + trazo de cota a 45°; mismo grosor óptico que las letras). Sistema completo y normas en `brand/IDENTITY.md`; v1 archivada en `brand/archive/v1/`.
+- **Regla del naranja:** un solo punto protagonista por vista (más uno o dos ecos mínimos). El hero ya no reparte naranja entre ventilador, antena, gráfica y LEDs.
+- **Pieza de firma:** `public/art/caliper.svg`, un calibre midiendo la pieza naranja (60.00 mm): la "cota" hecha objeto. Fuente: `art/caliper.mjs`.
+- **Tipografía:** display a peso 450 con interletraje −0.035/−0.045 em; etiquetas de estado en caja normal (sin mayúsculas espaciadas).
+- **Móvil (≤ 640 px) como composición propia, no como escritorio apilado:**
+  - Hero: titular → objeto → una frase → un CTA. Leyenda y marcadores solo desde `sm`.
+  - Servicios: índice de filas con miniatura de su ilustración.
+  - Capacidades: hoja resumida (capa + disciplinas).
+  - Proceso, proyectos y puntos de partida: raíles horizontales con imán (`.rail`).
+  - Estudio: principios solo con título; pie compacto; "Hablemos" siempre visible en la cabecera.
+  - Resultado: la home pasa de 19,4 a 8,5 pantallas en 390 px sin quitar contenido del DOM.

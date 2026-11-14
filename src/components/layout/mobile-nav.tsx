@@ -52,11 +52,11 @@ export function MobileNav() {
 
       {open &&
         createPortal(
-          <div id={id} className="fixed inset-0 z-30 flex flex-col bg-ink px-4 pb-10 pt-[calc(var(--header-h)+2rem)] md:hidden">
+          <div id={id} className="menu-panel fixed inset-0 z-30 flex flex-col bg-ink px-4 pb-8 pt-[calc(var(--header-h)+1.5rem)] md:hidden">
             <nav aria-label="Móvil" className="flex-1">
               <ul className="border-t border-line">
-                {items.map((item) => (
-                  <li key={item.href} className="border-b border-line">
+                {items.map((item, i) => (
+                  <li key={item.href} className="menu-item border-b border-line" style={{ "--i": i } as React.CSSProperties}>
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
@@ -69,7 +69,16 @@ export function MobileNav() {
                 ))}
               </ul>
             </nav>
-            <p className="text-sm text-paper-subtle">Software, IA e IoT, de principio a fin.</p>
+            <div className="menu-item space-y-4" style={{ "--i": items.length } as React.CSSProperties}>
+              <Link
+                href="/contacto"
+                onClick={() => setOpen(false)}
+                className="flex h-12 items-center justify-center rounded-xs bg-accent text-[0.9375rem] font-medium text-accent-ink"
+              >
+                Hablemos de tu proyecto
+              </Link>
+              <p className="text-center text-sm text-paper-subtle">Software, IA e IoT, de principio a fin.</p>
+            </div>
           </div>,
           document.body,
         )}

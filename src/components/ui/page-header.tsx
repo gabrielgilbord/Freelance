@@ -24,7 +24,7 @@ export function PageHeader({ crumbs, title, intro, children, aside }: { crumbs: 
         </nav>
         <div className={aside ? "grid items-center gap-10 lg:grid-cols-12" : ""}>
           <div className={aside ? "lg:col-span-7" : ""}>
-            <h1 className="mt-10 max-w-[20ch] text-display-m font-medium text-paper">
+            <h1 className="mt-10 max-w-[20ch] text-display-m font-[450] text-paper">
               <span className="line-mask"><span className="line-rise" style={{ "--rise-delay": "80ms" } as React.CSSProperties}>{title}</span></span>
             </h1>
             {intro && (

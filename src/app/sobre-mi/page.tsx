@@ -31,10 +31,10 @@ export default function AboutPage() {
         intro="Soy ingeniero de software y Cota es mi estudio. Diseño y construyo productos que combinan software, inteligencia artificial y dispositivos conectados, y me hago cargo de ellos de principio a fin."
       />
 
-      <section aria-labelledby="enfoque" className="border-t border-line py-20 sm:py-28">
+      <section aria-labelledby="enfoque" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="enfoque" className="text-display-s font-medium text-paper">La versatilidad como especialidad.</h2>
+            <h2 id="enfoque" className="text-display-s font-[450] text-paper">La versatilidad como especialidad.</h2>
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-paper-muted lg:col-span-7 lg:col-start-6">
             <p>
@@ -54,9 +54,9 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="alcance" className="border-t border-line bg-ink-1/40 py-20 sm:py-28">
+      <section aria-labelledby="alcance" className="border-t border-line bg-ink-1/40 py-14 sm:py-28">
         <Container>
-          <h2 id="alcance" className="max-w-[20ch] text-display-s font-medium text-paper">Las capas que puedo cubrir en un mismo proyecto.</h2>
+          <h2 id="alcance" className="max-w-[20ch] text-display-s font-[450] text-paper">Las capas que puedo cubrir en un mismo proyecto.</h2>
           <ul className="mt-12 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
             {layers.map((l, i) => (
               <Reveal as="li" key={l.key} delay={i * 60} className="bg-ink p-6">
@@ -69,10 +69,10 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="principios" className="border-t border-line py-20 sm:py-28">
+      <section aria-labelledby="principios" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="principios" className="text-display-s font-medium text-paper">Cómo trabajo.</h2>
+            <h2 id="principios" className="text-display-s font-[450] text-paper">Cómo trabajo.</h2>
           </div>
           <ol className="border-t border-line lg:col-span-8">
             {principles.map((p, i) => (
@@ -88,10 +88,10 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="nombre" className="border-t border-line py-20 sm:py-28">
+      <section aria-labelledby="nombre" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="nombre" className="text-display-s font-medium text-paper">¿Por qué Cota?</h2>
+            <h2 id="nombre" className="text-display-s font-[450] text-paper">¿Por qué Cota?</h2>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
             <p className="text-lg leading-relaxed text-paper-muted">
@@ -107,10 +107,10 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="cuando-no" className="border-t border-line py-20 sm:py-28">
+      <section aria-labelledby="cuando-no" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="cuando-no" className="text-display-s font-medium text-paper">Cuándo no soy la mejor opción.</h2>
+            <h2 id="cuando-no" className="text-display-s font-[450] text-paper">Cuándo no soy la mejor opción.</h2>
           </div>
           <ul className="space-y-4 lg:col-span-8">
             {notFor.map((n) => (

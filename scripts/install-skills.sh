@@ -9,6 +9,12 @@ npx -y skills@1.8.1 add https://github.com/anthropics/skills --skill frontend-de
 npx -y skills@1.8.1 add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines -a claude-code -y
 npx -y skills@1.8.1 add nextlevelbuilder/ui-ux-pro-max-skill --skill ui-ux-pro-max -a claude-code -y
 npx -y skills@1.8.1 add https://github.com/Teddarific/skills --skill anatomy-asset -a claude-code -y
+# Branding e identidad (añadidas en la auditoría luxury, revisadas antes de instalar)
+npx -y skills@1.8.1 add https://github.com/anthropics/knowledge-work-plugins --skill design-critique -a claude-code -y
+npx -y skills@1.8.1 add https://github.com/anthropics/knowledge-work-plugins --skill design-system -a claude-code -y
+npx -y skills@1.8.1 add https://github.com/arnabbagxd/brand-building-skills --skill brand-identity -a claude-code -y
+npx -y skills@1.8.1 add https://github.com/rknall/claude-skills --skill "SVG Logo Designer" -a claude-code -y
+npx -y skills@1.8.1 add https://github.com/jakubkrehel/skills --skill better-typography -a claude-code -y
 npx -y impeccable@4.9.1 telemetry off
 npx -y impeccable@4.9.1 install --project --providers=claude-code --no-hooks -y
 echo "Skills instaladas en .claude/skills"

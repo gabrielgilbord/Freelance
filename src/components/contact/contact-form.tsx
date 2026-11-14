@@ -53,7 +53,7 @@ export function ContactForm({ defaultProjectType = "" }: { defaultProjectType?: 
         <span className="flex h-12 w-12 items-center justify-center border border-accent text-accent">
           <Check />
         </span>
-        <h2 className="mt-8 text-display-s font-medium text-paper">Mensaje recibido{state.name ? `, ${state.name}` : ""}.</h2>
+        <h2 className="mt-8 text-display-s font-[450] text-paper">Mensaje recibido{state.name ? `, ${state.name}` : ""}.</h2>
         <p className="mt-4 max-w-[52ch] text-lg text-paper-muted">
           Leo cada solicitud personalmente. Te responderé con las primeras preguntas o con una propuesta para hablar.
         </p>

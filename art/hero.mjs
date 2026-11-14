@@ -90,8 +90,8 @@ function backplane() {
   const leds = Array.from({ length: 14 }, (_, i) => [-150 + i * 9, BACKPLANE.y + 8]);
   out.push(L(leds.map(([x, y]) => k.ring(x, y, 1.6, z1, P, 12)).join(""), { tone: "lo" }));
   leds.forEach(([x, y], i) => {
-    const dot = D([at([x, y, z1])], { size: 0.9, tone: i === 3 || i === 9 ? "lit" : "lo" });
-    out.push(i === 3 || i === 9 ? a.amBlink(led(dot), { period: 2600 + i * 120, delay: i * 340 }) : dot);
+    const dot = D([at([x, y, z1])], { size: 0.9, tone: i === 9 ? "hi" : "lo" });
+    out.push(i === 9 ? a.amBlink(dot, { period: 2600, delay: 340 }) : dot);
   });
   // a vent of perforations and a label plate on the right
   out.push(D(k.dotGrid(-10, BACKPLANE.y + 5, 18, 2, 5, z1, P), { size: 0.5, tone: "lo" }));
@@ -119,7 +119,7 @@ function compute() {
   out.push(
     a.amRotor([FX, FY, z1 + 1.2], [1, 0, 0], [0, 1, 0], P, { count: 7, r0: 6, r1: FR - 2, chord: 9, tip: 4, sweep: 0.5, period: 900, thickness: 0.8, clip: FR - 0.5 }),
   );
-  out.push(brand(S(k.cylinder(FX, FY, 7, z1 + 1.2, 3, P, 32, 0.4), { tone: "hi", lit: true, inner: L(k.sideArc(FX, FY, 7, z1 + 2.4, P, 24), { tone: "lo" }) })));
+  out.push(S(k.cylinder(FX, FY, 7, z1 + 1.2, 3, P, 32, 0.4), { tone: "hi", lit: true, inner: L(k.sideArc(FX, FY, 7, z1 + 2.4, P, 24), { tone: "lo" }) }));
   out.push(D([at([FX, FY, z1 + 4.2])], { size: 0.7, tone: "hi" }));
   mark("ia", [FX, FY, z1 + 4]);
   // the heat sink: a plinth and a row of fins, painted back to front
@@ -153,7 +153,7 @@ function rack() {
       S(k.slabOf({ x: plan.x + 76, y: front, w: 4, d: 4, r: 0.6 }, t.z + 5, 5, P, 2), { tone: "mid" }),
       S(k.slabOf({ x: plan.x + 50, y: front + 3, w: 32, d: 4, r: 1.2 }, t.z + 5, 5, P, 3, 0.4), { tone: "hi" }),
       // activity LED on the front face
-      a.amBlink(led(D([at([plan.x + plan.w - 10, front, t.z + 7.5])], { size: 1, tone: "lit" })), { period: 1900 + t.i * 700, delay: t.i * 500 }),
+      a.amBlink(D([at([plan.x + plan.w - 10, front, t.z + 7.5])], { size: 1, tone: "hi" }), { period: 1900 + t.i * 700, delay: t.i * 500 }),
       D([at([plan.x + 8, front, t.z + 7.5])], { size: SCREW }),
     ].join("");
     out.push(t.i === 1 ? a.amSlide(svg, [0, 14, 0], P, { period: 7600, delay: 2200 }) : svg);
@@ -224,7 +224,7 @@ function iot() {
   const AY = RADIO.y + RADIO.d / 2;
   out.push(S(k.cylinder(AX, AY, 2.8, z + 3, 2.4, P, 20, 0.3), { tone: "lo" }));
   out.push(S(k.cylinder(AX, AY, 1.2, z + 5.4, 30, P, 16), { tone: "mid", crease: "none", inner: L(k.sideArc(AX, AY, 1.2, z + 21, P, 10), { tone: "faint" }) }));
-  out.push(brand(S(k.cylinder(AX, AY, 2.4, z + 35.4, 3, P, 20, 0.3), { tone: "hi" })));
+  out.push(S(k.cylinder(AX, AY, 2.4, z + 35.4, 3, P, 20, 0.3), { tone: "hi", lit: true }));
   return out.join("");
 }
 
@@ -243,7 +243,7 @@ function iface() {
   const axis = k.onTop([[SCREEN.x + 6, SCREEN.y + 14], [SCREEN.x + 6, SCREEN.y + 42], [SCREEN.x + 60, SCREEN.y + 42]], sz, P);
   out.push(L(axis, { tone: "lo", free: true }));
   const pts = [0, 6, 3, 11, 8, 15, 12, 20, 17].map((v, i) => [SCREEN.x + 6 + i * 6.6, SCREEN.y + 40 - v * 1.2]);
-  out.push(led(L(k.onTop(pts, sz, P), { tone: "lit", free: true })));
+  out.push(L(k.onTop(pts, sz, P), { tone: "hi", free: true }));
   out.push(led(D([at([...pts[pts.length - 1], sz])], { size: 1.1, tone: "lit" })));
   for (const [i, h] of [16, 26, 10].entries()) {
     const bx = SCREEN.x + 66 + i * 5;

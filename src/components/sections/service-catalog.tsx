@@ -91,15 +91,29 @@ export function ServiceCatalog({ services }: { services: Item[] }) {
         </div>
       </div>
 
-      {/* Móvil y tablet: lista completa */}
-      <ul className="grid gap-10 sm:grid-cols-2 lg:hidden">
+      {/* Móvil y tablet: un índice compacto, cada servicio en una fila con su pieza en miniatura */}
+      <ul className="grid border-t border-line sm:grid-cols-2 sm:gap-x-8 lg:hidden">
         {services.map((s) => (
-          <li key={s.slug} className="border-t border-line pt-6">
-            <Link href={`/servicios/${s.slug}`} className="group block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/art/services/${s.slug}.svg`} alt="" width={480} height={400} loading="lazy" className="h-auto w-full" />
-              <h3 className="mt-2 text-2xl font-medium tracking-[-0.03em] text-paper group-hover:text-accent">{s.title}</h3>
-              <p className="mt-2 text-paper-muted">{s.pitch}</p>
+          <li key={s.slug} className="border-b border-line">
+            <Link href={`/servicios/${s.slug}`} className="group grid grid-cols-[4.75rem_1fr_auto] items-center gap-4 py-3.5">
+              <span className="relative block aspect-square overflow-hidden rounded-sm border border-line bg-ink-1">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/art/services/${s.slug}.svg`}
+                  alt=""
+                  width={480}
+                  height={400}
+                  loading="lazy"
+                  className="absolute left-1/2 top-1/2 h-auto w-[150%] max-w-none -translate-x-1/2 -translate-y-[46%]"
+                />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[1.0625rem] font-medium leading-snug tracking-[-0.015em] text-paper group-active:text-accent">{s.title}</span>
+                <span className="mt-1 line-clamp-2 text-sm leading-snug text-paper-muted">{s.pitch}</span>
+              </span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-paper-subtle" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" />
+              </svg>
             </Link>
           </li>
         ))}

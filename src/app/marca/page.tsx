@@ -123,10 +123,10 @@ export default function BrandPage() {
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
             <p className="label">Schibsted Grotesk · display y texto</p>
-            <p className="mt-6 text-display-l font-medium">Aa</p>
+            <p className="mt-6 text-display-l font-[450]">Aa</p>
             <div className="mt-8 space-y-4 border-t border-line pt-6">
-              <p className="text-display-m font-medium">Display M</p>
-              <p className="text-display-s font-medium">Display S · títulos de sección</p>
+              <p className="text-display-m font-[450]">Display M</p>
+              <p className="text-display-s font-[450]">Display S · títulos de sección</p>
               <p className="text-2xl font-medium">Heading · 24 px</p>
               <p className="text-lg text-paper-muted">Lead · 18–20 px para introducciones.</p>
               <p className="text-paper-muted">Body · 16 px, interlineado 1.6, medida máxima 65 caracteres.</p>

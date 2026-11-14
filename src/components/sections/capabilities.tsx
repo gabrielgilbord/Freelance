@@ -11,16 +11,33 @@ export function Capabilities() {
     <section aria-labelledby="capacidades-title" className="chapter-sheet py-16 sm:py-32">
       <Container>
         <div className="grid gap-8 lg:grid-cols-12">
-          <h2 id="capacidades-title" className="text-display-m font-medium lg:col-span-7">
+          <h2 id="capacidades-title" className="text-display-m font-[450] lg:col-span-7">
             Del sensor a la pantalla, sin cambiar de interlocutor.
           </h2>
           <p className="max-w-[46ch] self-end text-lg leading-relaxed text-sheet-muted lg:col-span-5">
-            Un producto digital atraviesa varias capas. Cuando cada una la resuelve un proveedor distinto, los problemas aparecen en las fronteras.
+            Un producto digital atraviesa varias capas.<span className="hidden sm:inline"> Cuando cada una la resuelve un proveedor distinto, los problemas aparecen en las fronteras.</span>{" "}
             Esta es la hoja de especificaciones de lo que cubro.
           </p>
         </div>
 
-        <div className="mt-16 flex gap-4 sm:gap-8">
+        {/* Móvil: la hoja resumida, una fila por capa */}
+        <dl className="mt-8 border-t-2 border-sheet-ink sm:hidden">
+          {layers.map((layer) => (
+            <div key={layer.key} className="grid grid-cols-[7.5rem_1fr] gap-3 border-b border-sheet-line py-3.5">
+              <dt className="text-[0.9375rem] font-medium leading-snug">{layer.name}</dt>
+              <dd className="flex flex-wrap gap-x-3 gap-y-1 text-[0.9375rem] text-sheet-muted">
+                {layer.items.map((c) => (
+                  <span key={c.name} className="inline-flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 bg-accent-deep" aria-hidden="true" />
+                    {c.name}
+                  </span>
+                ))}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-16 hidden gap-4 sm:flex sm:gap-8">
           {/* la cota vertical: todas las capas, un mismo responsable */}
           <div className="relative hidden w-10 shrink-0 sm:block" aria-hidden="true">
             <span className="absolute left-1/2 top-0 h-px w-7 -translate-x-1/2 bg-sheet-ink" />

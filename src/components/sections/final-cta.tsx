@@ -12,7 +12,7 @@ export function FinalCta({
   return (
     <section aria-labelledby="cta-title" className="chapter-accent relative overflow-hidden py-16 sm:py-36">
       <Container className="relative">
-        <h2 id="cta-title" className="max-w-[14ch] text-display-l font-medium">
+        <h2 id="cta-title" className="max-w-[14ch] text-display-l font-[450]">
           {title}
         </h2>
         {/* la cota del cierre, en tinta sobre naranja */}

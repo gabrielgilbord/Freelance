@@ -17,22 +17,22 @@ export function Manifesto() {
         <h2 id="manifiesto-title" className="sr-only">
           Por qué COTA
         </h2>
-        <p className="word-reveal max-w-[22ch] text-[clamp(1.875rem,1.1rem+3.2vw,4.25rem)] font-medium leading-[1.04] tracking-[-0.03em] text-paper sm:max-w-[24ch]">
+        <p className="word-reveal max-w-[22ch] text-[clamp(1.625rem,1.1rem+3.2vw,4.25rem)] font-medium leading-[1.04] tracking-[-0.03em] text-paper sm:max-w-[24ch]">
           {statement.split(" ").map((w, i) => (
             <span key={i}>{w} </span>
           ))}
         </p>
 
-        <div className="mt-14 grid gap-8 lg:mt-28 lg:gap-12 lg:grid-cols-12">
+        <div className="mt-10 grid gap-5 sm:mt-14 sm:gap-8 lg:mt-28 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <p className="max-w-[30ch] text-xl font-medium leading-snug text-paper">
+            <p className="max-w-[30ch] text-lg font-medium leading-snug text-paper sm:text-xl">
               No necesitas llegar con un proyecto definido. Puedes llegar con:
             </p>
-            <CotaLine className="mt-8 max-w-xs" />
+            <CotaLine className="mt-8 hidden max-w-xs sm:flex" />
           </div>
-          <ul className="grid gap-px overflow-hidden border-y border-line sm:grid-cols-3 lg:col-span-8">
+          <ul className="rail -mx-4 px-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-px sm:overflow-hidden sm:border-y sm:border-line sm:px-0 lg:col-span-8">
             {startingPoints.map((p) => (
-              <li key={p.title} className="py-6 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-line sm:px-6 sm:first:pl-0 sm:[&:not(:first-child)]:border-t-0 sm:[&:not(:first-child)]:border-l">
+              <li key={p.title} className="w-[76%] rounded-md border border-line bg-ink-1/50 p-5 sm:w-auto sm:rounded-none sm:border-0 sm:bg-transparent sm:px-6 sm:py-6 sm:first:pl-0 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-line">
                 <p className="font-medium text-paper">{p.title}</p>
                 <p className="mt-2 text-paper-muted">{p.text}</p>
               </li>

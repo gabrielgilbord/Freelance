@@ -33,16 +33,23 @@ export default function ServicesPage() {
           <ol className="border-t border-line">
             {services.map((s, i) => (
               <Reveal as="li" key={s.slug} delay={i * 40} className="border-b border-line">
-                <Link href={`/servicios/${s.slug}`} className="group grid items-start gap-6 py-8 transition-colors md:grid-cols-12 md:gap-8 sm:py-12">
-                  <div className="md:col-span-3">
+                <Link href={`/servicios/${s.slug}`} className="group grid grid-cols-[4.75rem_1fr_auto] items-center gap-4 py-4 transition-colors md:grid-cols-12 md:items-start md:gap-8 md:py-12">
+                  <div className="relative aspect-square overflow-hidden rounded-sm border border-line bg-ink-1 md:col-span-3 md:aspect-auto md:overflow-visible md:rounded-none md:border-0 md:bg-transparent">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/art/services/${s.slug}.svg`} alt="" width={480} height={400} loading="lazy" className="h-auto w-full max-w-[18rem] transition-transform duration-700 ease-out-quint group-hover:-translate-y-1" />
+                    <img
+                      src={`/art/services/${s.slug}.svg`}
+                      alt=""
+                      width={480}
+                      height={400}
+                      loading="lazy"
+                      className="absolute left-1/2 top-1/2 h-auto w-[150%] max-w-none -translate-x-1/2 -translate-y-[46%] md:static md:w-full md:max-w-[18rem] md:translate-x-0 md:translate-y-0 md:transition-transform md:duration-700 md:ease-out-quint md:group-hover:-translate-y-1"
+                    />
                   </div>
-                  <div className="md:col-span-4">
-                    <h2 className="mt-1 text-2xl font-medium text-paper transition-colors duration-300 group-hover:text-accent sm:text-3xl">{s.title}</h2>
-                    <p className="mt-3 max-w-[48ch] text-paper-muted">{s.pitch}</p>
+                  <div className="min-w-0 md:col-span-4">
+                    <h2 className="text-[1.0625rem] font-medium leading-snug md:mt-1 md:text-2xl md:leading-tight lg:text-3xl text-paper transition-colors duration-300 group-hover:text-accent">{s.title}</h2>
+                    <p className="mt-1 line-clamp-2 max-w-[48ch] text-sm text-paper-muted md:mt-3 md:line-clamp-none md:text-base">{s.pitch}</p>
                   </div>
-                  <ul className="space-y-2 self-center text-paper-muted md:col-span-4">
+                  <ul className="hidden space-y-2 self-center text-paper-muted md:col-span-4 md:block">
                     {s.problems.slice(0, 3).map((p) => (
                       <li key={p} className="flex gap-3 text-[0.9375rem]">
                         <span className="mt-[0.7em] h-px w-3 shrink-0 bg-line-strong" aria-hidden="true" />
@@ -51,7 +58,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <div className="flex items-center md:col-span-1 md:justify-end md:self-center">
-                    <ArrowUpRight className="text-paper-subtle transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent" />
+                    <ArrowUpRight size={18} className="text-paper-subtle transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent" />
                   </div>
                 </Link>
               </Reveal>

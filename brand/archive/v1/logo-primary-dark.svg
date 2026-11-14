@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -4 191 100" role="img" aria-label="Cota"><title>Cota</title>
+  <g fill="none" stroke="#ECEAE4" stroke-width="8">
+    <path d="M35.79 49.57A18 18 0 1 1 35.79 26.43"/>
+    <circle cx="70" cy="38" r="18"/>
+    <path d="M110 2V60M98 20H124"/>
+    <circle cx="153" cy="38" r="18"/>
+    <path d="M171 16V60"/>
+  </g>
+  <path d="M2 70V90M173 70V90" stroke="#ECEAE4" stroke-width="2.5" fill="none"/>
+  <path d="M2 84H173" stroke="#ECEAE4" stroke-width="2" fill="none"/>
+  <path d="M-3 89L7 79M168 89L178 79" stroke="#FF5A36" stroke-width="4" fill="none"/>
+</svg>

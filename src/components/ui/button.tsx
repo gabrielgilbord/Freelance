@@ -29,7 +29,7 @@ function Inner({ children, arrow }: { children: ReactNode; arrow?: boolean }) {
 }
 
 const cls = (variant: Variant, className = "") =>
-  `group inline-flex items-center justify-center gap-3 text-[0.9375rem] leading-none transition-colors duration-300 ${styles[variant]} ${className}`;
+  `group inline-flex items-center justify-center gap-3 whitespace-nowrap text-[0.9375rem] leading-none [text-box:trim-both_cap_alphabetic] transition-colors duration-300 ${styles[variant]} ${className}`;
 
 export function ButtonLink({ variant = "primary", arrow, children, className, ...props }: Common & ComponentProps<typeof Link>) {
   return (

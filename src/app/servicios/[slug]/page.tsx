@@ -61,10 +61,10 @@ export default async function ServicePage({ params }: Props) {
       </PageHeader>
 
       {/* Problemas */}
-      <section aria-labelledby="problemas" className="border-t border-line py-20 sm:py-28">
+      <section aria-labelledby="problemas" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="problemas" className="text-display-s font-medium text-paper">¿Te suena alguna de estas situaciones?</h2>
+            <h2 id="problemas" className="text-display-s font-[450] text-paper">¿Te suena alguna de estas situaciones?</h2>
           </div>
           <ul className="grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:col-span-8">
             {service.problems.map((p, i) => (
@@ -78,10 +78,10 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       {/* Qué construyo + qué obtienes */}
-      <section aria-labelledby="entregables" className="border-t border-line bg-ink-1/40 py-20 sm:py-28">
+      <section aria-labelledby="entregables" className="border-t border-line bg-ink-1/40 py-14 sm:py-28">
         <Container className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <h2 id="entregables" className="text-display-s font-medium text-paper">Soluciones, no horas de programación.</h2>
+            <h2 id="entregables" className="text-display-s font-[450] text-paper">Soluciones, no horas de programación.</h2>
             <ul className="mt-10 border-t border-line">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex gap-4 border-b border-line py-4 text-paper">
@@ -109,14 +109,14 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       {/* Cómo se desarrolla */}
-      <section id="como-trabajo" aria-labelledby="como-title" className="border-t border-line py-20 sm:py-28">
+      <section id="como-trabajo" aria-labelledby="como-title" className="border-t border-line py-14 sm:py-28">
         <Container>
-          <h2 id="como-title" className="max-w-[22ch] text-display-s font-medium text-paper">Paso a paso, con entregas que puedes ver.</h2>
-          <ol className="mt-14 grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
+          <h2 id="como-title" className="max-w-[22ch] text-display-s font-[450] text-paper">Paso a paso, con entregas que puedes ver.</h2>
+          <ol className="rail -mx-4 mt-8 px-4 md:mx-0 md:mt-14 md:grid md:grid-cols-2 md:gap-px md:overflow-hidden md:rounded-sm md:border md:border-line md:bg-line md:px-0 lg:grid-cols-4">
             {service.steps.map((st, i) => (
-              <Reveal as="li" key={st.title} delay={i * 70} className="relative bg-ink p-6 sm:p-8">
+              <Reveal as="li" key={st.title} delay={i * 70} className="relative w-[76%] rounded-md border border-line bg-ink p-5 md:w-auto md:rounded-none md:border-0 md:p-8">
                 <span className="font-mono text-sm text-paper-subtle">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-8 text-lg font-medium text-paper">{st.title}</h3>
+                <h3 className="mt-4 text-lg font-medium text-paper md:mt-8">{st.title}</h3>
                 <p className="mt-2 text-paper-muted">{st.text}</p>
               </Reveal>
             ))}
@@ -131,21 +131,21 @@ export default async function ServicePage({ params }: Props) {
 
       {/* Casos relacionados */}
       {related.length > 0 && (
-        <section aria-labelledby="casos-title" className="border-t border-line py-20 sm:py-28">
+        <section aria-labelledby="casos-title" className="border-t border-line py-14 sm:py-28">
           <Container>
-            <h2 id="casos-title" className="text-display-s font-medium text-paper">Así se plantea en la práctica.</h2>
-            <ul className="mt-14 grid gap-12 md:grid-cols-2">
-              {related.map((p) => <li key={p.slug}><ProjectCard project={p} /></li>)}
+            <h2 id="casos-title" className="text-display-s font-[450] text-paper">Así se plantea en la práctica.</h2>
+            <ul className="rail -mx-4 mt-8 px-4 md:mx-0 md:mt-14 md:grid md:grid-cols-2 md:gap-12 md:px-0">
+              {related.map((p) => <li key={p.slug} className="w-[84%] md:w-auto"><ProjectCard project={p} /></li>)}
             </ul>
           </Container>
         </section>
       )}
 
       {/* FAQ con divulgación progresiva nativa */}
-      <section aria-labelledby="faq-title" className="border-t border-line py-20 sm:py-28">
+      <section aria-labelledby="faq-title" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="faq-title" className="text-display-s font-medium text-paper">Antes de empezar.</h2>
+            <h2 id="faq-title" className="text-display-s font-[450] text-paper">Antes de empezar.</h2>
           </div>
           <div className="border-t border-line lg:col-span-8">
             {service.faq.map((f) => (
