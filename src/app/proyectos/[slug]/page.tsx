@@ -12,6 +12,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { Reveal } from "@/components/ui/reveal";
 import { Tag } from "@/components/ui/tag";
 import { ProjectCover } from "@/components/project/project-cover";
+import { projectDemos } from "@/components/demos";
 import { FinalCta } from "@/components/sections/final-cta";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbLd } from "@/lib/seo/jsonld";
@@ -47,10 +48,14 @@ export default async function ProjectPage({ params }: Props) {
     { name: project.title, path },
   ];
   const isConcept = project.status === "concept";
+  const Demo = projectDemos[project.slug];
 
   return (
     <>
-      <PageHeader crumbs={crumbs} eyebrow={statusLabel[project.status]} title={project.title} intro={project.summary}>
+      <PageHeader crumbs={crumbs} title={project.title} intro={project.summary}>
+        <div className="mt-8">
+          <Tag tone={isConcept ? "default" : "accent"}>{statusLabel[project.status]}</Tag>
+        </div>
         <dl className="mt-12 grid max-w-4xl gap-6 border-t border-line pt-6 sm:grid-cols-3">
           <div>
             <dt className="label">Sector</dt>
@@ -73,21 +78,32 @@ export default async function ProjectPage({ params }: Props) {
       </PageHeader>
 
       <Container>
-        <div className="overflow-hidden rounded-sm border border-line">
-          <ProjectCover project={project} />
+        <div className="grid items-center gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <ProjectCover project={project} priority />
+          </div>
+          {Demo && (
+            <div className="lg:col-span-5">
+              <h2 className="mb-4 text-xl font-medium text-paper">Así funcionaría</h2>
+              <Demo />
+              {isConcept && (
+                <p className="mt-3 text-sm text-paper-subtle">
+                  Demostración con datos simulados. No representa un sistema de un cliente real.
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </Container>
 
       <section aria-labelledby="problema" className="py-20 sm:py-28">
         <Container className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="label text-accent">01 · Problema</p>
-            <h2 id="problema" className="sr-only">Problema</h2>
+            <h2 id="problema" className="text-xl font-medium text-accent">El problema</h2>
             <p className="mt-6 text-xl leading-relaxed text-paper">{project.problem}</p>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
-            <p className="label text-accent">02 · Solución</p>
-            <h2 className="sr-only">Solución</h2>
+            <h2 className="text-xl font-medium text-accent">La solución</h2>
             <p className="mt-6 text-lg leading-relaxed text-paper-muted">{project.solution}</p>
           </div>
         </Container>
@@ -95,8 +111,7 @@ export default async function ProjectPage({ params }: Props) {
 
       <section aria-labelledby="arquitectura" className="border-t border-line bg-ink-1/40 py-20 sm:py-28">
         <Container>
-          <p className="label text-accent">03 · Arquitectura</p>
-          <h2 id="arquitectura" className="mt-4 text-display-s font-medium text-paper">Cómo está construido.</h2>
+          <h2 id="arquitectura" className=" text-display-s font-medium text-paper">Cómo está construido.</h2>
           <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-flow-col lg:auto-cols-fr lg:gap-0">
             {project.architecture.map((layer, i) => (
               <Reveal as="li" key={layer.name} delay={i * 80} className="relative lg:pr-8">
@@ -125,8 +140,7 @@ export default async function ProjectPage({ params }: Props) {
       <section aria-labelledby="resultados" className="border-t border-line py-20 sm:py-28">
         <Container className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="label text-accent">04 · {project.results?.length ? "Resultados" : "Criterios de éxito"}</p>
-            <h2 id="resultados" className="mt-4 text-display-s font-medium text-paper">
+            <h2 id="resultados" className=" text-display-s font-medium text-paper">
               {project.results?.length ? "Lo que ha cambiado." : "Cómo se mediría."}
             </h2>
             {!project.results?.length && (
@@ -163,8 +177,7 @@ export default async function ProjectPage({ params }: Props) {
       {project.gallery && project.gallery.length > 0 && (
         <section aria-labelledby="galeria" className="border-t border-line py-20 sm:py-28">
           <Container>
-            <p className="label text-accent">05 · Galería</p>
-            <h2 id="galeria" className="sr-only">Galería</h2>
+            <h2 id="galeria" className="text-display-s font-medium text-paper">Galería</h2>
             <ul className="mt-10 grid gap-6 md:grid-cols-2">
               {project.gallery.map((g, i) => (
                 <li key={g.src} className={i === 0 ? "md:col-span-2" : ""}>

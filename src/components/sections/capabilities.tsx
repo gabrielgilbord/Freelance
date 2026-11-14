@@ -1,55 +1,71 @@
 import { layers } from "@/content/capabilities";
 import { Container } from "@/components/ui/container";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionHeader } from "@/components/ui/section-header";
 
+/**
+ * Capacidades como hoja de especificaciones: el único capítulo claro de la página.
+ * Una tabla real (capa, disciplina, qué resuelve) con una cota vertical que recorre
+ * todas las capas: un mismo responsable de arriba abajo.
+ */
 export function Capabilities() {
   return (
-    <section aria-labelledby="capacidades-title" className="relative border-t border-line bg-ink-1/40 py-24 sm:py-32">
+    <section aria-labelledby="capacidades-title" className="chapter-sheet py-24 sm:py-32">
       <Container>
-        <SectionHeader
-          id="capacidades-title"
-          index="03"
-          eyebrow="Capacidades"
-          title="Del sensor a la pantalla, sin cambiar de interlocutor."
-          intro="Un producto digital atraviesa varias capas. Cuando cada una la resuelve un proveedor distinto, los problemas aparecen en las fronteras. Yo trabajo todas las capas y me ocupo de que encajen."
-        />
+        <div className="grid gap-8 lg:grid-cols-12">
+          <h2 id="capacidades-title" className="text-display-m font-medium lg:col-span-7">
+            Del sensor a la pantalla, sin cambiar de interlocutor.
+          </h2>
+          <p className="max-w-[46ch] self-end text-lg leading-relaxed text-sheet-muted lg:col-span-5">
+            Un producto digital atraviesa varias capas. Cuando cada una la resuelve un proveedor distinto, los problemas aparecen en las fronteras.
+            Esta es la hoja de especificaciones de lo que cubro.
+          </p>
+        </div>
 
         <div className="mt-16 flex gap-4 sm:gap-8">
-          {/* Cota vertical: una misma persona cubre todo el stack */}
-          <div className="relative hidden w-8 shrink-0 sm:block" aria-hidden="true">
-            <span className="absolute left-1/2 top-0 h-px w-6 -translate-x-1/2 bg-line-strong" />
-            <span className="absolute bottom-0 left-1/2 h-px w-6 -translate-x-1/2 bg-line-strong" />
-            <span className="absolute inset-y-0 left-1/2 w-px bg-paper-subtle/60" />
-            <span className="absolute left-1/2 top-0 h-3.5 w-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent" />
-            <span className="absolute bottom-0 left-1/2 h-3.5 w-[2px] -translate-x-1/2 translate-y-1/2 rotate-45 bg-accent" />
-            <span className="label absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap bg-[#0f100f] px-3 text-paper-muted">
-              Un mismo responsable
+          {/* la cota vertical: todas las capas, un mismo responsable */}
+          <div className="relative hidden w-10 shrink-0 sm:block" aria-hidden="true">
+            <span className="absolute left-1/2 top-0 h-px w-7 -translate-x-1/2 bg-sheet-ink" />
+            <span className="absolute bottom-0 left-1/2 h-px w-7 -translate-x-1/2 bg-sheet-ink" />
+            <span className="absolute inset-y-0 left-1/2 w-px bg-sheet-ink/50" />
+            <span className="absolute left-1/2 top-0 h-4 w-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent-deep" />
+            <span className="absolute bottom-0 left-1/2 h-4 w-[2px] -translate-x-1/2 translate-y-1/2 rotate-45 bg-accent-deep" />
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap bg-sheet px-3 font-mono text-xs text-sheet-muted">
+              un mismo responsable
             </span>
           </div>
 
-          <ol className="flex-1 divide-y divide-line border-y border-line">
-            {layers.map((layer, i) => (
-              <Reveal as="li" key={layer.key} delay={i * 60} className="group grid gap-6 py-8 md:grid-cols-12 md:gap-8">
-                <div className="md:col-span-4">
-                  <p className="label">Capa {String(i + 1).padStart(2, "0")}</p>
-                  <h3 className="mt-2 text-xl font-medium text-paper transition-colors duration-300 group-hover:text-accent">{layer.name}</h3>
-                  <p className="mt-1 text-sm text-paper-subtle">{layer.caption}</p>
-                </div>
-                <ul className="grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:auto-cols-fr sm:grid-flow-col md:col-span-8">
-                  {layer.items.map((c) => (
-                    <li key={c.name} className="bg-ink p-5 transition-colors duration-300 hover:bg-ink-2">
-                      <div className="flex items-baseline justify-between gap-3">
-                        <span className="font-medium text-paper">{c.name}</span>
-                        <span className="label text-right">{c.label}</span>
-                      </div>
-                      <p className="mt-2 text-sm leading-relaxed text-paper-muted">{c.text}</p>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
+          <table className="w-full border-collapse text-left">
+            <caption className="sr-only">Capacidades técnicas por capa del sistema</caption>
+            <thead>
+              <tr className="border-b-2 border-sheet-ink font-mono text-xs text-sheet-muted">
+                <th scope="col" className="w-[38%] py-3 pr-4 font-normal sm:w-[28%]">Capa</th>
+                <th scope="col" className="w-[24%] py-3 pr-4 font-normal">Disciplina</th>
+                <th scope="col" className="hidden py-3 font-normal sm:table-cell">Qué resuelve</th>
+              </tr>
+            </thead>
+            {layers.map((layer) => (
+              <tbody key={layer.key} className="border-b border-sheet-line">
+                {layer.items.map((c, j) => (
+                  <tr key={c.name} className="group align-top transition-colors hover:bg-sheet-2/70">
+                    {j === 0 && (
+                      <th scope="rowgroup" rowSpan={layer.items.length} className="py-5 pr-4 font-normal">
+                        <span className="block text-lg font-medium sm:text-xl">{layer.name}</span>
+                        <span className="mt-1 block text-sm text-sheet-muted">{layer.caption}</span>
+                      </th>
+                    )}
+                    <td className={`py-5 pr-4 ${j > 0 ? "border-t border-dashed border-sheet-line" : ""}`}>
+                      <span className="flex items-center gap-2 font-medium">
+                        <span className="h-1.5 w-1.5 shrink-0 bg-accent-deep" aria-hidden="true" />
+                        {c.name}
+                      </span>
+                      <span className="mt-1 block font-mono text-xs text-sheet-muted">{c.label}</span>
+                      <span className="mt-2 block text-sm text-sheet-muted sm:hidden">{c.text}</span>
+                    </td>
+                    <td className={`hidden py-5 text-sheet-muted sm:table-cell ${j > 0 ? "border-t border-dashed border-sheet-line" : ""}`}>{c.text}</td>
+                  </tr>
+                ))}
+              </tbody>
             ))}
-          </ol>
+          </table>
         </div>
       </Container>
     </section>

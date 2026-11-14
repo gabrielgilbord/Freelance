@@ -1,7 +1,6 @@
 import { Hero } from "@/components/sections/hero";
-import { PromiseStrip } from "@/components/sections/promise-strip";
+import { Manifesto } from "@/components/sections/manifesto";
 import { ServicesBento } from "@/components/sections/services-bento";
-import { EntryPoints } from "@/components/sections/entry-points";
 import { Capabilities } from "@/components/sections/capabilities";
 import { Process } from "@/components/sections/process";
 import { FeaturedProjects } from "@/components/sections/featured-projects";
@@ -12,9 +11,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <PromiseStrip />
+      <Manifesto />
       <ServicesBento />
-      <EntryPoints />
       <Capabilities />
       <Process />
       <FeaturedProjects />

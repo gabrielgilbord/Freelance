@@ -2,7 +2,7 @@ import Link from "next/link";
 import { services } from "@/content/services";
 import { engagementModels } from "@/content/engagement";
 import { Container } from "@/components/ui/container";
-import { ArrowUpRight, ServiceGlyph } from "@/components/ui/icons";
+import { ArrowUpRight } from "@/components/ui/icons";
 import { PageHeader } from "@/components/ui/page-header";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -33,16 +33,16 @@ export default function ServicesPage() {
           <ol className="border-t border-line">
             {services.map((s, i) => (
               <Reveal as="li" key={s.slug} delay={i * 40} className="border-b border-line">
-                <Link href={`/servicios/${s.slug}`} className="group grid items-start gap-6 py-10 transition-colors md:grid-cols-12 md:gap-8 sm:py-12">
-                  <div className="flex items-center gap-4 md:col-span-1">
-                    <span className="font-mono text-sm text-accent">{s.index}</span>
+                <Link href={`/servicios/${s.slug}`} className="group grid items-start gap-6 py-8 transition-colors md:grid-cols-12 md:gap-8 sm:py-12">
+                  <div className="md:col-span-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={`/art/services/${s.slug}.svg`} alt="" width={480} height={400} loading="lazy" className="h-auto w-full max-w-[18rem] transition-transform duration-700 ease-out-quint group-hover:-translate-y-1" />
                   </div>
-                  <div className="md:col-span-5">
-                    <p className="label">{s.discipline}</p>
-                    <h2 className="mt-3 text-2xl font-medium text-paper transition-colors duration-300 group-hover:text-accent sm:text-3xl">{s.title}</h2>
+                  <div className="md:col-span-4">
+                    <h2 className="mt-1 text-2xl font-medium text-paper transition-colors duration-300 group-hover:text-accent sm:text-3xl">{s.title}</h2>
                     <p className="mt-3 max-w-[48ch] text-paper-muted">{s.pitch}</p>
                   </div>
-                  <ul className="space-y-2 text-paper-muted md:col-span-5">
+                  <ul className="space-y-2 self-center text-paper-muted md:col-span-4">
                     {s.problems.slice(0, 3).map((p) => (
                       <li key={p} className="flex gap-3 text-[0.9375rem]">
                         <span className="mt-[0.7em] h-px w-3 shrink-0 bg-line-strong" aria-hidden="true" />
@@ -50,8 +50,7 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center justify-between md:col-span-1 md:flex-col md:items-end md:gap-6">
-                    <ServiceGlyph slug={s.slug} className="text-paper-subtle transition-colors group-hover:text-paper" />
+                  <div className="flex items-center md:col-span-1 md:justify-end md:self-center">
                     <ArrowUpRight className="text-paper-subtle transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent" />
                   </div>
                 </Link>
@@ -72,7 +71,7 @@ export default function ServicesPage() {
           <ul className="mt-16 grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-2">
             {engagementModels.map((m, i) => (
               <Reveal as="li" key={m.name} delay={(i % 2) * 80} className="bg-ink p-6 sm:p-10">
-                <p className="label">{m.for}</p>
+                <p className="text-sm text-paper-subtle">{m.for}</p>
                 <h3 className="mt-4 text-2xl font-medium text-paper">{m.name}</h3>
                 <p className="mt-3 max-w-[52ch] text-paper-muted">{m.text}</p>
               </Reveal>
@@ -81,7 +80,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <Process index="—" />
+      <Process />
       <FinalCta />
       <JsonLd data={breadcrumbLd([{ name: "Inicio", path: "/" }, { name: "Servicios", path: "/servicios" }])} />
     </>

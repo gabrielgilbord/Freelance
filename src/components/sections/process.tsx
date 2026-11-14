@@ -1,45 +1,88 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { workProcess } from "@/content/process";
 import { Container } from "@/components/ui/container";
-import { Reveal } from "@/components/ui/reveal";
 
-export function Process({ index = "04" }: { index?: string }) {
+/**
+ * Proceso: una secuencia real, así que aquí sí hay números. Un contador grande y fijo
+ * sigue al paso que está en pantalla; la cota vertical se rellena hasta ese paso.
+ */
+export function Process({ id = "proceso" }: { id?: string }) {
+  const [active, setActive] = useState(0);
+  const refs = useRef<(HTMLLIElement | null)[]>([]);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.index));
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px" },
+    );
+    refs.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const total = workProcess.length;
+  const pad = (n: number) => String(n).padStart(2, "0");
+
   return (
-    <section id="proceso" aria-labelledby="proceso-title" className="border-t border-line py-24 sm:py-32">
+    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-line py-24 sm:py-32">
       <Container className="grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-[calc(var(--header-h)+3rem)]">
-            <Reveal as="p" className="label flex items-center gap-3">
-              <span className="text-accent">{index}</span>
-              <span className="h-px w-6 bg-line-strong" aria-hidden="true" />
-              Proceso
-            </Reveal>
-            <Reveal as="h2" id="proceso-title" delay={60} className="mt-6 text-display-s font-medium text-paper">
+            <h2 id={`${id}-title`} className="text-display-m font-medium text-paper">
               Seis fases. Ninguna sorpresa.
-            </Reveal>
-            <Reveal as="p" delay={120} className="mt-6 max-w-[42ch] text-lg leading-relaxed text-paper-muted">
-              Un proceso pensado para que sepas en todo momento qué se está haciendo, por qué y qué recibes al terminar cada fase.
-            </Reveal>
+            </h2>
+            <p className="mt-6 max-w-[40ch] text-lg leading-relaxed text-paper-muted">
+              Sabes en todo momento qué se está haciendo, por qué y qué recibes al terminar cada fase.
+            </p>
+            <div className="mt-12 hidden items-end gap-4 lg:flex" aria-hidden="true">
+              <span className="font-mono text-[9rem] leading-[0.8] tracking-[-0.06em] text-paper tabular-nums">{pad(active + 1)}</span>
+              <span className="pb-2 font-mono text-paper-subtle">/ {pad(total)}</span>
+            </div>
+            <p className="mt-4 hidden text-xl font-medium text-accent lg:block" aria-live="polite">
+              {workProcess[active]?.title}
+            </p>
           </div>
         </div>
 
-        <ol className="relative lg:col-span-8">
-          {/* Línea de cota vertical que recorre todo el proceso */}
-          <span className="absolute bottom-6 left-[1.1875rem] top-6 w-px bg-line-strong sm:left-[1.4375rem]" aria-hidden="true" />
+        <ol className="relative lg:col-span-6 lg:col-start-7">
+          <span className="absolute bottom-0 left-[0.3125rem] top-2 w-px bg-line-strong" aria-hidden="true" />
+          <span
+            className="absolute left-[0.3125rem] top-2 w-px bg-accent transition-[height] duration-700 ease-out-quint"
+            style={{ height: `${((active + 0.5) / total) * 100}%` }}
+            aria-hidden="true"
+          />
           {workProcess.map((step, i) => (
-            <Reveal as="li" key={step.key} className="relative grid grid-cols-[2.5rem_1fr] gap-5 pb-12 last:pb-0 sm:grid-cols-[3rem_1fr] sm:gap-8">
-              <span className="relative z-10 flex h-10 w-10 items-center justify-center border border-line-strong bg-ink font-mono text-sm text-paper sm:h-12 sm:w-12">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="pt-1 sm:pt-2">
-                <p className="label text-accent">{step.name}</p>
-                <h3 className="mt-2 text-2xl font-medium text-paper">{step.title}</h3>
-                <p className="mt-3 max-w-[58ch] text-paper-muted">{step.text}</p>
-                <p className="mt-5 inline-flex items-center gap-3 rounded-xs border border-line px-3 py-2 text-sm text-paper">
-                  <span className="label">Entregable</span>
+            <li
+              key={step.key}
+              ref={(el) => {
+                refs.current[i] = el;
+              }}
+              data-index={i}
+              className="relative grid grid-cols-[1.75rem_1fr] gap-4 pb-16 last:pb-0 sm:gap-6"
+            >
+              <span
+                className={`relative z-10 mt-2 h-[0.6875rem] w-[0.6875rem] rounded-full border transition-colors duration-500 ${
+                  i <= active ? "border-accent bg-accent" : "border-line-strong bg-ink"
+                }`}
+                aria-hidden="true"
+              />
+              <div>
+                <p className="font-mono text-sm text-paper-subtle">
+                  {pad(i + 1)} {step.name}
+                </p>
+                <h3 className="mt-2 text-2xl font-medium tracking-[-0.02em] text-paper sm:text-3xl">{step.title}</h3>
+                <p className="mt-3 max-w-[54ch] text-paper-muted">{step.text}</p>
+                <p className="mt-5 text-sm text-paper">
+                  <span className="text-paper-subtle">Recibes: </span>
                   {step.output}
                 </p>
               </div>
-            </Reveal>
+            </li>
           ))}
         </ol>
       </Container>

@@ -3,24 +3,18 @@ import { nav, site } from "@/content/site";
 import { services } from "@/content/services";
 import { Wordmark } from "@/components/brand/logo";
 import { Container } from "@/components/ui/container";
-import { CotaLine } from "@/components/ui/cota-line";
 
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-line pt-16 pb-10 sm:pt-24">
+    <footer className="overflow-hidden border-t border-line pt-16 sm:pt-24">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <Wordmark className="h-12 w-auto text-paper sm:h-16" />
-            <CotaLine className="mt-4 max-w-[13.5rem] sm:max-w-[18rem]" />
-            <p className="mt-8 max-w-sm text-paper-muted">
-              Estudio de ingeniería de software. Del problema al sistema en producción.
-            </p>
-          </div>
-
-          <nav aria-label="Servicios" className="lg:col-span-3">
-            <p className="label mb-4">Servicios</p>
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12">
+          <p className="max-w-sm text-lg leading-snug text-paper lg:col-span-4">
+            Estudio de ingeniería de software. Del problema al sistema en producción.
+          </p>
+          <nav aria-label="Servicios" className="lg:col-span-3 lg:col-start-6">
+            <h2 className="mb-4 text-sm text-paper-subtle">Servicios</h2>
             <ul className="space-y-2.5">
               {services.map((s) => (
                 <li key={s.slug}>
@@ -31,9 +25,8 @@ export function Footer() {
               ))}
             </ul>
           </nav>
-
           <nav aria-label="Estudio" className="lg:col-span-2">
-            <p className="label mb-4">Estudio</p>
+            <h2 className="mb-4 text-sm text-paper-subtle">Estudio</h2>
             <ul className="space-y-2.5">
               {nav.map((n) => (
                 <li key={n.href}>
@@ -43,9 +36,8 @@ export function Footer() {
               <li><Link href="/contacto" className="link-underline text-paper-muted hover:text-paper">Contacto</Link></li>
             </ul>
           </nav>
-
           <div className="lg:col-span-2">
-            <p className="label mb-4">Contacto</p>
+            <h2 className="mb-4 text-sm text-paper-subtle">Contacto</h2>
             <ul className="space-y-2.5">
               {site.contact.email && (
                 <li><a href={`mailto:${site.contact.email}`} className="link-underline break-all text-paper-muted hover:text-paper">{site.contact.email}</a></li>
@@ -60,7 +52,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col gap-4 border-t border-line pt-6 text-sm text-paper-subtle sm:flex-row sm:items-center sm:justify-between">
+        {/* el logotipo a todo el ancho, con su cota debajo */}
+        <div className="mt-20 sm:mt-28" aria-hidden="true">
+          <Wordmark className="h-auto w-full text-paper" title="" />
+          <div className="relative mt-[2.5%] h-4 sm:h-6">
+            <span className="absolute inset-y-0 left-[0.4%] w-px bg-line-strong" />
+            <span className="absolute inset-y-0 right-[0.4%] w-px bg-line-strong" />
+            <span className="absolute inset-x-[0.4%] top-1/2 h-px bg-paper-subtle/70" />
+            <span className="absolute left-[0.4%] top-1/2 h-4 w-[2px] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent" />
+            <span className="absolute right-[0.4%] top-1/2 h-4 w-[2px] translate-x-1/2 -translate-y-1/2 rotate-45 bg-accent" />
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-4 border-t border-line py-6 text-sm text-paper-subtle sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {site.name}. Ingeniería de software de principio a fin.</p>
           <ul className="flex gap-6">
             <li><Link href="/aviso-legal" className="hover:text-paper">Aviso legal</Link></li>

@@ -45,7 +45,15 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <>
-      <PageHeader crumbs={crumbs} eyebrow={`${service.index} · ${service.discipline}`} title={service.title} intro={service.intro}>
+      <PageHeader
+        crumbs={crumbs}
+        title={service.title}
+        intro={service.intro}
+        aside={
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/art/services/${service.slug}.svg`} alt="" width={480} height={400} fetchPriority="high" className="mx-auto h-auto w-full max-w-[32rem]" />
+        }
+      >
         <div className="fade-in mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4" style={{ "--fade-delay": "450ms" } as React.CSSProperties}>
           <ButtonLink href={`/contacto?servicio=${service.slug}`} arrow>Hablemos de tu proyecto</ButtonLink>
           <ButtonLink href="#como-trabajo" variant="secondary">Cómo trabajo</ButtonLink>
@@ -56,14 +64,13 @@ export default async function ServicePage({ params }: Props) {
       <section aria-labelledby="problemas" className="border-t border-line py-20 sm:py-28">
         <Container className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="label">El problema</p>
-            <h2 id="problemas" className="mt-4 text-display-s font-medium text-paper">¿Te suena alguna de estas situaciones?</h2>
+            <h2 id="problemas" className="text-display-s font-medium text-paper">¿Te suena alguna de estas situaciones?</h2>
           </div>
           <ul className="grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:col-span-8">
             {service.problems.map((p, i) => (
               <Reveal as="li" key={p} delay={i * 60} className="bg-ink p-6 sm:p-8">
-                <span className="font-mono text-sm text-accent">{String(i + 1).padStart(2, "0")}</span>
-                <p className="mt-4 text-lg text-paper">{p}</p>
+                <span className="block h-px w-6 bg-accent" aria-hidden="true" />
+                <p className="mt-5 text-lg text-paper">{p}</p>
               </Reveal>
             ))}
           </ul>
@@ -74,8 +81,7 @@ export default async function ServicePage({ params }: Props) {
       <section aria-labelledby="entregables" className="border-t border-line bg-ink-1/40 py-20 sm:py-28">
         <Container className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="label">Qué puedo desarrollar</p>
-            <h2 id="entregables" className="mt-4 text-display-s font-medium text-paper">Soluciones, no horas de programación.</h2>
+            <h2 id="entregables" className="text-display-s font-medium text-paper">Soluciones, no horas de programación.</h2>
             <ul className="mt-10 border-t border-line">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex gap-4 border-b border-line py-4 text-paper">
@@ -86,7 +92,7 @@ export default async function ServicePage({ params }: Props) {
             </ul>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
-            <p className="label">Qué obtiene tu negocio</p>
+            <h3 className="text-xl font-medium text-paper">Qué obtiene tu negocio</h3>
             <ul className="mt-6 space-y-4">
               {service.outcomes.map((o, i) => (
                 <Reveal as="li" key={o.title} delay={i * 80} className="rounded-sm border border-line bg-ink p-6 sm:p-8">
@@ -105,8 +111,7 @@ export default async function ServicePage({ params }: Props) {
       {/* Cómo se desarrolla */}
       <section id="como-trabajo" aria-labelledby="como-title" className="border-t border-line py-20 sm:py-28">
         <Container>
-          <p className="label">Cómo se desarrolla</p>
-          <h2 id="como-title" className="mt-4 max-w-[22ch] text-display-s font-medium text-paper">Paso a paso, con entregas que puedes ver.</h2>
+          <h2 id="como-title" className="max-w-[22ch] text-display-s font-medium text-paper">Paso a paso, con entregas que puedes ver.</h2>
           <ol className="mt-14 grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
             {service.steps.map((st, i) => (
               <Reveal as="li" key={st.title} delay={i * 70} className="relative bg-ink p-6 sm:p-8">
@@ -128,8 +133,7 @@ export default async function ServicePage({ params }: Props) {
       {related.length > 0 && (
         <section aria-labelledby="casos-title" className="border-t border-line py-20 sm:py-28">
           <Container>
-            <p className="label">Casos relacionados</p>
-            <h2 id="casos-title" className="mt-4 text-display-s font-medium text-paper">Así se plantea en la práctica.</h2>
+            <h2 id="casos-title" className="text-display-s font-medium text-paper">Así se plantea en la práctica.</h2>
             <ul className="mt-14 grid gap-12 md:grid-cols-2">
               {related.map((p) => <li key={p.slug}><ProjectCard project={p} /></li>)}
             </ul>
@@ -141,8 +145,7 @@ export default async function ServicePage({ params }: Props) {
       <section aria-labelledby="faq-title" className="border-t border-line py-20 sm:py-28">
         <Container className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="label">Preguntas frecuentes</p>
-            <h2 id="faq-title" className="mt-4 text-display-s font-medium text-paper">Antes de empezar.</h2>
+            <h2 id="faq-title" className="text-display-s font-medium text-paper">Antes de empezar.</h2>
           </div>
           <div className="border-t border-line lg:col-span-8">
             {service.faq.map((f) => (
@@ -161,7 +164,7 @@ export default async function ServicePage({ params }: Props) {
       {/* Otros servicios */}
       <section aria-labelledby="otros-title" className="border-t border-line py-20">
         <Container>
-          <h2 id="otros-title" className="label">Otros servicios</h2>
+          <h2 id="otros-title" className="text-xl font-medium text-paper">Otros servicios</h2>
           <ul className="mt-6 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-5">
             {others.map((o) => (
               <li key={o.slug} className="border-t border-line">

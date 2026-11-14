@@ -10,3 +10,11 @@ next-env.d.ts
 
 # Documentos privados (no publicar: el repositorio es público)
 privado/
+
+# Previews de las ilustraciones (se regeneran con node art/*.mjs)
+art/out/
+
+# Skills de diseño (se instalan con scripts/install-skills.sh)
+.claude/skills/
+.claude/agents/
+.impeccable/

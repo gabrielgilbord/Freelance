@@ -47,6 +47,18 @@ npm run dev                  # http://localhost:3000
 
 Cualquier plataforma con Node.js sirve (`npm run build && npm start`); también Docker con la salida `standalone` si se activa en `next.config.ts`.
 
+## Ilustraciones y skills de diseño
+
+Las ilustraciones isométricas (`public/art/`) se generan con la skill **Anatomy Asset** a partir de los scripts de `art/`:
+
+```bash
+bash scripts/install-skills.sh   # instala las skills en .claude/skills (una vez por máquina)
+node art/hero.mjs                # hero: el banco COTA
+node art/set.mjs                 # 6 servicios + 3 proyectos
+```
+
+Skills usadas en el rediseño: `anatomy-asset`, `frontend-design`, `impeccable`, `ui-ux-pro-max` y `web-design-guidelines`. La dirección de arte está en [`DESIGN.md`](DESIGN.md) y la verdad de producto en [`PRODUCT.md`](PRODUCT.md).
+
 ## Editar contenido
 
 Todo el contenido vive en `src/content/` — no hace falta tocar componentes.
@@ -62,8 +74,9 @@ Todo el contenido vive en `src/content/` — no hace falta tocar componentes.
 1. Copia un objeto en `src/content/projects.ts`.
 2. Usa `status: "client"` (con permiso del cliente) o `"product"`.
 3. Sustituye `successCriteria` por `results` — **solo cifras verificables**.
-4. Imágenes en `public/projects/<slug>/` y referencia en `cover` y `gallery`.
-5. `featured: true` para que aparezca en la home. Los proyectos reales se ordenan antes que los conceptos.
+4. Imágenes en `public/projects/<slug>/` y referencia en `cover` y `gallery`. Sin `cover`, la web usa `public/art/projects/<slug>.svg`: genera una ilustración en `art/set.mjs` o añade una portada real.
+5. Si quieres una demo visual, añádela en `src/components/demos/` y regístrala en `index.tsx`.
+6. `featured: true` para que aparezca en la home. Los proyectos reales se ordenan antes que los conceptos.
 
 Los tres casos incluidos son **conceptos / demos técnicas** y se muestran etiquetados como tal. Retíralos o mantenlos a medida que publiques trabajos reales.
 

@@ -9,7 +9,7 @@ export function ProjectCard({ project, headingLevel = "h3" }: { project: Project
   const H = headingLevel;
   return (
     <Link href={`/proyectos/${project.slug}`} className="group flex h-full flex-col">
-      <div className="relative aspect-[600/340] overflow-hidden rounded-sm border border-line">
+      <div className="relative overflow-hidden rounded-md border border-line bg-ink-1/40">
         <ProjectCover project={project} className="transition-transform duration-1000 ease-out-quint group-hover:scale-[1.03]" />
       </div>
       <div className="mt-6 flex flex-wrap items-center gap-3">

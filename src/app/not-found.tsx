@@ -4,7 +4,7 @@ import { CotaLine } from "@/components/ui/cota-line";
 
 export default function NotFound() {
   return (
-    <section className="grid-paper flex min-h-[80dvh] items-center pt-[var(--header-h)]">
+    <section className="flex min-h-[80dvh] items-center pt-[var(--header-h)]">
       <Container>
         <p className="label text-accent">Error 404</p>
         <h1 className="mt-6 max-w-[16ch] text-display-m font-medium">Esta página está fuera de cota.</h1>

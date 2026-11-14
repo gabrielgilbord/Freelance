@@ -23,6 +23,13 @@
   --color-accent: #ff5a36;
   --color-accent-strong: #ff7a5c;
   --color-accent-ink: #1a0904;
+  --color-accent-deep: #d9411e;
+  /* Hoja de especificaciones: el capítulo claro */
+  --color-sheet: #e8e5dd;
+  --color-sheet-2: #dcd8ce;
+  --color-sheet-ink: #141514;
+  --color-sheet-muted: #4b4c47;
+  --color-sheet-line: #c4c0b5;
   /* Secundario técnico: acero, solo para diagramas */
   --color-steel: #93aab5;
   /* Estado */
@@ -40,8 +47,10 @@
   --text-display-s--line-height: 1.02;
   --text-display-m: clamp(2.5rem, 1.6rem + 4vw, 4.75rem);
   --text-display-m--line-height: 0.98;
-  --text-display-l: clamp(2.6rem, 1.1rem + 4vw, 5rem);
-  --text-display-l--line-height: 0.96;
+  --text-display-l: clamp(2.75rem, 1rem + 5.2vw, 6rem);
+  --text-display-l--line-height: 0.92;
+  --text-display-xl: clamp(3.5rem, 0.5rem + 11vw, 13rem);
+  --text-display-xl--line-height: 0.85;
 
   /* Geometría: precisión antes que suavidad */
   --radius-xs: 2px;
@@ -85,6 +94,8 @@
     min-height: 100dvh;
   }
   ::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+  html { scrollbar-color: var(--color-line-strong) var(--color-ink); caret-color: var(--color-accent); }
+  h1, h2 { letter-spacing: -0.035em; }
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
@@ -97,23 +108,15 @@
 /* ---------- Utilidades de marca ---------- */
 @layer components {
   /* Etiqueta técnica en monoespaciada: el "rotulado" del plano */
+  /* Anotación técnica: medidas, metadatos, datos. Nunca como antetítulo. */
   .label {
     font-family: var(--font-mono);
-    font-size: var(--text-micro);
+    font-size: 0.75rem;
     line-height: 1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-paper-subtle);
   }
 
-  /* Retícula de fondo tipo papel milimetrado, muy tenue */
-  .grid-paper {
-    background-image:
-      linear-gradient(to right, color-mix(in oklab, var(--color-paper) 4%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklab, var(--color-paper) 4%, transparent) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: -1px -1px;
-  }
 
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);
@@ -133,6 +136,47 @@
   .prose-cota li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.6rem; height: 1px; background: var(--color-accent); }
   .prose-cota a { color: var(--color-paper); text-decoration: underline; text-underline-offset: 3px; }
 }
+
+/* ---------- Capítulos ---------- */
+.chapter-sheet {
+  background: var(--color-sheet);
+  color: var(--color-sheet-ink);
+}
+.chapter-sheet ::selection { background: var(--color-sheet-ink); color: var(--color-sheet); }
+.chapter-accent {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+.chapter-accent ::selection { background: var(--color-accent-ink); color: var(--color-accent); }
+.chapter-accent :focus-visible { outline-color: var(--color-accent-ink); }
+.chapter-sheet :focus-visible { outline-color: var(--color-sheet-ink); }
+
+/* Manifiesto: las palabras se encienden al atravesar la pantalla (CSS scroll-driven).
+   Sin soporte, el texto se muestra completo. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .word-reveal > span {
+      color: color-mix(in oklab, var(--color-paper) 46%, var(--color-ink));
+      animation: word-on linear both;
+      animation-timeline: view();
+      animation-range: entry 60% cover 42%;
+    }
+  }
+}
+@keyframes word-on { to { color: var(--color-paper); } }
+
+/* Barra de progreso de lectura: la cota del header (invisible sin soporte) */
+.scroll-cota { transform: scaleX(0); transform-origin: left center; }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-cota {
+      transform-origin: left center;
+      animation: grow-x linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+@keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* ---------- Motion ---------- */
 /* Revelado al hacer scroll: lo activa <Reveal> añadiendo data-in="true". */

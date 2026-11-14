@@ -10,15 +10,18 @@ export function Header() {
   return (
     <HeaderShell>
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
-        <Link href="/" className="relative z-50 -m-2 p-2 text-paper" aria-label="Cota — inicio">
+        <Link href="/" className="relative z-50 -m-2 p-2 text-paper" aria-label="Cota, inicio">
           <LogoCompact />
         </Link>
 
         <nav aria-label="Principal" className="hidden md:block">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-1 rounded-sm border border-line/80 bg-ink/60 p-1 backdrop-blur-md">
             {nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="link-underline py-1 text-[0.9375rem] text-paper-muted transition-colors hover:text-paper">
+                <Link
+                  href={item.href}
+                  className="block rounded-xs px-4 py-2 text-[0.9375rem] text-paper-muted transition-colors duration-300 hover:bg-ink-2 hover:text-paper"
+                >
                   {item.label}
                 </Link>
               </li>
@@ -27,13 +30,17 @@ export function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <ButtonLink href="/contacto" variant="secondary" className="!h-10 !px-4 text-sm">
+          <ButtonLink href="/contacto" className="!h-10 !px-4 text-sm">
             Hablemos
           </ButtonLink>
         </div>
 
         <MobileNav />
       </Container>
+      {/* La cota del header: se completa al llegar al final de la página */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px">
+        <div className="scroll-cota h-px w-full bg-accent" />
+      </div>
     </HeaderShell>
   );
 }
