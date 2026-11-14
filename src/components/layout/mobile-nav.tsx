@@ -3,9 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
+import { createPortal } from "react-dom";
 import { nav } from "@/content/site";
 import { Close, Menu } from "@/components/ui/icons";
 
+/**
+ * Menú móvil. El panel se monta en <body> mediante un portal: la cabecera usa
+ * backdrop-filter al hacer scroll, y eso convertiría al header en el contenedor de
+ * cualquier hijo `fixed`, dejando el panel recortado y transparente.
+ */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -44,29 +50,29 @@ export function MobileNav() {
         {open ? <Close /> : <Menu />}
       </button>
 
-      <div
-        id={id}
-        hidden={!open}
-        className="fixed inset-0 z-40 flex flex-col bg-ink px-4 pb-8 pt-[calc(var(--header-h)+2rem)]"
-      >
-        <nav aria-label="Móvil" className="flex-1">
-          <ul className="border-t border-line">
-            {items.map((item, i) => (
-              <li key={item.href} className="border-b border-line">
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-baseline justify-between py-5 text-3xl font-medium text-paper"
-                >
-                  {item.label}
-                  <span className="label">{String(i + 1).padStart(2, "0")}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <p className="label">Software · IA · IoT — de principio a fin</p>
-      </div>
+      {open &&
+        createPortal(
+          <div id={id} className="fixed inset-0 z-30 flex flex-col bg-ink px-4 pb-10 pt-[calc(var(--header-h)+2rem)] md:hidden">
+            <nav aria-label="Móvil" className="flex-1">
+              <ul className="border-t border-line">
+                {items.map((item) => (
+                  <li key={item.href} className="border-b border-line">
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between py-5 text-3xl font-medium tracking-[-0.03em] text-paper active:text-accent"
+                    >
+                      {item.label}
+                      <span className="h-2 w-2 rounded-full bg-line-strong" aria-hidden="true" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <p className="text-sm text-paper-subtle">Software, IA e IoT, de principio a fin.</p>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
