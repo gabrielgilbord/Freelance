@@ -46,7 +46,7 @@ export default async function ProjectsPage() {
               <h2 id={`${g}-title`} className="text-display-s font-[450] text-paper lg:col-span-6">{groupInfo[g].title}</h2>
               <p className="max-w-[52ch] self-end text-paper-muted lg:col-span-6">{groupInfo[g].intro}</p>
             </div>
-            <div className={`mt-10 sm:mt-16 ${g === "producto" ? "space-y-16 sm:space-y-28" : "space-y-12 sm:space-y-20"}`}>
+            <div className={`mt-10 sm:mt-16 ${g === "producto" ? "space-y-12 lg:space-y-28" : "space-y-12 lg:space-y-20"}`}>
               {workByGroup(g).map((w, i) => (
                 <WorkEntry key={w.slug} work={w} flip={g === "producto" && i % 2 === 1} />
               ))}
@@ -99,12 +99,19 @@ export default async function ProjectsPage() {
 
 function WorkEntry({ work: w, flip }: { work: Work; flip: boolean }) {
   const isProduct = w.group === "producto";
+  // En móvil el orden es: cabecera (qué es) → imagen → texto, con un filete entre trabajos,
+  // para que cada imagen quede siempre bajo su propio título. En escritorio, dos columnas.
+  const textLeft = !isProduct || flip;
+  const textCols = isProduct ? "lg:col-span-5" : "lg:col-span-6";
+  const textStart = textLeft ? "lg:col-start-1" : isProduct ? "lg:col-start-8" : "lg:col-start-7";
+  const visualCols = isProduct ? "lg:col-span-7" : "lg:col-span-6";
+  const visualStart = textLeft ? (isProduct ? "lg:col-start-6" : "lg:col-start-7") : "lg:col-start-1";
   return (
-    <article aria-labelledby={`e-${w.slug}`} className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-14">
-      <div className={`${isProduct ? "lg:col-span-7" : "lg:col-span-6"} ${flip ? "lg:order-2" : ""} ${isProduct ? "" : "lg:order-2"}`}>
-        <WorkVisual work={w} />
-      </div>
-      <div className={`${isProduct ? "lg:col-span-5" : "lg:col-span-6"} ${flip ? "lg:order-1" : ""} ${isProduct ? "" : "lg:order-1"}`}>
+    <article
+      aria-labelledby={`e-${w.slug}`}
+      className="grid gap-6 border-t border-line pt-10 first:border-t-0 first:pt-0 lg:grid-cols-12 lg:gap-x-14 lg:gap-y-0 lg:border-t-0 lg:pt-0"
+    >
+      <header className={`${textCols} ${textStart} lg:row-start-1 lg:self-end`}>
         <div className="flex flex-wrap gap-2">
           <Tag tone={isProduct ? "accent" : "default"}>{w.setting}</Tag>
           <Tag>{w.role}</Tag>
@@ -112,12 +119,17 @@ function WorkEntry({ work: w, flip }: { work: Work; flip: boolean }) {
         </div>
         <h3 id={`e-${w.slug}`} className="mt-5 text-2xl font-medium leading-tight tracking-[-0.02em] text-paper sm:text-3xl">{w.name}</h3>
         <p className="mt-2 font-mono text-xs text-paper-subtle">{w.category}</p>
-        <p className="mt-4 max-w-[52ch] text-lg leading-relaxed text-paper-muted">{w.lead}</p>
+      </header>
+      <div className={`${visualCols} ${visualStart} lg:row-span-2 lg:row-start-1 lg:self-center`}>
+        <WorkVisual work={w} />
+      </div>
+      <div className={`${textCols} ${textStart} lg:row-start-2 lg:self-start`}>
+        <p className="max-w-[52ch] text-lg leading-relaxed text-paper-muted lg:mt-4">{w.lead}</p>
         {w.stack.length > 0 && (
           <p className="mt-4 font-mono text-xs leading-relaxed text-paper-subtle">{w.stack.join(" · ")}</p>
         )}
         <Link href={`/proyectos/${w.slug}`} className="link-underline mt-6 inline-block font-medium text-paper hover:text-accent">
-          Ver la ficha completa
+          Ver la ficha completa de {w.name}
         </Link>
       </div>
     </article>
