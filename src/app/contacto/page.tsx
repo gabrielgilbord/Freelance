@@ -7,7 +7,7 @@ import { JsonLd, breadcrumbLd } from "@/lib/seo/jsonld";
 
 export const metadata = pageMetadata({
   title: "Contacto y presupuesto",
-  description: "Cuéntame tu proyecto de software, inteligencia artificial, IoT o automatización y recibe una primera propuesta sin compromiso.",
+  description: "Cuéntanos tu proyecto de software, inteligencia artificial, IoT o automatización y recibe una primera propuesta sin compromiso.",
   path: "/contacto",
 });
 
@@ -22,7 +22,7 @@ const serviceToType: Record<string, string> = {
 };
 
 const next = [
-  { t: "Leo tu mensaje", d: `Respondo ${site.contact.responseTime}, con preguntas concretas si hace falta.` },
+  { t: "Leemos tu mensaje", d: `Respondemos ${site.contact.responseTime}, con preguntas concretas si hace falta.` },
   { t: "Primera conversación", d: "Una llamada de unos 30 minutos para entender el problema y el contexto." },
   { t: "Propuesta", d: "Recibes un planteamiento con alcance, fases y estimación. Sin letra pequeña." },
 ];
@@ -37,7 +37,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         crumbs={[{ name: "Inicio", path: "/" }, { name: "Contacto", path: "/contacto" }]}
         eyebrow="Contacto"
         title="Hablemos de tu proyecto."
-        intro="Cuéntame qué quieres construir o qué problema quieres resolver. No necesitas una especificación: con unas líneas es suficiente para empezar."
+        intro="Cuéntanos qué quieres construir o qué problema quieres resolver. No necesitas una especificación: con unas líneas es suficiente para empezar."
       />
       <section aria-label="Formulario de contacto" className="pb-24 sm:pb-32">
         <Container className="grid gap-16 lg:grid-cols-12">

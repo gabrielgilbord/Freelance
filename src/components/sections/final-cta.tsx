@@ -6,7 +6,7 @@ type Props = { title?: string; text?: string };
 
 /** El cierre: el único capítulo en naranja COTA. */
 export function FinalCta({
-  title = "Cuéntame qué quieres construir.",
+  title = "Cuéntanos qué quieres construir.",
   text = "Una idea, un problema o un sistema que se ha quedado corto. En una primera conversación sin compromiso vemos si tiene sentido trabajar juntos y cuál sería el primer paso.",
 }: Props) {
   return (

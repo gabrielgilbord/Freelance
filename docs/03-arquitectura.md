@@ -19,7 +19,7 @@ src/
 │  ├─ page.tsx               # Home
 │  ├─ servicios/[slug]/      # 6 páginas de servicio (SSG)
 │  ├─ proyectos/[slug]/      # Casos (SSG)
-│  ├─ sobre-mi/ contacto/ aviso-legal/ privacidad/ marca/
+│  ├─ estudio/ contacto/ aviso-legal/ privacidad/ marca/
 │  ├─ sitemap.ts robots.ts manifest.ts opengraph-image.tsx twitter-image.tsx icon.svg apple-icon.png
 │  └─ globals.css            # Design tokens + utilidades de marca + motion
 ├─ components/

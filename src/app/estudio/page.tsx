@@ -9,10 +9,10 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbLd } from "@/lib/seo/jsonld";
 
 export const metadata = pageMetadata({
-  title: "Sobre mí",
+  title: "El estudio",
   description:
-    "COTA es un estudio de ingeniería de una sola persona, con experiencia en investigación con sistemas embebidos, software industrial, IoT, productos SaaS propios, inteligencia artificial e infraestructura cloud.",
-  path: "/sobre-mi",
+    "COTA es un estudio de ingeniería digital con experiencia en investigación con sistemas embebidos, software industrial, IoT, productos SaaS propios, inteligencia artificial e infraestructura cloud.",
+  path: "/estudio",
 });
 
 const trajectory = [
@@ -20,23 +20,23 @@ const trajectory = [
   { setting: "Trabajo de Fin de Grado", title: "Monitorización acústica con LoRaWAN", text: "Un nodo de medición basado en Arduino que envía datos por LoRaWAN y los muestra en tiempo real en Grafana.", href: "/proyectos/monitorizacion-acustica-lorawan" },
   { setting: "Experiencia profesional", title: "Software para fábricas", text: "Detección temprana de anomalías y visualización de datos de producción con Grafana, en entornos industriales.", href: "/proyectos/software-industrial" },
   { setting: "Productos SaaS", title: "Syncbiosis, LuxOps y PlanIt", text: "Un SaaS de gestión para escuelas de música, danza e idiomas, en producción; una plataforma de operaciones de campo para instaladoras solares y de fibra, lanzada; y una plataforma de descubrimiento local en fase de lanzamiento.", href: "/proyectos#producto" },
-  { setting: "Línea propia y en equipo", title: "IA, automatización e infraestructura", text: "Agentes, automatización de llamadas y mensajes, n8n autoalojado y servicios en AWS y Oracle Cloud. Y un asistente con IA para salones, en desarrollo con amigos.", href: "/proyectos#ia" },
+  { setting: "Línea propia y en equipo", title: "IA, automatización e infraestructura", text: "Agentes, automatización de llamadas y mensajes, n8n autoalojado y servicios en AWS y Oracle Cloud. Y un asistente con IA para salones, en desarrollo dentro de un equipo colaborativo.", href: "/proyectos#ia" },
 ];
 
 const notFor = [
   "Necesitas una web corporativa sencilla a partir de una plantilla: hay opciones más económicas y adecuadas.",
   "Buscas un equipo grande a jornada completa durante años: una consultora con estructura encajará mejor.",
-  "Quieres que alguien ejecute sin cuestionar: parte de mi trabajo es decirte qué no hace falta construir.",
+  "Quieres que alguien ejecute sin cuestionar: parte de nuestro trabajo es decirte qué no hace falta construir.",
 ];
 
-export default function AboutPage() {
+export default function StudioPage() {
   return (
     <>
       <PageHeader
-        crumbs={[{ name: "Inicio", path: "/" }, { name: "Sobre mí", path: "/sobre-mi" }]}
-        eyebrow="Sobre mí"
+        crumbs={[{ name: "Inicio", path: "/" }, { name: "Estudio", path: "/estudio" }]}
+        eyebrow="Estudio"
         title="De la señal al sistema."
-        intro="Soy ingeniero y COTA es mi estudio. He trabajado en la parte física y de comunicaciones de los sistemas y en el software, las plataformas y la infraestructura que los sostienen. Hoy aplico todo eso a proyectos a medida y a mis propios productos."
+        intro="COTA es un estudio de ingeniería digital. Nuestra experiencia abarca la parte física y de comunicaciones de los sistemas y también el software, las plataformas y la infraestructura que los sostienen. Hoy la aplicamos a proyectos a medida y a productos propios."
       />
 
       <section aria-labelledby="enfoque" className="border-t border-line py-14 sm:py-28">
@@ -48,15 +48,15 @@ export default function AboutPage() {
             <p>
               La mayoría de los problemas técnicos interesantes no viven en una sola capa. Un asistente de IA necesita datos bien
               modelados; un sensor no sirve de nada sin una plataforma que interprete lo que mide; una aplicación móvil depende de una
-              API bien diseñada. Mi trabajo consiste en entender el sistema completo y en construir cada pieza para que encaje con las demás.
+              API bien diseñada. Nuestro trabajo consiste en entender el sistema completo y en construir cada pieza para que encaje con las demás.
             </p>
             <p>
-              Trabajo con mentalidad de producto: antes de escribir código quiero saber quién va a usar lo que construyo, qué problema
+              Trabajamos con mentalidad de producto: antes de escribir código queremos saber quién va a usar lo que construimos, qué problema
               le resuelve y cómo sabremos si funciona. Eso permite tomar mejores decisiones técnicas y, a menudo, construir menos y mejor.
             </p>
             <p>
-              Al ser un estudio de una sola persona, hablas directamente con quien diseña la arquitectura y escribe el código.
-              Cuando un proyecto necesita especialistas adicionales, lo planteo de forma transparente desde el principio.
+              Somos un estudio pequeño a propósito: hablas directamente con quien diseña la arquitectura y escribe el código.
+              Cuando un proyecto necesita especialistas adicionales, lo planteamos de forma transparente desde el principio.
             </p>
           </div>
         </Container>
@@ -66,7 +66,7 @@ export default function AboutPage() {
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h2 id="trayectoria" className="text-display-s font-[450] text-paper">De dónde viene la experiencia.</h2>
-            <p className="mt-5 max-w-[40ch] text-paper-muted">Cada etapa en su contexto: nada de lo hecho para terceros se presenta como trabajo de COTA.</p>
+            <p className="mt-5 max-w-[40ch] text-paper-muted">La trayectoria del fundador, cada etapa en su contexto: nada de lo hecho para terceros se presenta como trabajo de COTA.</p>
           </div>
           <ol className="border-t border-paper/80 lg:col-span-8">
             {trajectory.map((s) => (
@@ -89,7 +89,7 @@ export default function AboutPage() {
 
       <section aria-labelledby="alcance" className="border-t border-line bg-ink-1/40 py-14 sm:py-28">
         <Container>
-          <h2 id="alcance" className="max-w-[20ch] text-display-s font-[450] text-paper">Seis capas, un mismo responsable.</h2>
+          <h2 id="alcance" className="max-w-[20ch] text-display-s font-[450] text-paper">Seis capas, un mismo interlocutor.</h2>
           <ul className="mt-12 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {layerOrder.map((key, i) => (
               <Reveal as="li" key={key} delay={i * 60} className="bg-ink p-6">
@@ -106,7 +106,7 @@ export default function AboutPage() {
       <section aria-labelledby="principios" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="principios" className="text-display-s font-[450] text-paper">Cómo trabajo.</h2>
+            <h2 id="principios" className="text-display-s font-[450] text-paper">Cómo trabajamos.</h2>
           </div>
           <ul className="border-t border-paper/80 lg:col-span-8">
             {principles.map((p) => (
@@ -143,7 +143,7 @@ export default function AboutPage() {
               />
             </figure>
             <p className="text-lg leading-relaxed text-paper-muted">
-              Así entiendo cada proyecto: acotar el alcance antes de escribir código, llevar la idea hasta un sistema en producción y
+              Así entendemos cada proyecto: acotar el alcance antes de escribir código, llevar la idea hasta un sistema en producción y
               diseñarlo dentro de sus límites de coste, rendimiento y plazo.
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function AboutPage() {
       <section aria-labelledby="cuando-no" className="border-t border-line py-14 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 id="cuando-no" className="text-display-s font-[450] text-paper">Cuándo no soy la mejor opción.</h2>
+            <h2 id="cuando-no" className="text-display-s font-[450] text-paper">Cuándo no somos la mejor opción.</h2>
           </div>
           <ul className="space-y-4 lg:col-span-8">
             {notFor.map((n) => (
@@ -164,7 +164,7 @@ export default function AboutPage() {
       </section>
 
       <FinalCta />
-      <JsonLd data={breadcrumbLd([{ name: "Inicio", path: "/" }, { name: "Sobre mí", path: "/sobre-mi" }])} />
+      <JsonLd data={breadcrumbLd([{ name: "Inicio", path: "/" }, { name: "Estudio", path: "/estudio" }])} />
     </>
   );
 }

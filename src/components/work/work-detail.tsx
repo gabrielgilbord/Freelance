@@ -55,7 +55,7 @@ export function WorkDetail({ work: w }: { work: Work }) {
             <p className="mt-5 text-lg leading-relaxed text-paper sm:text-xl">{w.context}</p>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
-            <h2 className="text-xl font-medium text-accent">{w.group === "producto" ? "Qué he construido" : "En qué trabajé"}</h2>
+            <h2 className="text-xl font-medium text-accent">{w.group === "producto" ? "Qué se construyó" : "Alcance del trabajo"}</h2>
             <ul className="mt-5 border-t border-line">
               {w.built.map((b) => (
                 <li key={b} className="border-b border-line py-4 text-paper-muted">{b}</li>

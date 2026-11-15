@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/container";
 import { CotaLine } from "@/components/ui/cota-line";
 
 const statement =
-  "La mayoría de proyectos tecnológicos no fallan por el código. Fallan en las fronteras: entre quien diseña y quien programa, entre el software y el hardware, entre la idea y lo que de verdad se usa. Trabajo para que esas fronteras no existan.";
+  "La mayoría de proyectos tecnológicos no fallan por el código. Fallan en las fronteras: entre quien diseña y quien programa, entre el software y el hardware, entre la idea y lo que de verdad se usa. Trabajamos para que esas fronteras no existan.";
 
 const startingPoints = [
   { title: "Una idea sin plan", text: "Sabes qué problema quieres resolver, pero no qué construir ni cuánto costará." },

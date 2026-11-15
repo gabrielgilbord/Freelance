@@ -114,7 +114,7 @@ export const work: Work[] = [
     ],
     stack: ["Next.js", "TypeScript", "Supabase (PostgreSQL)", "Stripe"],
     proves:
-      "Que puedo llevar un producto de software completo al mercado: entender un sector, diseñar un modelo de datos que sirve a varios tipos de centro, cobrar, dar soporte y seguir evolucionándolo con clientes reales.",
+      "Capacidad para llevar un producto de software completo al mercado: entender un sector, diseñar un modelo de datos que sirve a varios tipos de centro, cobrar, dar soporte y seguir evolucionándolo con clientes reales.",
     layers: ["product", "cloud"],
     visual: {
       kind: "capture",
@@ -152,7 +152,7 @@ export const work: Work[] = [
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL (Supabase) + Prisma", "PWA con modo sin conexión", "Stripe", "Resend", "Generación de PDF", "Vitest"],
     proves:
-      "Que sé construir software para gente que trabaja fuera de la oficina: interfaces que funcionan sin cobertura en un tejado, captura de evidencias con el hardware del móvil y documentación que tiene que cumplir un reglamento. Es la pieza que une la instalación física con el sistema de gestión.",
+      "Software para personas que trabajan fuera de la oficina: interfaces que funcionan sin cobertura en un tejado, captura de evidencias con el hardware del móvil y documentación que tiene que cumplir un reglamento. Es la pieza que une la instalación física con el sistema de gestión.",
     layers: ["industrial", "product", "cloud"],
     visual: {
       kind: "diagram",
@@ -196,7 +196,7 @@ export const work: Work[] = [
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL + PostGIS", "MapLibre GL", "Vitest", "Playwright"],
     proves:
-      "Que sé diseñar una plataforma de dos lados (quien busca y quien publica) con datos geoespaciales reales, permisos por roles y un modelo de negocio pensado antes de cobrar.",
+      "Diseño de una plataforma de dos lados (quien busca y quien publica) con datos geoespaciales reales, permisos por roles y un modelo de negocio pensado antes de cobrar.",
     layers: ["product", "cloud"],
     visual: {
       kind: "capture",
@@ -256,7 +256,7 @@ export const work: Work[] = [
       "Software orientado a mejorar la supervisión de los procesos.",
     ],
     stack: ["Grafana"],
-    proves: "Que conozco los problemas reales de un entorno productivo y he construido software que se usa para operar, no solo para consultar.",
+    proves: "Conocimiento directo de los problemas de un entorno productivo y de software que se usa para operar, no solo para consultar.",
     layers: ["industrial"],
     visual: { kind: "diagram", diagram: "industrial", caption: "Esquema conceptual. No reproduce ningún panel ni dato de la empresa." },
     pending: ["¿Periodo aproximado?", "¿Tecnologías de desarrollo que se pueden mencionar, además de Grafana?"],
@@ -278,7 +278,7 @@ export const work: Work[] = [
       "La captura y visualización de los datos en tiempo real en Grafana.",
     ],
     stack: ["Arduino", "LoRaWAN", "Grafana"],
-    proves: "Que puedo construir una solución IoT completa: adquisición del dato, transmisión inalámbrica y visualización.",
+    proves: "Una solución IoT completa: adquisición del dato, transmisión inalámbrica y visualización.",
     layers: ["hardware", "comms", "industrial"],
     visual: { kind: "diagram", diagram: "acoustic", caption: "Esquema conceptual del recorrido del dato." },
     pending: [
@@ -304,7 +304,7 @@ export const work: Work[] = [
       "Sistemas de comunicación por mensajes con IA.",
     ],
     stack: ["n8n"],
-    proves: "Que puedo integrar inteligencia artificial en procesos reales de negocio, con las integraciones y la infraestructura que eso exige.",
+    proves: "Integración de inteligencia artificial en procesos reales de negocio, con las integraciones y la infraestructura que eso exige.",
     layers: ["ai", "cloud"],
     visual: { kind: "diagram", diagram: "automation", caption: "Patrón general de los sistemas. No describe un proyecto concreto." },
     pending: ["¿Qué proveedores de IA, telefonía o mensajería se pueden nombrar?", "¿Alguno de estos sistemas está en uso por un cliente que autorice citarlo?"],
@@ -315,15 +315,15 @@ export const work: Work[] = [
     name: "Asistente con IA para barberías y peluquerías",
     group: "ia",
     category: "Producto en desarrollo",
-    role: "Desarrollador en un equipo de amigos",
+    role: "Desarrollador en un equipo colaborativo",
     setting: "Proyecto colaborativo",
     status: "En desarrollo",
     lead: "Un chatbot con IA que ayude a barberías, peluquerías y centros de estética a gestionar sus interacciones y tareas.",
     context:
-      "Proyecto que desarrollo junto a otras personas, dirigido a negocios de servicios personales que atienden muchas consultas y gestionan su día a día con poco tiempo.",
+      "Proyecto que el fundador de COTA desarrolla junto a otras personas, dirigido a negocios de servicios personales que atienden muchas consultas y gestionan su día a día con poco tiempo.",
     built: ["El diseño y desarrollo del chatbot con funcionalidades de IA, como parte del equipo."],
     stack: [],
-    proves: "Que sé trabajar en un producto de IA en equipo, para un sector concreto y desde fases tempranas.",
+    proves: "Trabajo en equipo sobre un producto de IA, para un sector concreto y desde fases tempranas.",
     layers: ["ai", "product"],
     visual: { kind: "diagram", diagram: "chatbot", caption: "Esquema conceptual. El producto está en desarrollo." },
     pending: ["¿Tu papel exacto en el equipo (desarrollo, IA, producto)? ¿Eres cofundador o colaborador?", "¿Nombre del proyecto y canal (WhatsApp, web…)?"],
@@ -334,12 +334,12 @@ export const work: Work[] = [
 /** Infraestructura: una capacidad transversal, no un proyecto. */
 export const infrastructure = {
   title: "Infraestructura que sostiene todo lo anterior",
-  text: "Además de desarrollar aplicaciones, despliego y mantengo los servicios sobre los que funcionan: servidores en la nube, automatizaciones autoalojadas y servicios propios que tienen que estar en marcha todos los días.",
+  text: "Además de desarrollar aplicaciones, desplegamos y mantenemos los servicios sobre los que funcionan: servidores en la nube, automatizaciones autoalojadas y servicios propios que tienen que estar en marcha todos los días.",
   items: [
     { name: "AWS", text: "Despliegue y configuración de servicios en la nube." },
     { name: "Oracle Cloud", text: "Infraestructura montada sobre una instancia de cómputo del nivel gratuito (Always Free) de Oracle Cloud Infrastructure." },
     { name: "n8n", text: "Despliegue de n8n autoalojado para automatizar procesos." },
-    { name: "Servicios propios", text: "Configuración y mantenimiento de los servicios de mis productos." },
+    { name: "Servicios propios", text: "Configuración y mantenimiento de los servicios de los productos propios." },
   ],
   pending: ["¿Qué servicios de AWS concretos se pueden nombrar?"],
 };
@@ -349,11 +349,11 @@ export const showDrafts = process.env.VERCEL_ENV !== "production" && process.env
 export const groupInfo: Record<WorkGroup, { title: string; intro: string }> = {
   producto: {
     title: "Productos",
-    intro: "Plataformas SaaS que he diseñado, desarrollado y lanzado. Capturas reales cuando el producto es público; esquemas rotulados cuando su interfaz no lo es.",
+    intro: "Plataformas SaaS diseñadas, desarrolladas y lanzadas por el fundador de COTA. Capturas reales cuando el producto es público; esquemas rotulados cuando su interfaz no lo es.",
   },
   ingenieria: {
     title: "Ingeniería aplicada e investigación",
-    intro: "Investigación universitaria, experiencia profesional y mi Trabajo de Fin de Grado. Trabajos hechos antes de COTA o fuera de ella, y presentados como tales.",
+    intro: "Investigación universitaria, experiencia profesional y el Trabajo de Fin de Grado del fundador. Trabajos hechos antes de COTA o fuera de ella, y presentados como tales.",
   },
   ia: {
     title: "Inteligencia artificial y automatización",

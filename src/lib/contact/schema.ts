@@ -30,9 +30,9 @@ export const contactSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(20, "Cuéntame un poco más (mínimo 20 caracteres).")
+    .min(20, "Cuéntanos un poco más (mínimo 20 caracteres).")
     .max(5000, "El mensaje es demasiado largo (máximo 5.000 caracteres)."),
-  consent: z.literal("on", { error: "Necesito tu consentimiento para responderte." }),
+  consent: z.literal("on", { error: "Necesitamos tu consentimiento para responderte." }),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

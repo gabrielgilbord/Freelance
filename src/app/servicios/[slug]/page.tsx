@@ -56,7 +56,7 @@ export default async function ServicePage({ params }: Props) {
       >
         <div className="fade-in mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4" style={{ "--fade-delay": "450ms" } as React.CSSProperties}>
           <ButtonLink href={`/contacto?servicio=${service.slug}`}>Hablemos de tu proyecto</ButtonLink>
-          <ButtonLink href="#como-trabajo" variant="secondary">Cómo trabajo</ButtonLink>
+          <ButtonLink href="#como-trabajo" variant="secondary">Cómo trabajamos</ButtonLink>
         </div>
       </PageHeader>
 

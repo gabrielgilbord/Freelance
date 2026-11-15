@@ -24,11 +24,11 @@ export function Hero() {
             <div className="fade-in" style={{ "--fade-delay": "550ms" } as React.CSSProperties}>
               {/* Móvil: la promesa en una frase. Escritorio: el alcance completo. */}
               <p className="mt-2 max-w-[34ch] text-[1.0625rem] leading-relaxed text-paper-muted sm:hidden">
-                De la señal al sistema: software, IA, IoT e infraestructura, con un único responsable.
+                De la señal al sistema: software, IA, IoT e infraestructura, con un único interlocutor.
               </p>
               <p className="mt-8 hidden max-w-[36ch] text-lg leading-relaxed text-paper-muted sm:block">
                 De la señal al sistema: plataformas SaaS, inteligencia artificial aplicada, IoT e infraestructura. Experiencia real desde el
-                sensor hasta el producto en producción, con un solo responsable de todo el recorrido.
+                sensor hasta el producto en producción, con un único interlocutor de principio a fin.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
                 <ButtonLink href="/contacto">Hablemos de tu proyecto</ButtonLink>

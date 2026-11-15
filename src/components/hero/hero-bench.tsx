@@ -9,7 +9,7 @@ import spots from "@/content/hero-hotspots.json";
  * corresponde con una entrada de la leyenda, y ambos se resaltan juntos.
  */
 const parts = [
-  { id: "modulo", n: "1", name: "Tu sistema", text: "La pieza que falta. La diseño, la construyo y la encajo en lo que ya tienes." },
+  { id: "modulo", n: "1", name: "Tu sistema", text: "La pieza que falta. La diseñamos, la construimos y la encajamos en lo que ya tienes." },
   { id: "producto", n: "2", name: "Producto digital", text: "Webs, apps móviles, SaaS y paneles que la gente usa de verdad." },
   { id: "ia", n: "3", name: "Inteligencia artificial", text: "Modelos que leen, extraen y responden con tus datos, bajo control." },
   { id: "datos", n: "4", name: "Datos y arquitectura", text: "Bases de datos, APIs e infraestructura pensadas para crecer." },

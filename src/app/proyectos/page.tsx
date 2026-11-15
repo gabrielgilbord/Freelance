@@ -28,7 +28,7 @@ export default async function ProjectsPage() {
       <PageHeader
         crumbs={[{ name: "Inicio", path: "/" }, { name: "Proyectos", path: "/proyectos" }]}
         title="Productos, ingeniería e investigación."
-        intro="Lo que he construido, en qué contexto y con qué papel. Las capturas son reales; los esquemas son conceptuales y están rotulados como tales."
+        intro="Qué se ha construido, en qué contexto y con qué papel. Las capturas son reales; los esquemas son conceptuales y están rotulados como tales."
       >
         <nav aria-label="Secciones del portfolio" className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-paper-muted">
           {groups.map((g) => (

@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/container";
 
 /**
  * «De la señal al sistema»: las seis capas por las que pasa un dato y, en cada una,
- * dónde lo he hecho de verdad. Es la hoja de especificaciones de COTA con evidencia,
+ * dónde se ha demostrado de verdad. Es la hoja de especificaciones de COTA con evidencia,
  * no una lista de tecnologías. Único capítulo claro de la home.
  */
 export function SignalToSystem() {
@@ -22,7 +22,7 @@ export function SignalToSystem() {
             De la señal al sistema.
           </h2>
           <p className="max-w-[48ch] self-end text-lg leading-relaxed text-sheet-muted lg:col-span-5">
-            He trabajado en todas las capas por las que pasa un dato: desde el sensor que lo capta hasta el producto que lo convierte en una
+            Nuestra experiencia recorre todas las capas por las que pasa un dato: desde el sensor que lo capta hasta el producto que lo convierte en una
             decisión.<span className="hidden sm:inline"> Esta es la evidencia, capa por capa.</span>
           </p>
         </div>
@@ -63,12 +63,12 @@ export function SignalToSystem() {
           </div>
 
           <table className="w-full border-collapse text-left">
-            <caption className="sr-only">Capas del sistema y proyectos en los que he trabajado en cada una</caption>
+            <caption className="sr-only">Capas del sistema y proyectos que demuestran cada una</caption>
             <thead>
               <tr className="border-b-2 border-sheet-ink font-mono text-xs text-sheet-muted">
                 <th scope="col" className="w-[30%] py-3 pr-6 font-normal">Capa</th>
                 <th scope="col" className="w-[34%] py-3 pr-6 font-normal">Qué resuelve</th>
-                <th scope="col" className="py-3 font-normal">Dónde lo he hecho</th>
+                <th scope="col" className="py-3 font-normal">Dónde se ha demostrado</th>
               </tr>
             </thead>
             <tbody>

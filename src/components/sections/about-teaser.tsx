@@ -13,17 +13,17 @@ export function AboutTeaser() {
         <div className="grid items-center gap-6 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <h2 id="estudio-title" className="text-display-m font-[450] text-paper">
-              Un estudio de una sola persona. A propósito.
+              Un estudio pequeño. A propósito.
             </h2>
             <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-paper-muted sm:mt-8">
-              COTA es mi estudio de ingeniería. Hablas directamente con quien diseña la arquitectura y escribe el código.
+              COTA es un estudio de ingeniería digital. Hablas directamente con quien diseña la arquitectura y escribe el código.
               <span className="hidden sm:inline">
                 {" "}
-                Vengo de la investigación con sistemas embebidos, del software industrial y del IoT, y hoy creo mis propios productos SaaS:
-                entiendo cómo se afectan entre sí el dispositivo, la red, la plataforma y la persona que la usa.
+                Nuestra base técnica viene de la investigación con sistemas embebidos, el software industrial, el IoT y el desarrollo de productos
+                SaaS: entendemos cómo se afectan entre sí el dispositivo, la red, la plataforma y la persona que la usa.
               </span>
             </p>
-            <Link href="/sobre-mi" className="link-underline mt-6 inline-block font-medium text-paper hover:text-accent sm:mt-10">
+            <Link href="/estudio" className="link-underline mt-6 inline-block font-medium text-paper hover:text-accent sm:mt-10">
               Conocer el estudio
             </Link>
           </div>

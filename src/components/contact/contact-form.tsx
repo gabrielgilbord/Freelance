@@ -55,7 +55,7 @@ export function ContactForm({ defaultProjectType = "" }: { defaultProjectType?: 
         </span>
         <h2 className="mt-8 text-display-s font-[450] text-paper">Mensaje recibido{state.name ? `, ${state.name}` : ""}.</h2>
         <p className="mt-4 max-w-[52ch] text-lg text-paper-muted">
-          Leo cada solicitud personalmente. Te responderé con las primeras preguntas o con una propuesta para hablar.
+          Leemos cada solicitud personalmente. Te responderemos con las primeras preguntas o con una propuesta para hablar.
         </p>
         <Link href="/proyectos" className="link-underline mt-8 inline-block text-paper">Mientras tanto, ver proyectos</Link>
       </div>
@@ -116,7 +116,7 @@ export function ContactForm({ defaultProjectType = "" }: { defaultProjectType?: 
         </select>
       </Field>
 
-      <Field id="message" label="Cuéntame tu proyecto" error={err.message}>
+      <Field id="message" label="Cuéntanos tu proyecto" error={err.message}>
         <textarea
           id="message"
           name="message"

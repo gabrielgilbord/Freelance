@@ -31,7 +31,7 @@ export const services: Service[] = [
     discipline: "Software Development",
     pitch: "Aplicaciones web, móviles y de escritorio diseñadas alrededor de cómo trabaja tu negocio, no al revés.",
     intro:
-      "Cuando una herramienta estándar se queda corta, el equipo acaba trabajando para el software: hojas de cálculo paralelas, pasos manuales y datos que no cuadran. Desarrollo aplicaciones a medida que encajan con tus procesos reales y que pueden crecer contigo.",
+      "Cuando una herramienta estándar se queda corta, el equipo acaba trabajando para el software: hojas de cálculo paralelas, pasos manuales y datos que no cuadran. Desarrollamos aplicaciones a medida que encajan con tus procesos reales y que pueden crecer contigo.",
     problems: [
       "Tu operación depende de hojas de cálculo y de que alguien recuerde hacer cada paso.",
       "Has probado herramientas SaaS genéricas y ninguna se adapta a tu forma de trabajar.",
@@ -84,7 +84,7 @@ export const services: Service[] = [
     discipline: "Artificial Intelligence",
     pitch: "IA integrada en tus procesos para resolver tareas concretas, con resultados medibles y bajo control.",
     intro:
-      "La inteligencia artificial aporta valor cuando resuelve un trabajo concreto: leer documentos, responder con la información correcta, clasificar, extraer o decidir el siguiente paso. Diseño e integro soluciones de IA que se conectan con tus datos y tus sistemas, con límites claros y evaluaciones que demuestran si funcionan.",
+      "La inteligencia artificial aporta valor cuando resuelve un trabajo concreto: leer documentos, responder con la información correcta, clasificar, extraer o decidir el siguiente paso. Diseñamos e integramos soluciones de IA que se conectan con tus datos y tus sistemas, con límites claros y evaluaciones que demuestran si funcionan.",
     problems: [
       "Tu equipo dedica horas a leer, resumir o copiar información de documentos y correos.",
       "El conocimiento de la empresa está repartido en manuales, PDFs y en la cabeza de pocas personas.",
@@ -137,7 +137,7 @@ export const services: Service[] = [
     discipline: "IoT & Connected Systems",
     pitch: "Del sensor al panel de control: sistemas que miden el mundo físico y convierten esos datos en decisiones.",
     intro:
-      "Un proyecto IoT no termina en el dispositivo. Hay que capturar el dato de forma fiable, transmitirlo, almacenarlo, interpretarlo y avisar a la persona adecuada en el momento adecuado. Diseño y desarrollo la cadena completa, desde el firmware hasta la aplicación que usa tu equipo.",
+      "Un proyecto IoT no termina en el dispositivo. Hay que capturar el dato de forma fiable, transmitirlo, almacenarlo, interpretarlo y avisar a la persona adecuada en el momento adecuado. Diseñamos y desarrollamos la cadena completa, desde el firmware hasta la aplicación que usa tu equipo.",
     problems: [
       "Necesitas saber qué ocurre en tus instalaciones o máquinas sin estar físicamente allí.",
       "Tus equipos generan datos que nadie recoge o que se quedan en un dispositivo aislado.",
@@ -165,8 +165,8 @@ export const services: Service[] = [
     stack: ["C / C++", "MicroPython", "ESP32", "MQTT", "Node.js / Python", "TimescaleDB / InfluxDB", "Grafana o panel a medida"],
     faq: [
       {
-        q: "¿Diseñas también el hardware?",
-        a: "Trabajo la integración de hardware y software: selección de componentes, sensores, prototipos y firmware. Para diseño de PCB de producción o certificaciones se coordina con especialistas.",
+        q: "¿Diseñáis también el hardware?",
+        a: "Trabajamos la integración de hardware y software: selección de componentes, sensores, prototipos y firmware. Para diseño de PCB de producción o certificaciones se coordina con especialistas.",
       },
       {
         q: "¿Qué pasa si se cae la conexión?",
@@ -186,7 +186,7 @@ export const services: Service[] = [
     discipline: "Software Architecture",
     pitch: "Decisiones técnicas que aguantan el crecimiento: estructura, datos, integraciones y costes pensados antes de construir.",
     intro:
-      "Las decisiones de arquitectura son las más caras de cambiar. Te ayudo a definir cómo se estructura un sistema nuevo o a reordenar uno que ha crecido sin plan, con criterios explícitos de escalabilidad, seguridad, coste y mantenimiento.",
+      "Las decisiones de arquitectura son las más caras de cambiar. Te ayudamos a definir cómo se estructura un sistema nuevo o a reordenar uno que ha crecido sin plan, con criterios explícitos de escalabilidad, seguridad, coste y mantenimiento.",
     problems: [
       "Vas a construir un producto y quieres que la base técnica no sea un problema en un año.",
       "Cada cambio en tu sistema actual rompe algo en otro sitio.",
@@ -218,7 +218,7 @@ export const services: Service[] = [
         a: "Para la mayoría de proyectos, un monolito bien modularizado es más rápido de construir y más barato de operar. Se separan servicios cuando hay un motivo concreto.",
       },
       {
-        q: "¿Puedes revisar el trabajo de otro equipo?",
+        q: "¿Podéis revisar el trabajo de otro equipo?",
         a: "Sí. Una auditoría técnica independiente es útil antes de una inversión, una adquisición o un cambio de proveedor.",
       },
     ],
@@ -233,9 +233,9 @@ export const services: Service[] = [
     index: "05",
     title: "Automatización e integraciones",
     discipline: "Digital Automation",
-    pitch: "Conecto tus herramientas y elimino el trabajo manual repetitivo entre sistemas.",
+    pitch: "Conectamos tus herramientas y eliminamos el trabajo manual repetitivo entre sistemas.",
     intro:
-      "Gran parte del tiempo de un equipo se va en mover datos de un sitio a otro: del email al ERP, del formulario al CRM, del Excel al informe. Automatizo esos flujos con integraciones robustas, con registro de lo que ocurre y con avisos cuando algo necesita una persona.",
+      "Gran parte del tiempo de un equipo se va en mover datos de un sitio a otro: del email al ERP, del formulario al CRM, del Excel al informe. Automatizamos esos flujos con integraciones robustas, con registro de lo que ocurre y con avisos cuando algo necesita una persona.",
     problems: [
       "Copiar y pegar entre aplicaciones ocupa horas cada semana.",
       "Tus herramientas no se hablan entre sí y los datos se desincronizan.",
@@ -282,9 +282,9 @@ export const services: Service[] = [
     index: "06",
     title: "Producto digital desde cero",
     discipline: "Custom Digital Products",
-    pitch: "Si tienes una idea, te ayudo a convertirla en un producto real: definición, primera versión y lanzamiento.",
+    pitch: "Si tienes una idea, te ayudamos a convertirla en un producto real: definición, primera versión y lanzamiento.",
     intro:
-      "Una idea de producto necesita más que programación: decidir qué construir primero, qué dejar fuera y cómo comprobar que alguien lo quiere. Acompaño a emprendedores y empresas desde la idea hasta un producto en manos de usuarios reales, con criterio técnico y de producto.",
+      "Una idea de producto necesita más que programación: decidir qué construir primero, qué dejar fuera y cómo comprobar que alguien lo quiere. Acompañamos a emprendedores y empresas desde la idea hasta un producto en manos de usuarios reales, con criterio técnico y de producto.",
     problems: [
       "Tienes una idea clara del problema, pero no del producto que lo resuelve.",
       "Has recibido presupuestos muy distintos y no sabes cuál tiene sentido.",

@@ -24,8 +24,8 @@ export default function ServicesPage() {
       <PageHeader
         crumbs={[{ name: "Inicio", path: "/" }, { name: "Servicios", path: "/servicios" }]}
         eyebrow="Servicios"
-        title="Lo que puedo construir para tu negocio."
-        intro="Seis líneas de trabajo que rara vez van por separado. Un sistema real combina interfaz, lógica, datos, inteligencia y, a veces, hardware. Elige por dónde empieza tu problema; del resto me ocupo yo."
+        title="Lo que podemos construir para tu negocio."
+        intro="Seis líneas de trabajo que rara vez van por separado. Un sistema real combina interfaz, lógica, datos, inteligencia y, a veces, hardware. Elige por dónde empieza tu problema; del resto nos ocupamos nosotros."
       />
 
       <section aria-label="Líneas de servicio" className="pb-24 sm:pb-32">

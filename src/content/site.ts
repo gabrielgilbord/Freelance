@@ -49,7 +49,7 @@ export const nav = [
   { label: "Servicios", href: "/servicios" },
   { label: "Proyectos", href: "/proyectos" },
   { label: "Proceso", href: "/#proceso" },
-  { label: "Sobre mí", href: "/sobre-mi" },
+  { label: "Estudio", href: "/estudio" },
 ] as const;
 
 export function absoluteUrl(path = "/") {

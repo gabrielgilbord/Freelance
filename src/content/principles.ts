@@ -9,10 +9,10 @@ export const principles = [
   },
   {
     title: "Honestidad técnica",
-    text: "Si algo no tiene sentido, no es viable con tu presupuesto o no lo necesitas, te lo digo antes de empezar.",
+    text: "Si algo no tiene sentido, no es viable con tu presupuesto o no lo necesitas, te lo decimos antes de empezar.",
   },
   {
     title: "Sin dependencias",
-    text: "Código documentado, accesos a tu nombre y decisiones registradas. Puedes continuar conmigo o con otro equipo.",
+    text: "Código documentado, accesos a tu nombre y decisiones registradas. Puedes continuar con nosotros o con otro equipo.",
   },
 ] as const;

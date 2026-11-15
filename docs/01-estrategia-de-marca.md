@@ -45,7 +45,7 @@ Se descartó "Digital Solutions Architect" como titular principal: suena a cargo
 | Marca independiente | Memorable, escalable, separa vida personal | Requiere construir reconocimiento |
 | Híbrido (marca + "por Nombre") | Lo mejor de ambos | Necesita mostrar el nombre |
 
-**Decisión:** marca independiente presentada como **estudio de una sola persona**. La web habla en primera persona (confianza de marca personal) bajo un nombre comercial (escalabilidad y privacidad). Si en el futuro quieres firmar con tu nombre, basta con añadir "Cota — por [Nombre]" en *Sobre mí*.
+**Decisión (actualizada, nov 2026):** marca independiente presentada como **estudio**. La web habla en primera persona del plural («trabajamos», «cuéntanos») con lenguaje profesional, sin afirmar un tamaño de equipo que no existe: «un estudio pequeño, a propósito». La trayectoria previa se atribuye al fundador, nunca a COTA. Si en el futuro quieres firmar con tu nombre, basta con añadirlo en *Estudio* (`/estudio`, antes `/sobre-mi`, con redirección permanente).
 
 ### Direcciones exploradas
 1. **Cota** — En un plano técnico, la *cota* es la línea que indica una medida exacta: dónde empieza algo, dónde termina y cuánto mide. Corto (4 letras), español con pronunciación internacional sencilla, vocabulario de ingeniería real, y su significado *es* la promesa: de principio a fin, medido antes de construir. ✅ **Elegido.**

@@ -7,7 +7,7 @@ export const engagementModels = [
   {
     name: "Proyecto completo",
     for: "Productos y sistemas de principio a fin",
-    text: "Me hago cargo de todo el ciclo: definición, diseño, desarrollo, puesta en producción y traspaso. Alcance y fases acordados de antemano.",
+    text: "Nos hacemos cargo de todo el ciclo: definición, diseño, desarrollo, puesta en producción y traspaso. Alcance y fases acordados de antemano.",
   },
   {
     name: "Evolución continua",
