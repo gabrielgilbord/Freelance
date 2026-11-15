@@ -12,7 +12,7 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Desarrollo de software a medida, IA e IoT`,
+    default: `${site.name} — Ingeniería digital a medida: software, IA e IoT`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
