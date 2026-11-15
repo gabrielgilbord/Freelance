@@ -31,8 +31,8 @@ h1{position:absolute;left:64px;top:150px;margin:0;font-weight:450;font-size:62px
 p{position:absolute;left:64px;bottom:56px;margin:0;font-family:'IBM Plex Mono';font-size:17px;color:#a9a8a0;letter-spacing:.01em}
 </style>
 <svg class="logo" viewBox="-4 -2 263 66"><path d="M35.79 49.57A18 18 0 1 1 35.79 26.43" stroke="#eceae4" stroke-width="8" fill="none"/><path d="M30 47L50 27" stroke="#ff5a36" stroke-width="8" fill="none"/><g transform="translate(76 0)" fill="none" stroke="#eceae4" stroke-width="8"><path d="M35.79 49.57A18 18 0 1 1 35.79 26.43"/><circle cx="70" cy="38" r="18"/><path d="M110 2V60M98 20H124"/><circle cx="153" cy="38" r="18"/><path d="M171 16V60"/></g></svg>
-<h1>Ingeniería de software, de la idea al sistema en producción.</h1>
-<p>Software, IA e IoT a medida</p>
+<h1>Ingeniería digital a medida, de la señal al sistema.</h1>
+<p>Software · IA · IoT · Infraestructura</p>
 ${hero}`;
 const b = await chromium.launch();
 const page = await b.newPage({ viewport: { width: 1200, height: 630 }, reducedMotion: "reduce" });
@@ -40,7 +40,7 @@ await page.setContent(html, { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
 for (const out of ["src/app/opengraph-image.png", "src/app/twitter-image.png"]) await page.screenshot({ path: out });
 await b.close();
-const alt = "COTA: ingeniería de software, de la idea al sistema en producción. Ilustración isométrica de un banco de pruebas con módulos de software, IA, datos e IoT.";
+const alt = "COTA: ingeniería digital a medida, de la señal al sistema. Ilustración isométrica de un banco de pruebas con módulos de software, IA, datos e IoT.";
 writeFileSync("src/app/opengraph-image.alt.txt", alt);
 writeFileSync("src/app/twitter-image.alt.txt", alt);
 console.log("OG image written");
