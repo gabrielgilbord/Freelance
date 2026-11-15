@@ -7,7 +7,16 @@ const hostOf = (w: Work) => w.links?.[0]?.label;
 /** La representación que corresponde a cada trabajo: captura real o esquema conceptual. */
 export function WorkVisual({ work, priority = false, compact = false, withSecond = false }: { work: Work; priority?: boolean; compact?: boolean; withSecond?: boolean }) {
   const v = work.visual;
-  if (v.kind === "diagram") return <SystemDiagram diagram={v.diagram} caption={v.caption} compact={compact} />;
+  if (v.kind === "diagram") {
+    const diagram = <SystemDiagram diagram={v.diagram} caption={v.caption} compact={compact} />;
+    if (!withSecond || !v.extra) return diagram;
+    return (
+      <div className="space-y-8">
+        {diagram}
+        <ProductShot src={v.extra.src} alt={v.extra.alt} caption={v.extra.caption} host={hostOf(work)} width={v.extra.width} height={v.extra.height} sizes="(min-width: 1440px) 1360px, 100vw" />
+      </div>
+    );
+  }
   return (
     <div className="space-y-8">
       <ProductShot src={v.src} alt={v.alt} caption={v.caption} host={hostOf(work)} width={v.width} height={v.height} priority={priority} sizes={withSecond ? "(min-width: 1440px) 1360px, 100vw" : undefined} />

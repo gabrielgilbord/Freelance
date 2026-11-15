@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { Tag } from "@/components/ui/tag";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { ProductShot } from "@/components/work/product-shot";
+import { SystemDiagram } from "@/components/work/system-diagram";
 import { SignalGlyph } from "@/components/work/system-diagram";
 
 const glyphOf: Record<string, "ecg" | "sound" | "bars" | "message" | "chat"> = {
@@ -15,12 +16,12 @@ const glyphOf: Record<string, "ecg" | "sound" | "bars" | "message" | "chat"> = {
 };
 
 /**
- * Trabajo seleccionado. Jerarquía clara: los dos productos propios mandan (capturas reales);
+ * Trabajo seleccionado. Jerarquía clara: los productos más maduros mandan (captura real o esquema);
  * la ingeniería aplicada y la IA aportan profundidad en una lista editorial, sin tarjetas.
  */
 export function SelectedWork() {
-  const products = workByGroup("producto");
-  const depth = [...workByGroup("ingenieria"), ...workByGroup("ia")];
+  const products = workByGroup("producto").filter((w) => w.homeFeature);
+  const depth = [...workByGroup("producto").filter((w) => !w.homeFeature), ...workByGroup("ingenieria"), ...workByGroup("ia")];
 
   return (
     <section aria-labelledby="trabajo-title" className="border-t border-line py-16 sm:py-32">
@@ -31,7 +32,7 @@ export function SelectedWork() {
           </h2>
           <div className="self-end lg:col-span-5">
             <p className="max-w-[46ch] text-lg leading-relaxed text-paper-muted">
-              Dos productos propios en marcha y experiencia de ingeniería en hardware, comunicaciones, industria e inteligencia artificial.
+              Productos SaaS en el mercado y experiencia de ingeniería en hardware, comunicaciones, industria e inteligencia artificial.
             </p>
             <Link href="/proyectos" className="link-underline mt-5 inline-block font-medium text-paper hover:text-accent">
               Ver el portfolio completo
@@ -46,7 +47,7 @@ export function SelectedWork() {
         </div>
 
         <div className="mt-16 sm:mt-28">
-          <h3 className="text-xl font-medium text-paper sm:text-2xl">Ingeniería aplicada, investigación e IA</h3>
+          <h3 className="text-xl font-medium text-paper sm:text-2xl">Más productos, ingeniería aplicada, investigación e IA</h3>
           <ul className="mt-6 border-t border-paper/80">
             {depth.map((w) => (
               <li key={w.slug} className="border-b border-line">
@@ -78,6 +79,7 @@ function ProductFeature({ work: w, flip }: { work: Work; flip: boolean }) {
         {w.visual.kind === "capture" && (
           <ProductShot src={w.visual.src} alt={w.visual.alt} caption={w.visual.caption} host={w.links?.[0]?.label} width={w.visual.width} height={w.visual.height} />
         )}
+        {w.visual.kind === "diagram" && <SystemDiagram diagram={w.visual.diagram} caption={w.visual.caption} />}
       </div>
       <div className={`lg:col-span-5 ${flip ? "lg:order-1" : ""}`}>
         <div className="flex flex-wrap items-center gap-2">

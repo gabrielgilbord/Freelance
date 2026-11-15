@@ -16,7 +16,7 @@ export const site = {
   locale: "es_ES",
   lang: "es",
   description:
-    "Ingeniería digital a medida: plataformas SaaS, inteligencia artificial aplicada, IoT, automatización e infraestructura cloud. De la señal al sistema en producción, con experiencia real en hardware, software industrial y productos propios.",
+    "Ingeniería digital a medida: plataformas SaaS, inteligencia artificial aplicada, IoT, automatización e infraestructura cloud. De la señal al sistema en producción, con experiencia real en hardware, software industrial y productos SaaS.",
 
   contact: {
     /** Email público. Si está vacío, la web no muestra ningún enlace de email. */

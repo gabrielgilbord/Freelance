@@ -10,7 +10,7 @@ import type { DiagramKey } from "@/content/work";
 type Stage = { kicker: string; title: string };
 type Link = { label?: string; both?: boolean };
 type Spec = { glyph: Glyph; stages: Stage[]; links: Link[] };
-type Glyph = "ecg" | "sound" | "bars" | "message" | "chat";
+type Glyph = "ecg" | "sound" | "bars" | "message" | "chat" | "field";
 
 const specs: Record<DiagramKey, Spec> = {
   ecg: {
@@ -61,6 +61,16 @@ const specs: Record<DiagramKey, Spec> = {
     ],
     links: [{ both: true }, {}],
   },
+  fieldops: {
+    glyph: "field",
+    stages: [
+      { kicker: "Oficina", title: "Alta y asignación de la obra" },
+      { kicker: "Móvil · sin conexión", title: "Checklist, fotos GPS, nº de serie y firmas" },
+      { kicker: "Plataforma", title: "Sincronización por empresa" },
+      { kicker: "Expediente", title: "Dossier PDF, datos CIE y pack de subvención" },
+    ],
+    links: [{}, { label: "sync" }, {}],
+  },
   infra: {
     glyph: "bars",
     stages: [
@@ -80,6 +90,7 @@ function SignalGlyph({ kind }: { kind: Glyph }) {
       {kind === "sound" && <path {...common} d="M2 12V12M10 8V16M18 4V20M26 9V15M34 2V22M42 7V17M50 10V14M58 5V19" />}
       {kind === "bars" && <path {...common} d="M4 22V14M14 22V10M24 22V16M34 22V6M44 22V12M54 22V3M0 23H64" />}
       {kind === "message" && <path {...common} d="M6 4H50V16H22L14 22V16H6Z M56 8L62 12L56 16" />}
+      {kind === "field" && <path {...common} d="M4 18L20 6L36 18M10 14V22H30V14 M44 22V10L52 4L60 10V22Z M52 10V14" />}
       {kind === "chat" && <path {...common} d="M4 3H36V13H16L10 18V13H4Z M28 9H60V19H54V23L48 19H28Z" />}
     </svg>
   );

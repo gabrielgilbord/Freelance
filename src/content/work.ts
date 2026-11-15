@@ -19,9 +19,15 @@ export type LayerKey = "hardware" | "comms" | "industrial" | "cloud" | "product"
 
 export type Visual =
   | { kind: "capture"; src: string; alt: string; width: number; height: number; caption: string; second?: { src: string; alt: string; caption: string } }
-  | { kind: "diagram"; diagram: DiagramKey; caption: string };
+  | {
+      kind: "diagram";
+      diagram: DiagramKey;
+      caption: string;
+      /** Captura real complementaria (p. ej. la web pública), solo en la ficha */
+      extra?: { src: string; alt: string; caption: string; width: number; height: number };
+    };
 
-export type DiagramKey = "ecg" | "industrial" | "acoustic" | "automation" | "chatbot" | "infra";
+export type DiagramKey = "ecg" | "industrial" | "acoustic" | "automation" | "chatbot" | "infra" | "fieldops";
 
 export type Work = {
   slug: string;
@@ -48,6 +54,8 @@ export type Work = {
   pending?: string[];
   /** Peso editorial: 1 = protagonista */
   weight: 1 | 2 | 3;
+  /** Aparece a gran tamaño en la home (los productos más maduros) */
+  homeFeature?: boolean;
 };
 
 export const layerInfo: Record<LayerKey, { name: string; short: string; text: string }> = {
@@ -62,9 +70,9 @@ export const layerInfo: Record<LayerKey, { name: string; short: string; text: st
     text: "Cómo viaja el dato: radio de largo alcance, gateways e intercambio seguro entre nodos.",
   },
   industrial: {
-    name: "Software industrial y monitorización",
-    short: "Monitorización",
-    text: "Supervisar procesos reales: detectar anomalías a tiempo y hacer visibles los datos de producción.",
+    name: "Software de operación y monitorización",
+    short: "Operación",
+    text: "Supervisar procesos reales: anomalías detectadas a tiempo, datos de producción visibles y trabajo de campo documentado.",
   },
   cloud: {
     name: "Backend, infraestructura y cloud",
@@ -122,6 +130,52 @@ export const work: Work[] = [
       "¿Año de inicio del proyecto?",
     ],
     weight: 1,
+    homeFeature: true,
+  },
+  {
+    slug: "luxops",
+    name: "LuxOps",
+    group: "producto",
+    category: "SaaS de operaciones de campo para instaladoras",
+    role: "Diseño y desarrollo de la plataforma",
+    setting: "Producto SaaS",
+    status: "Lanzado · luxops.es",
+    lead: "Del tejado al expediente: la plataforma con la que una instaladora solar o de fibra óptica ejecuta, documenta y legaliza cada instalación.",
+    context:
+      "En una instaladora, la obra se hace en un tejado o en casa del cliente y la documentación se resuelve después, en la oficina. Entre medias se pierden fotos, números de serie y firmas, y un expediente incompleto retrasa la legalización o la subvención. Normalmente todo pasa por WhatsApp y carpetas compartidas.",
+    built: [
+      "Un panel de oficina para crear obras, asignarlas a los equipos y seguir su estado, con datos aislados por empresa, roles e invitaciones a los operarios.",
+      "Una aplicación web instalable para el técnico, pensada para el móvil: un checklist guiado paso a paso que funciona sin conexión y se sincroniza al recuperarla.",
+      "Evidencias desde el propio móvil: fotos con posición GPS y hora, lectura de números de serie con la cámara (códigos de barras, QR y reconocimiento de texto) y firmas en pantalla.",
+      "Generación del dossier de la instalación en PDF con los datos de campo y del reglamento de baja tensión (REBT), exportación de los datos para el certificado de instalación eléctrica (CIE) y un paquete descargable para tramitar subvenciones.",
+      "Suscripción de pago, emails transaccionales y un segundo vertical para instalaciones de fibra hasta el hogar (FTTH), con su propio flujo de campo.",
+    ],
+    stack: ["Next.js", "TypeScript", "PostgreSQL (Supabase) + Prisma", "PWA con modo sin conexión", "Stripe", "Resend", "Generación de PDF", "Vitest"],
+    proves:
+      "Que sé construir software para gente que trabaja fuera de la oficina: interfaces que funcionan sin cobertura en un tejado, captura de evidencias con el hardware del móvil y documentación que tiene que cumplir un reglamento. Es la pieza que une la instalación física con el sistema de gestión.",
+    layers: ["industrial", "product", "cloud"],
+    visual: {
+      kind: "diagram",
+      diagram: "fieldops",
+      caption: "Esquema conceptual del flujo de trabajo. No es una captura de la aplicación.",
+      extra: {
+        src: "/work/luxops-web.webp",
+        alt: "Portada de la web pública de LuxOps: «LuxOps: operativa de campo, control total», SaaS para instaladoras solares y de fibra óptica.",
+        caption: "Captura real de la web pública luxops.es · noviembre de 2026",
+        width: 1440,
+        height: 900,
+      },
+    },
+    links: [{ label: "luxops.es", href: "https://www.luxops.es" }],
+    pending: [
+      "Titularidad: el código es tuyo (89 de 89 commits), pero no consta si LuxOps es solo tuyo o tiene socios. La web habla de «ingeniería colegiada»: ¿hay otra persona detrás?",
+      "¿Hay instaladoras usando LuxOps? Sin confirmación no se menciona ningún cliente.",
+      "¿El vertical de fibra está en uso o es una ampliación en pruebas?",
+      "Avisos por WhatsApp (Twilio): están en el código, ¿están activos en producción?",
+      "El pie del PDF dice «firmado mediante hash de integridad según eIDAS», pero el código no calcula ningún hash del documento. Recomiendo revisar esa frase en LuxOps antes de que la use un cliente.",
+    ],
+    weight: 1,
+    homeFeature: true,
   },
   {
     slug: "planit",
@@ -294,8 +348,8 @@ export const showDrafts = process.env.VERCEL_ENV !== "production" && process.env
 
 export const groupInfo: Record<WorkGroup, { title: string; intro: string }> = {
   producto: {
-    title: "Productos propios",
-    intro: "Software que he creado, lanzado y sigo evolucionando. Capturas reales de cada producto.",
+    title: "Productos",
+    intro: "Plataformas SaaS que he diseñado, desarrollado y lanzado. Capturas reales cuando el producto es público; esquemas rotulados cuando su interfaz no lo es.",
   },
   ingenieria: {
     title: "Ingeniería aplicada e investigación",

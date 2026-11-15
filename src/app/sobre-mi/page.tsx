@@ -19,7 +19,7 @@ const trajectory = [
   { setting: "Investigación universitaria", title: "Sistemas embebidos y señales ECG", text: "Un sistema de intercambio de datos entre dos Raspberry Pi, con generación de claves a partir de señales de electrocardiograma.", href: "/proyectos/ecg-raspberry-pi" },
   { setting: "Trabajo de Fin de Grado", title: "Monitorización acústica con LoRaWAN", text: "Un nodo de medición basado en Arduino que envía datos por LoRaWAN y los muestra en tiempo real en Grafana.", href: "/proyectos/monitorizacion-acustica-lorawan" },
   { setting: "Experiencia profesional", title: "Software para fábricas", text: "Detección temprana de anomalías y visualización de datos de producción con Grafana, en entornos industriales.", href: "/proyectos/software-industrial" },
-  { setting: "Productos propios", title: "Syncbiosis y PlanIt", text: "Un SaaS de gestión para escuelas de música, danza e idiomas, en producción, y una plataforma de descubrimiento local en fase de lanzamiento.", href: "/proyectos#producto" },
+  { setting: "Productos SaaS", title: "Syncbiosis, LuxOps y PlanIt", text: "Un SaaS de gestión para escuelas de música, danza e idiomas, en producción; una plataforma de operaciones de campo para instaladoras solares y de fibra, lanzada; y una plataforma de descubrimiento local en fase de lanzamiento.", href: "/proyectos#producto" },
   { setting: "Línea propia y en equipo", title: "IA, automatización e infraestructura", text: "Agentes, automatización de llamadas y mensajes, n8n autoalojado y servicios en AWS y Oracle Cloud. Y un asistente con IA para salones, en desarrollo con amigos.", href: "/proyectos#ia" },
 ];
 
