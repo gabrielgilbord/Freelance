@@ -1,9 +1,9 @@
 import { Hero } from "@/components/sections/hero";
 import { Manifesto } from "@/components/sections/manifesto";
 import { ServicesBento } from "@/components/sections/services-bento";
-import { Capabilities } from "@/components/sections/capabilities";
+import { SignalToSystem } from "@/components/sections/signal-to-system";
 import { Process } from "@/components/sections/process";
-import { FeaturedProjects } from "@/components/sections/featured-projects";
+import { SelectedWork } from "@/components/sections/selected-work";
 import { AboutTeaser } from "@/components/sections/about-teaser";
 import { FinalCta } from "@/components/sections/final-cta";
 
@@ -13,9 +13,9 @@ export default function HomePage() {
       <Hero />
       <Manifesto />
       <ServicesBento />
-      <Capabilities />
+      <SignalToSystem />
+      <SelectedWork />
       <Process />
-      <FeaturedProjects />
       <AboutTeaser />
       <FinalCta />
     </>

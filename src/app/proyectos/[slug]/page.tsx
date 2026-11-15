@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projectRepository, statusLabel } from "@/lib/projects/repository";
 import { projects as allProjects } from "@/content/projects";
+import { work, workBySlug } from "@/content/work";
+import { WorkDetail } from "@/components/work/work-detail";
 import { getService } from "@/content/services";
 import { absoluteUrl } from "@/content/site";
 import { Container } from "@/components/ui/container";
@@ -22,11 +24,13 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return allProjects.map((p) => ({ slug: p.slug }));
+  return [...work.map((w) => ({ slug: w.slug })), ...allProjects.map((p) => ({ slug: p.slug }))];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const w = workBySlug(slug);
+  if (w) return pageMetadata({ title: `${w.name} · ${w.category}`, description: w.lead, path: `/proyectos/${w.slug}` });
   const p = await projectRepository.bySlug(slug);
   if (!p) return {};
   const prefix = p.status === "concept" ? "Concepto: " : "";
@@ -35,6 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
+  const w = workBySlug(slug);
+  if (w) return <WorkDetail work={w} />;
   const project = await projectRepository.bySlug(slug);
   if (!project) notFound();
 

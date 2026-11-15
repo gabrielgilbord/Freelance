@@ -16,11 +16,11 @@ export function AboutTeaser() {
               Un estudio de una sola persona. A propósito.
             </h2>
             <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-paper-muted sm:mt-8">
-              COTA es mi estudio de ingeniería de software. Hablas directamente con quien diseña la arquitectura y escribe el código.
+              COTA es mi estudio de ingeniería. Hablas directamente con quien diseña la arquitectura y escribe el código.
               <span className="hidden sm:inline">
                 {" "}
-                Mi ventaja es la amplitud técnica: puedo conectar una interfaz, un backend, un modelo de IA y un dispositivo físico, y entender
-                cómo se afectan entre sí.
+                Vengo de la investigación con sistemas embebidos, del software industrial y del IoT, y hoy creo mis propios productos SaaS:
+                entiendo cómo se afectan entre sí el dispositivo, la red, la plataforma y la persona que la usa.
               </span>
             </p>
             <Link href="/sobre-mi" className="link-underline mt-6 inline-block font-medium text-paper hover:text-accent sm:mt-10">

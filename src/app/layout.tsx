@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     locale: site.locale,
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Ingeniería de software de principio a fin`,
+    title: `${site.name} — ${site.tagline}`,
     description: site.description,
   },
   twitter: { card: "summary_large_image" },

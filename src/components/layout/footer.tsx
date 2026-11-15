@@ -11,7 +11,7 @@ export function Footer() {
       <Container>
         <div className="grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-12">
           <p className="max-w-sm text-lg leading-snug text-paper lg:col-span-4">
-            Estudio de ingeniería de software. Del problema al sistema en producción.
+            Ingeniería digital a medida. De la señal al sistema en producción.
           </p>
           <nav aria-label="Servicios" className="hidden sm:block lg:col-span-3 lg:col-start-6">
             <h2 className="mb-4 text-sm text-paper-subtle">Servicios</h2>
@@ -65,7 +65,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-line py-6 text-sm text-paper-subtle sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {site.name}. Ingeniería de software de principio a fin.</p>
+          <p>© {year} {site.name}. Ingeniería digital a medida.</p>
           <ul className="flex gap-6">
             <li><Link href="/aviso-legal" className="hover:text-paper">Aviso legal</Link></li>
             <li><Link href="/privacidad" className="hover:text-paper">Privacidad</Link></li>

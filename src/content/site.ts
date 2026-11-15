@@ -9,14 +9,14 @@ export type SocialLink = { label: string; href: string };
 
 export const site = {
   name: "Cota",
-  legalName: "Cota — Estudio de ingeniería de software",
-  tagline: "Ingeniería de software de principio a fin",
+  legalName: "Cota — Estudio de ingeniería digital",
+  tagline: "Ingeniería digital a medida",
   descriptor: "Software Engineering Studio",
   url: rawUrl.replace(/\/$/, ""),
   locale: "es_ES",
   lang: "es",
   description:
-    "Estudio de ingeniería de software. Desarrollo de aplicaciones web y móviles, plataformas SaaS, inteligencia artificial aplicada, IoT y automatización a medida: del problema al sistema en producción.",
+    "Ingeniería digital a medida: plataformas SaaS, inteligencia artificial aplicada, IoT, automatización e infraestructura cloud. De la señal al sistema en producción, con experiencia real en hardware, software industrial y productos propios.",
 
   contact: {
     /** Email público. Si está vacío, la web no muestra ningún enlace de email. */
