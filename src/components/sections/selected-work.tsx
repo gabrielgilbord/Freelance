@@ -50,11 +50,11 @@ export function SelectedWork() {
           <ul className="mt-6 border-t border-paper/80">
             {depth.map((w) => (
               <li key={w.slug} className="border-b border-line">
-                <Link href={`/proyectos/${w.slug}`} className="group grid gap-x-8 gap-y-2 py-5 sm:grid-cols-[4.5rem_1fr_15rem_1.5rem] sm:items-baseline sm:py-6">
+                <Link href={`/proyectos/${w.slug}`} className="group grid gap-x-8 gap-y-1 py-4 sm:grid-cols-[4.5rem_1fr_15rem_1.5rem] sm:items-baseline sm:py-6">
                   <span className="hidden sm:block">{w.visual.kind === "diagram" && <SignalGlyph kind={glyphOf[w.visual.diagram] ?? "bars"} />}</span>
                   <span>
                     <span className="block text-lg font-medium leading-snug text-paper transition-colors group-hover:text-accent sm:text-xl">{w.name}</span>
-                    <span className="mt-1 block max-w-[60ch] text-[0.9375rem] leading-snug text-paper-muted sm:text-base">{w.lead}</span>
+                    <span className="mt-1 hidden max-w-[60ch] leading-snug text-paper-muted sm:block">{w.lead}</span>
                   </span>
                   <span className="font-mono text-xs leading-relaxed text-paper-subtle">
                     {w.setting}
@@ -87,7 +87,7 @@ function ProductFeature({ work: w, flip }: { work: Work; flip: boolean }) {
         <h3 id={`w-${w.slug}`} className="mt-4 text-display-s font-[450] text-paper sm:mt-5">
           {w.name}
         </h3>
-        <p className="mt-2 font-mono text-xs text-paper-subtle">{w.category}</p>
+        <p className="mt-2 hidden font-mono text-xs text-paper-subtle sm:block">{w.category}</p>
         <p className="mt-4 max-w-[48ch] text-lg leading-relaxed text-paper-muted sm:mt-5">{w.lead}</p>
         <p className="mt-4 hidden max-w-[48ch] leading-relaxed text-paper-muted sm:block">{w.proves}</p>
         <Link href={`/proyectos/${w.slug}`} className="link-underline mt-6 inline-block font-medium text-paper hover:text-accent sm:mt-8">

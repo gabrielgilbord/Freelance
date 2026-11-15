@@ -100,7 +100,7 @@ export function SignalToSystem() {
             </tbody>
           </table>
         </div>
-        <p className="mt-6 max-w-[70ch] text-sm text-sheet-muted sm:mt-8">
+        <p className="mt-6 hidden max-w-[70ch] text-sm text-sheet-muted sm:mt-8 sm:block">
           Cada trabajo indica su contexto: producto propio, investigación universitaria, experiencia profesional o proyecto en equipo.
         </p>
       </Container>
