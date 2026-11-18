@@ -254,3 +254,61 @@
   .signal { display: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* ---------- Panel interno (finanzas) ---------- */
+@layer components {
+  .fin-input {
+    width: 100%;
+    height: 2.75rem;
+    background: var(--color-ink-2);
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    padding: 0 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--color-paper);
+    color-scheme: dark;
+  }
+  textarea.fin-input { height: auto; padding: 0.6rem 0.75rem; }
+  .fin-input:focus { outline: none; border-color: var(--color-accent); }
+  .fin-input::placeholder { color: var(--color-paper-subtle); }
+
+  .fin-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 2.75rem; padding: 0 1.25rem;
+    border-radius: var(--radius-xs);
+    background: var(--color-accent); color: var(--color-accent-ink);
+    font-weight: 500; font-size: 0.9375rem; white-space: nowrap;
+    transition: background-color 0.3s;
+  }
+  .fin-btn:hover { background: var(--color-accent-strong); }
+  .fin-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .fin-btn-quiet {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    height: 2.5rem; padding: 0 1rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    font-size: 0.9375rem; color: var(--color-paper);
+    cursor: pointer; transition: border-color 0.3s, background-color 0.3s;
+  }
+  .fin-btn-quiet:hover { border-color: color-mix(in oklab, var(--color-paper) 70%, transparent); background: color-mix(in oklab, var(--color-paper) 4%, transparent); }
+
+  details.fin-adder > summary { list-style: none; }
+  details.fin-adder > summary::-webkit-details-marker { display: none; }
+  .fin-plus { display: inline-block; font-family: var(--font-mono); transition: transform 0.3s var(--ease-out-quint); }
+  details.fin-adder[open] > summary .fin-plus { transform: rotate(45deg); }
+
+  /* Rayado de "infra y gastos": la parte que se come la máquina */
+  .fin-hatch {
+    background-color: var(--color-ink-3);
+    background-image: repeating-linear-gradient(-45deg, var(--color-line-strong) 0 1.5px, transparent 1.5px 6px);
+  }
+
+  .fin-row { display: grid; align-items: baseline; gap: 0.75rem; padding: 0.9rem 0; border-bottom: 1px solid var(--color-line); }
+  .fin-row:last-child { border-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fin-seg { animation: fin-grow 0.9s var(--ease-out-quint) both; transform-origin: left center; }
+}
+@keyframes fin-grow { from { transform: scaleX(0); } }

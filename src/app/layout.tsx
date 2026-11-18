@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Schibsted_Grotesk } from "next/font/google";
 import { site } from "@/content/site";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { JsonLd, organizationLd, websiteLd } from "@/lib/seo/jsonld";
 import "./globals.css";
 
 const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-schibsted", display: "swap" });
@@ -38,18 +35,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang={site.lang} className={`${sans.variable} ${mono.variable}`}>
-      <body>
-        <a
-          href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-accent focus:px-4 focus:py-3 focus:text-accent-ink"
-        >
-          Saltar al contenido
-        </a>
-        <Header />
-        <main id="contenido">{children}</main>
-        <Footer />
-        <JsonLd data={[organizationLd(), websiteLd()]} />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

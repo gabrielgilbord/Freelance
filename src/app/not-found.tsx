@@ -1,9 +1,14 @@
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { CotaLine } from "@/components/ui/cota-line";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 
 export default function NotFound() {
   return (
+    <>
+    <Header />
+    <main id="contenido">
     <section className="flex min-h-[80dvh] items-center pt-[var(--header-h)]">
       <Container>
         <p className="label text-accent">Error 404</p>
@@ -16,5 +21,8 @@ export default function NotFound() {
         </div>
       </Container>
     </section>
+    </main>
+    <Footer />
+    </>
   );
 }
