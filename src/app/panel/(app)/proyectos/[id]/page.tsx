@@ -17,6 +17,8 @@ import {
 } from "@/app/panel/actions";
 import { Adder, DeleteButton, Swatch, Empty, Field, Money, MonthNav, Ribbon, SectionTitle, type Segment } from "@/components/finops/ui";
 
+const INTERVAL_TEXT = { monthly: "al mes", quarterly: "al trimestre", yearly: "al año" } as const;
+
 export default async function ProjectPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ m?: string }> }) {
   const { id } = await params;
   const { m } = await searchParams;
@@ -156,7 +158,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                       </select>
                     </Field>
                     <Field label="Porcentaje" className="w-28">
-                      <input className="fin-input num" name="percent" type="number" step="0.01" min="0.01" max="100" defaultValue={Math.max(0, 100 - sum) || ""} required />
+                      <input className="fin-input font-mono" name="percent" type="number" step="0.01" min="0.01" max="100" defaultValue={Math.max(0, 100 - sum) || ""} required />
                     </Field>
                     <button className="fin-btn">Añadir</button>
                   </form>
@@ -217,7 +219,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
               </select>
             </Field>
             <div className="grid grid-cols-2 gap-3">
-              <Field label="Coste €"><input className="fin-input num" name="cost" type="number" step="0.01" min="0" defaultValue="0" /></Field>
+              <Field label="Coste €"><input className="fin-input font-mono" name="cost" type="number" step="0.01" min="0" defaultValue="0" /></Field>
               <Field label="Se paga">
                 <select className="fin-input" name="billing" defaultValue="monthly">
                   <option value="monthly">Al mes</option>
@@ -236,7 +238,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
 
       {/* Mensualidades */}
       <section>
-        <SectionTitle title="Mensualidades" hint="Cuotas recurrentes. Cuentan solas cada mes mientras estén activas." />
+        <SectionTitle title="Mensualidades" hint="Cuotas recurrentes con su día de facturación. En las cuentas se reparten por meses; las trimestrales y anuales se prorratean." />
         <div className="rounded-md border border-line bg-ink-1 px-5 md:px-6 mb-4">
           {subs.length === 0 && <Empty>Sin cuotas mensuales.</Empty>}
           {subs.map((s) => {
@@ -248,7 +250,10 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                   {s.description && <span className="text-paper-muted">, {s.description}</span>}
                   <span className="block text-xs text-paper-subtle">desde {dateLabel(s.start_date)}{s.end_date && `, hasta ${dateLabel(s.end_date)}`}</span>
                 </div>
-                <span className="font-mono tabular-nums font-semibold text-right md:text-left">{euros(s.amount)} <span className="text-paper-subtle font-normal">al mes</span></span>
+                <span className="text-right md:text-left">
+                  <span className="font-mono tabular-nums font-semibold">{euros(s.amount)} <span className="text-paper-subtle font-normal">{INTERVAL_TEXT[s.billing_interval]}</span></span>
+                  <span className="block font-mono text-xs text-paper-subtle">se factura el día {s.billing_day}{s.billing_emails ? `, a ${s.billing_emails}` : ""}</span>
+                </span>
                 <div className="col-span-2 md:col-span-1 flex gap-4 justify-end">
                   {!s.end_date && (
                     <form action={endRow}>
@@ -265,13 +270,22 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
           })}
         </div>
         <Adder label="Añadir mensualidad">
-          <form action={saveSubscription} className="rounded-md border border-line bg-ink-1 p-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 items-end">
+          <form action={saveSubscription} className="rounded-md border border-line bg-ink-1 p-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 items-end">
             <input type="hidden" name="project_id" value={id} />
             <Field label="Cliente"><input className="fin-input" name="client" required defaultValue={project.client ?? ""} /></Field>
             <Field label="Concepto"><input className="fin-input" name="description" placeholder="Mantenimiento y hosting" /></Field>
-            <Field label="Importe al mes €"><input className="fin-input num" name="amount" type="number" step="0.01" min="0" required /></Field>
+            <Field label="Importe por factura €"><input className="fin-input font-mono" name="amount" type="number" step="0.01" min="0" required /></Field>
+            <Field label="Se factura">
+              <select className="fin-input" name="billing_interval" defaultValue="monthly">
+                <option value="monthly">Cada mes</option>
+                <option value="quarterly">Cada trimestre</option>
+                <option value="yearly">Cada año</option>
+              </select>
+            </Field>
+            <Field label="Día de facturación (1 a 28)"><input className="fin-input font-mono" name="billing_day" type="number" min="1" max="28" defaultValue="1" /></Field>
+            <Field label="Emails de facturación" className="lg:col-span-2"><input className="fin-input" name="billing_emails" placeholder="admin@cliente.com, conta@cliente.com" /></Field>
             <Field label="Desde"><input className="fin-input" name="start_date" type="date" defaultValue={today} /></Field>
-            <button className="fin-btn">Guardar mensualidad</button>
+            <button className="fin-btn">Guardar cuota</button>
           </form>
         </Adder>
       </section>
@@ -304,7 +318,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
               </select>
             </Field>
             <Field label="Concepto"><input className="fin-input" name="description" required placeholder="Landing page" /></Field>
-            <Field label="Importe €"><input className="fin-input num" name="amount" type="number" step="0.01" min="0" required /></Field>
+            <Field label="Importe €"><input className="fin-input font-mono" name="amount" type="number" step="0.01" min="0" required /></Field>
             <Field label="Fecha"><input className="fin-input" name="date" type="date" defaultValue={today} /></Field>
             <button className="fin-btn">Apuntar</button>
           </form>

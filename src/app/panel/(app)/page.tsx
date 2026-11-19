@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getLedger } from "@/lib/finops/data";
 import { computeUntil, currentMonth } from "@/lib/finops/ledger";
 import { money, monthShort } from "@/lib/finops/format";
+import { invoicesToCreate, isOpen, isOverdue, todayISO } from "@/lib/finops/billing";
 import { Figure, Money, MonthNav, PageTitle, Ribbon, SectionTitle, Swatch, type Segment } from "@/components/finops/ui";
 
 export const metadata = { title: "El mes" };
@@ -33,6 +34,10 @@ export default async function MonthPage({ searchParams }: { searchParams: Promis
     { key: "un", label: "Sin regla de reparto", amount: r.totals.unassigned, color: "#3d413d" },
   ];
   const fromSavings = segments.reduce((a, s) => a + Math.max(0, s.amount), 0) - r.totals.income;
+  const today = todayISO();
+  const toInvoice = invoicesToCreate(data.subscriptions, data.invoices, today).length;
+  const overdueCount = data.invoices.filter((i) => isOverdue(i, today)).length;
+  const openCount = data.invoices.filter(isOpen).length;
   const warnings = r.projects.filter((p) => p.unassigned.one_off + p.unassigned.recurring > 0 || p.uncovered > 0);
   const maxBar = Math.max(1, ...history.map((h) => Math.max(h.totals.income, h.totals.expenses)));
 
@@ -91,6 +96,17 @@ export default async function MonthPage({ searchParams }: { searchParams: Promis
           </div>
         )}
       </section>
+
+      {(toInvoice > 0 || overdueCount > 0) && (
+        <Link href="/panel/facturas" className="flex flex-wrap items-baseline justify-between gap-3 rounded-md border border-line-strong bg-ink-1 px-5 py-4 hover:border-paper/60">
+          <span>
+            {toInvoice > 0 && <>Toca facturar {toInvoice} {toInvoice === 1 ? "cuota" : "cuotas"}. </>}
+            {overdueCount > 0 && <span className="text-error">{overdueCount} {overdueCount === 1 ? "factura vencida" : "facturas vencidas"} sin cobrar. </span>}
+            {openCount > overdueCount && <span className="text-paper-muted">{openCount - overdueCount} más por cobrar.</span>}
+          </span>
+          <span className="text-sm text-paper-muted">Ir a Facturas</span>
+        </Link>
+      )}
 
       {warnings.length > 0 && (
         <section className="border-l-2 border-paper pl-5">

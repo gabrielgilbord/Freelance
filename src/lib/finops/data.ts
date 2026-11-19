@@ -1,7 +1,7 @@
 import { createClient } from "./supabase/server";
 import type { LedgerData } from "./types";
 
-export async function getLedger(): Promise<LedgerData & { isMember: boolean; email: string | null }> {
+export async function getLedger(): Promise<LedgerData & { invoices: import("./types").Invoice[]; isMember: boolean; email: string | null }> {
   const sb = await createClient();
   const [
     { data: auth },
@@ -14,6 +14,7 @@ export async function getLedger(): Promise<LedgerData & { isMember: boolean; ema
     rules,
     fundMovements,
     members,
+    invoices,
   ] = await Promise.all([
     sb.auth.getUser(),
     sb.from("partners").select("*").order("created_at"),
@@ -25,6 +26,7 @@ export async function getLedger(): Promise<LedgerData & { isMember: boolean; ema
     sb.from("distribution_rules").select("*").order("created_at"),
     sb.from("fund_movements").select("*").order("date", { ascending: false }),
     sb.from("members").select("email"),
+    sb.from("invoices").select("*").order("issue_date", { ascending: false }),
   ]);
   return {
     email: auth.user?.email ?? null,
@@ -37,6 +39,7 @@ export async function getLedger(): Promise<LedgerData & { isMember: boolean; ema
     movements: movements.data ?? [],
     rules: rules.data ?? [],
     fundMovements: fundMovements.data ?? [],
+    invoices: invoices.data ?? [],
   };
 }
 

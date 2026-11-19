@@ -226,6 +226,7 @@ export async function saveResource(f: FormData) {
 export async function saveSubscription(f: FormData) {
   const sb = await db();
   const id = str(f, "id");
+  const day = Math.min(28, Math.max(1, Math.round(num(f, "billing_day") ?? 1)));
   const row = {
     project_id: req(f, "project_id"),
     client: req(f, "client"),
@@ -233,6 +234,9 @@ export async function saveSubscription(f: FormData) {
     amount: num(f, "amount") ?? 0,
     start_date: str(f, "start_date") ?? undefined,
     end_date: str(f, "end_date"),
+    billing_interval: str(f, "billing_interval") ?? "monthly",
+    billing_day: day,
+    billing_emails: str(f, "billing_emails"),
   };
   await run(id ? sb.from("subscriptions").update(row).eq("id", id) : sb.from("subscriptions").insert(row));
   done();
@@ -290,6 +294,67 @@ export async function applyRulePreset(f: FormData) {
   if (rows.length) {
     await run(sb.from("distribution_rules").insert(rows.map((r) => ({ ...r, project_id: projectId, stream }))));
   }
+  done();
+}
+
+/* ---------- Facturas ---------- */
+
+function plusDays(date: string, n: number) {
+  return new Date(new Date(date + "T00:00:00Z").getTime() + n * 86400000).toISOString().slice(0, 10);
+}
+
+export async function createInvoice(f: FormData) {
+  const sb = await db();
+  const issue = str(f, "issue_date") ?? new Date().toISOString().slice(0, 10);
+  const status = str(f, "status") ?? "pending";
+  const row = {
+    project_id: req(f, "project_id"),
+    subscription_id: str(f, "subscription_id"),
+    period_date: str(f, "period_date"),
+    number: req(f, "number"),
+    client: req(f, "client"),
+    billing_emails: str(f, "billing_emails"),
+    concept: req(f, "concept"),
+    amount: num(f, "amount") ?? 0,
+    issue_date: issue,
+    due_date: str(f, "due_date") ?? plusDays(issue, 15),
+    status,
+    paid_date: status === "paid" ? issue : null,
+    notes: str(f, "notes"),
+  };
+  const { data, error } = await sb.from("invoices").insert(row).select("id").single();
+  if (error) throw new Error(error.message.includes("duplicate") ? "Esa cuota ya tiene factura para ese periodo." : error.message);
+  // Una factura suelta cuenta como pago único en las cuentas (si se marca)
+  if (!row.subscription_id && f.get("count_one_off") === "on") {
+    await run(
+      sb.from("movements").insert({
+        project_id: row.project_id,
+        kind: "income",
+        amount: row.amount,
+        date: issue,
+        description: `Factura ${row.number}: ${row.concept}`,
+        invoice_id: data.id,
+      }),
+    );
+  }
+  done();
+}
+
+export async function setInvoiceStatus(f: FormData) {
+  const sb = await db();
+  const status = req(f, "status");
+  const patch: Record<string, unknown> = { status };
+  patch.paid_date = status === "paid" ? (str(f, "paid_date") ?? new Date().toISOString().slice(0, 10)) : null;
+  const id = req(f, "id");
+  await run(sb.from("invoices").update(patch).eq("id", id));
+  // Una factura anulada deja de contar como ingreso
+  if (status === "cancelled") await run(sb.from("movements").delete().eq("invoice_id", id));
+  done();
+}
+
+export async function deleteInvoice(f: FormData) {
+  const sb = await db();
+  await run(sb.from("invoices").delete().eq("id", req(f, "id")));
   done();
 }
 

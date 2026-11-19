@@ -103,7 +103,7 @@ export default async function FundsPage({ searchParams }: { searchParams: Promis
                       <option value="in">Entra dinero</option>
                     </select>
                   </Field>
-                  <Field label="Importe €"><input className="fin-input num" name="amount" type="number" step="0.01" min="0.01" required /></Field>
+                  <Field label="Importe €"><input className="fin-input font-mono" name="amount" type="number" step="0.01" min="0.01" required /></Field>
                   <Field label="Para el socio (si sale)">
                     <select className="fin-input" name="partner_id" defaultValue="">
                       <option value="">Nadie, es un pago</option>
@@ -152,7 +152,7 @@ function FundForm({ fund, color }: { fund?: { id: string; name: string; descript
         </select>
       </Field>
       <Field label="Prioridad al cubrir pérdidas (1 = primero)">
-        <input className="fin-input num" name="priority" type="number" min="1" defaultValue={fund?.priority ?? 1} />
+        <input className="fin-input font-mono" name="priority" type="number" min="1" defaultValue={fund?.priority ?? 1} />
       </Field>
       <label className="sm:col-span-2 flex items-start gap-3 rounded-xs border border-line p-3 cursor-pointer">
         <input type="checkbox" name="covers_deficits" defaultChecked={fund?.covers_deficits} className="mt-1 size-4 accent-[var(--color-accent)]" />

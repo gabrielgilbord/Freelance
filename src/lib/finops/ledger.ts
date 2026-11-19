@@ -76,6 +76,9 @@ export interface MonthResult {
   };
 }
 
+/** Meses que cubre cada cuota. Las trimestrales y anuales se prorratean al mes. */
+export const intervalMonths = (i?: string) => (i === "quarterly" ? 3 : i === "yearly" ? 12 : 1);
+
 export const toCents = (v: number | string) => Math.round(Number(v) * 100);
 
 export function monthOf(date: string): Month {
@@ -179,7 +182,7 @@ export function computeMonth(data: LedgerData, month: Month, opening: Record<str
       .reduce((a, m) => a + toCents(m.amount), 0);
     const recurringIncome = data.subscriptions
       .filter((s) => s.project_id === project.id && activeIn(month, s.start_date, s.end_date))
-      .reduce((a, s) => a + toCents(s.amount), 0);
+      .reduce((a, s) => a + Math.round(toCents(s.amount) / intervalMonths(s.billing_interval)), 0);
     const resourceCost = data.resources
       .filter((r) => r.project_id === project.id && r.billing !== "free" && activeIn(month, r.start_date, r.end_date))
       .reduce((a, r) => a + (r.billing === "yearly" ? Math.round(toCents(r.cost) / 12) : toCents(r.cost)), 0);

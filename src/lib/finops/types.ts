@@ -55,9 +55,32 @@ export interface Subscription {
   project_id: string;
   client: string;
   description: string | null;
-  amount: number;
+  amount: number; // importe por periodo de facturación
   start_date: string;
   end_date: string | null;
+  billing_interval: BillingInterval;
+  billing_day: number;
+  billing_emails: string | null;
+}
+
+export type BillingInterval = "monthly" | "quarterly" | "yearly";
+export type InvoiceStatus = "pending" | "processing" | "paid" | "cancelled";
+
+export interface Invoice {
+  id: string;
+  project_id: string;
+  subscription_id: string | null;
+  period_date: string | null;
+  number: string;
+  client: string;
+  billing_emails: string | null;
+  concept: string;
+  amount: number;
+  issue_date: string;
+  due_date: string | null;
+  status: InvoiceStatus;
+  paid_date: string | null;
+  notes: string | null;
 }
 
 export interface Movement {
@@ -67,6 +90,7 @@ export interface Movement {
   amount: number;
   date: string;
   description: string;
+  invoice_id?: string | null;
 }
 
 export interface Rule {
@@ -96,4 +120,5 @@ export interface LedgerData {
   movements: Movement[];
   rules: Rule[];
   fundMovements: FundMovement[];
+  invoices?: Invoice[];
 }
