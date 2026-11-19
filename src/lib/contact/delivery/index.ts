@@ -2,6 +2,7 @@ import "server-only";
 import { consoleDelivery } from "./console";
 import { createResendDelivery } from "./resend";
 import { createWebhookDelivery } from "./webhook";
+import { createSmtpDelivery } from "./smtp";
 import type { ContactDelivery } from "./types";
 
 /**
@@ -19,6 +20,11 @@ export function getContactDelivery(env = process.env): ContactDelivery {
         throw new Error("CONTACT_PROVIDER=resend requiere RESEND_API_KEY, CONTACT_TO_EMAIL y CONTACT_FROM_EMAIL");
       }
       return createResendDelivery({ apiKey: RESEND_API_KEY, to: CONTACT_TO_EMAIL, from: CONTACT_FROM_EMAIL });
+    }
+    case "smtp": {
+      const to = env.CONTACT_TO_EMAIL || env.SMTP_USER;
+      if (!env.SMTP_USER || !env.SMTP_PASSWORD || !to) throw new Error("CONTACT_PROVIDER=smtp requiere SMTP_USER y SMTP_PASSWORD");
+      return createSmtpDelivery({ to });
     }
     case "webhook": {
       if (!env.CONTACT_WEBHOOK_URL) throw new Error("CONTACT_PROVIDER=webhook requiere CONTACT_WEBHOOK_URL");

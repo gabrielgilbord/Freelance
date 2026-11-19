@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/finops/supabase/server";
+import { sendInvite, sendPasswordReset } from "@/lib/mail/panel-emails";
 
 const str = (f: FormData, k: string) => {
   const v = f.get(k);
@@ -81,7 +82,14 @@ async function rpc(fn: string, args: Record<string, string>, okMsg: string) {
 
 export async function createUser(f: FormData) {
   const email = req(f, "email").toLowerCase();
-  await rpc("create_panel_user", { p_email: email, p_password: req(f, "password"), p_role: str(f, "role") ?? "member" }, `Usuario ${email} creado. Pásale su contraseña.`);
+  const password = req(f, "password");
+  const role = str(f, "role") ?? "member";
+  const sb = await db();
+  const { error } = await sb.rpc("create_panel_user", { p_email: email, p_password: password, p_role: role });
+  if (error) back("error", error.message);
+  const { data: me } = await sb.auth.getUser();
+  const sent = await sendInvite(email, password, role, me.user?.email ?? null);
+  back("ok", sent ? `Usuario ${email} creado. Le hemos enviado la invitación por email.` : `Usuario ${email} creado, pero el email no se pudo enviar: pásale tú la contraseña.`);
 }
 
 export async function removeUser(f: FormData) {
@@ -95,7 +103,12 @@ export async function setRole(f: FormData) {
 
 export async function resetPassword(f: FormData) {
   const email = req(f, "email");
-  await rpc("reset_panel_password", { p_email: email, p_password: req(f, "password") }, `Contraseña de ${email} cambiada.`);
+  const password = req(f, "password");
+  const sb = await db();
+  const { error } = await sb.rpc("reset_panel_password", { p_email: email, p_password: password });
+  if (error) back("error", error.message);
+  const sent = await sendPasswordReset(email, password);
+  back("ok", sent ? `Contraseña de ${email} cambiada y enviada por email.` : `Contraseña de ${email} cambiada. El email no se pudo enviar: pásasela tú.`);
 }
 
 export async function changeMyPassword(f: FormData) {

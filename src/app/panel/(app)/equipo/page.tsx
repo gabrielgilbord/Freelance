@@ -79,7 +79,7 @@ export default async function TeamPage({ searchParams }: { searchParams: Promise
 
       {canCreate.length > 0 && (
         <section aria-labelledby="nuevo">
-          <SectionTitle id="nuevo" title="Dar acceso a alguien" hint="Le creas el usuario con una contraseña inicial y se la pasas. Después puede cambiarla desde aquí." />
+          <SectionTitle id="nuevo" title="Dar acceso a alguien" hint="Le creas el usuario con una contraseña inicial y le llega una invitación por email con el enlace y la contraseña. Después puede cambiarla desde aquí." />
           <Adder label="Crear usuario">
             <form action={createUser} className="grid max-w-3xl gap-4 rounded-md border border-line bg-ink-1 p-5 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_0.8fr_auto] lg:items-end">
               <Field label="Email"><input className="fin-input" name="email" type="email" required autoComplete="off" /></Field>
