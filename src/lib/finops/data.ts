@@ -1,7 +1,7 @@
 import { createClient } from "./supabase/server";
 import type { LedgerData } from "./types";
 
-export async function getLedger(): Promise<LedgerData & { invoices: import("./types").Invoice[]; isMember: boolean; email: string | null }> {
+export async function getLedger(): Promise<LedgerData & { invoices: import("./types").Invoice[]; projectPartners: import("./types").ProjectPartner[]; isMember: boolean; email: string | null }> {
   const sb = await createClient();
   const [
     { data: auth },
@@ -15,6 +15,7 @@ export async function getLedger(): Promise<LedgerData & { invoices: import("./ty
     fundMovements,
     members,
     invoices,
+    projectPartners,
   ] = await Promise.all([
     sb.auth.getUser(),
     sb.from("partners").select("*").order("created_at"),
@@ -27,6 +28,7 @@ export async function getLedger(): Promise<LedgerData & { invoices: import("./ty
     sb.from("fund_movements").select("*").order("date", { ascending: false }),
     sb.from("members").select("email"),
     sb.from("invoices").select("*").order("issue_date", { ascending: false }),
+    sb.from("project_partners").select("project_id, partner_id"),
   ]);
   return {
     email: auth.user?.email ?? null,
@@ -40,6 +42,7 @@ export async function getLedger(): Promise<LedgerData & { invoices: import("./ty
     rules: rules.data ?? [],
     fundMovements: fundMovements.data ?? [],
     invoices: invoices.data ?? [],
+    projectPartners: projectPartners.data ?? [],
   };
 }
 

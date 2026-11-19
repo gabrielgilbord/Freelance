@@ -52,17 +52,89 @@ export async function signOut() {
 
 /* ---------- Socios y acceso ---------- */
 
-export async function savePartner(f: FormData) {
-  const sb = await db();
-  const id = str(f, "id");
-  const row = { name: req(f, "name"), color: str(f, "color") ?? "#ECEAE4", active: f.get("active") !== "off" };
-  await run(id ? sb.from("partners").update(row).eq("id", id) : sb.from("partners").insert(row));
-  done();
+function backTo(path: string, kind: "ok" | "error", msg: string): never {
+  revalidatePath("/panel", "layout");
+  redirect(`${path}?${kind}=${encodeURIComponent(msg)}`);
 }
 
+const projectIdsFrom = (f: FormData) => f.getAll("project_ids").map(String).filter(Boolean);
+
+async function setPartnerProjects(sb: Awaited<ReturnType<typeof db>>, partnerId: string, projectIds: string[]) {
+  await run(sb.from("project_partners").delete().eq("partner_id", partnerId));
+  if (projectIds.length) {
+    await run(sb.from("project_partners").insert(projectIds.map((project_id) => ({ project_id, partner_id: partnerId }))));
+  }
+}
+
+function randomPassword() {
+  const abc = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const bytes = crypto.getRandomValues(new Uint8Array(14));
+  return "Cota-" + Array.from(bytes, (b) => abc[b % abc.length]).join("");
+}
+
+/** Alta de socio: ficha, proyectos en los que participa y, si tiene email, invitación al panel. */
+export async function createPartner(f: FormData) {
+  const sb = await db();
+  const name = req(f, "name");
+  const email = str(f, "email")?.toLowerCase() ?? null;
+  const { data, error } = await sb
+    .from("partners")
+    .insert({ name, color: str(f, "color") ?? "#ECEAE4", email })
+    .select("id")
+    .single();
+  if (error) backTo("/panel/socios", "error", error.message);
+  await setPartnerProjects(sb, data.id, projectIdsFrom(f));
+  if (!email) backTo("/panel/socios", "ok", `${name} añadido.`);
+
+  const { data: existing } = await sb.from("members").select("email").eq("email", email).maybeSingle();
+  if (existing) backTo("/panel/socios", "ok", `${name} añadido. Ya tenía acceso al panel con ${email}.`);
+
+  const password = randomPassword();
+  const { error: inviteError } = await sb.rpc("create_panel_user", { p_email: email, p_password: password, p_role: "member" });
+  if (inviteError) backTo("/panel/socios", "error", `${name} añadido, pero no se pudo darle acceso: ${inviteError.message}`);
+  const { data: me } = await sb.auth.getUser();
+  const sent = await sendInvite(email, password, "member", me.user?.email ?? null);
+  backTo(
+    "/panel/socios",
+    "ok",
+    sent ? `${name} añadido. Le hemos enviado la invitación a ${email}.` : `${name} añadido con acceso, pero el email no salió. Su contraseña inicial es ${password}`,
+  );
+}
+
+export async function updatePartner(f: FormData) {
+  const sb = await db();
+  const id = req(f, "id");
+  await run(
+    sb
+      .from("partners")
+      .update({ name: req(f, "name"), color: str(f, "color") ?? "#ECEAE4", email: str(f, "email")?.toLowerCase() ?? null, active: f.get("active") !== "off" })
+      .eq("id", id),
+  );
+  await setPartnerProjects(sb, id, projectIdsFrom(f));
+  backTo("/panel/socios", "ok", "Socio actualizado.");
+}
+
+/** Borra la ficha del socio, sus repartos y, si es posible, su acceso al panel. */
 export async function deletePartner(f: FormData) {
   const sb = await db();
-  await run(sb.from("partners").delete().eq("id", req(f, "id")));
+  const id = req(f, "id");
+  const { data: partner } = await sb.from("partners").select("name, email").eq("id", id).single();
+  await run(sb.from("partners").delete().eq("id", id));
+  let extra = "";
+  if (partner?.email) {
+    const { error } = await sb.rpc("remove_panel_user", { p_email: partner.email });
+    extra = error ? " Su acceso al panel se mantiene (gestiónalo en Equipo)." : " También se le ha quitado el acceso al panel.";
+  }
+  backTo("/panel/socios", "ok", `${partner?.name ?? "Socio"} borrado.${extra}`);
+}
+
+/** Socios que participan en un proyecto (desde la ficha del proyecto). */
+export async function saveProjectPartners(f: FormData) {
+  const sb = await db();
+  const projectId = req(f, "project_id");
+  const ids = f.getAll("partner_ids").map(String).filter(Boolean);
+  await run(sb.from("project_partners").delete().eq("project_id", projectId));
+  if (ids.length) await run(sb.from("project_partners").insert(ids.map((partner_id) => ({ project_id: projectId, partner_id }))));
   done();
 }
 
@@ -260,6 +332,10 @@ export async function addRule(f: FormData) {
   const sb = await db();
   const target = req(f, "target"); // "partner:<id>" | "fund:<id>"
   const [type, targetId] = target.split(":");
+  // Si se reparte a un socio, pasa a ser socio del proyecto
+  if (type === "partner" && targetId) {
+    await run(sb.from("project_partners").upsert({ project_id: req(f, "project_id"), partner_id: targetId }, { ignoreDuplicates: true }));
+  }
   await run(
     sb.from("distribution_rules").insert({
       project_id: req(f, "project_id"),
@@ -278,7 +354,14 @@ export async function applyRulePreset(f: FormData) {
   const projectId = req(f, "project_id");
   const stream = req(f, "stream");
   const preset = req(f, "preset");
-  const { data: partners } = await sb.from("partners").select("id").eq("active", true).order("created_at");
+  // "A partes iguales" solo entre los socios de este proyecto
+  const { data: links } = await sb.from("project_partners").select("partner_id").eq("project_id", projectId);
+  const { data: partners } = await sb
+    .from("partners")
+    .select("id")
+    .eq("active", true)
+    .in("id", (links ?? []).map((l) => l.partner_id))
+    .order("created_at");
   await run(sb.from("distribution_rules").delete().eq("project_id", projectId).eq("stream", stream));
   let rows: { partner_id: string | null; fund_id: string | null; percent: number }[] = [];
   if (preset === "equal" && partners?.length) {

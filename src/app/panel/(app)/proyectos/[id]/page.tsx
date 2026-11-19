@@ -13,6 +13,7 @@ import {
   saveMovement,
   saveResource,
   saveSubscription,
+  saveProjectPartners,
   updateProject,
 } from "@/app/panel/actions";
 import { Adder, DeleteButton, Swatch, Empty, Field, Money, MonthNav, Ribbon, SectionTitle, type Segment } from "@/components/finops/ui";
@@ -40,6 +41,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
   const subs = data.subscriptions.filter((s) => s.project_id === id);
   const moves = data.movements.filter((mv) => mv.project_id === id);
   const rules = data.rules.filter((r) => r.project_id === id);
+  const memberIds = data.projectPartners.filter((pp) => pp.project_id === id).map((pp) => pp.partner_id);
   const today = new Date().toISOString().slice(0, 10);
 
   const segments: Segment[] = [
@@ -93,6 +95,26 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
         )}
       </section>
 
+      {/* Socios del proyecto */}
+      <section>
+        <SectionTitle title="Socios del proyecto" hint="Quién participa en este proyecto. El reparto a partes iguales y las pérdidas sin cubrir se calculan solo entre ellos." />
+        {data.partners.length === 0 ? (
+          <Empty>Aún no hay socios. Añádelos en Socios.</Empty>
+        ) : (
+          <form action={saveProjectPartners} className="flex flex-wrap items-center gap-2">
+            <input type="hidden" name="project_id" value={id} />
+            {data.partners.map((p) => (
+              <label key={p.id} className="inline-flex cursor-pointer items-center gap-2 rounded-xs border border-line-strong px-3 py-2 text-sm has-[:checked]:border-paper has-[:checked]:bg-paper/[0.06]">
+                <input type="checkbox" name="partner_ids" value={p.id} defaultChecked={memberIds.includes(p.id)} className="size-4 accent-[var(--color-accent)]" />
+                <Swatch color={p.color} />
+                {p.name}
+              </label>
+            ))}
+            <button className="fin-btn-quiet ml-1">Guardar socios</button>
+          </form>
+        )}
+      </section>
+
       {/* Reparto */}
       <section>
         <SectionTitle
@@ -134,8 +156,8 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                 {rs.length === 0 && <Empty>Sin reparto: el beneficio de este tipo quedará como pendiente.</Empty>}
 
                 <div className="flex flex-wrap gap-2 mt-3">
-                  {data.partners.length > 0 && (
-                    <PresetButton projectId={id} stream={stream} preset="equal" label="A partes iguales entre socios" />
+                  {memberIds.length > 0 && (
+                    <PresetButton projectId={id} stream={stream} preset="equal" label={`A partes iguales entre sus ${memberIds.length} socios`} />
                   )}
                   {data.funds.map((f) => (
                     <PresetButton key={f.id} projectId={id} stream={stream} preset={`fund:${f.id}`} label={`Todo a ${f.name}`} />
@@ -150,7 +172,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                     <Field label="Para" className="flex-1 min-w-40">
                       <select className="fin-input" name="target" required>
                         <optgroup label="Socios">
-                          {data.partners.map((p) => <option key={p.id} value={`partner:${p.id}`}>{p.name}</option>)}
+                          {[...data.partners].sort((a, b) => Number(memberIds.includes(b.id)) - Number(memberIds.includes(a.id))).map((p) => <option key={p.id} value={`partner:${p.id}`}>{p.name}</option>)}
                         </optgroup>
                         <optgroup label="Fondos">
                           {data.funds.map((f) => <option key={f.id} value={`fund:${f.id}`}>{f.name}</option>)}

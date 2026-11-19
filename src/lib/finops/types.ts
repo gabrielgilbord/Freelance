@@ -6,6 +6,12 @@ export interface Partner {
   name: string;
   color: string;
   active: boolean;
+  email?: string | null;
+}
+
+export interface ProjectPartner {
+  project_id: string;
+  partner_id: string;
 }
 
 export interface Fund {
@@ -121,4 +127,5 @@ export interface LedgerData {
   rules: Rule[];
   fundMovements: FundMovement[];
   invoices?: Invoice[];
+  projectPartners?: ProjectPartner[];
 }

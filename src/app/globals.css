@@ -256,6 +256,18 @@
 }
 
 /* ---------- Panel interno (finanzas) ---------- */
+@layer base {
+  button:not(:disabled),
+  [role="button"],
+  summary,
+  select,
+  label:has(> input[type="checkbox"]),
+  input[type="checkbox"],
+  input[type="date"] {
+    cursor: pointer;
+  }
+}
+
 @layer components {
   .fin-input {
     width: 100%;

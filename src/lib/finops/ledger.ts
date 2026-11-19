@@ -264,7 +264,12 @@ export function computeMonth(data: LedgerData, month: Month, opening: Record<str
       const rules = data.rules.filter((r) => r.project_id === pm.projectId && r.partner_id);
       const weights = new Map<string, number>();
       for (const r of rules) weights.set(r.partner_id!, (weights.get(r.partner_id!) ?? 0) + Number(r.percent));
-      if (weights.size === 0) for (const p of data.partners.filter((p) => p.active)) weights.set(p.id, 1);
+      if (weights.size === 0) {
+        // Sin reparto a socios: lo ponen los socios del proyecto; si no tiene, todos los activos.
+        const members = (data.projectPartners ?? []).filter((pp) => pp.project_id === pm.projectId).map((pp) => pp.partner_id);
+        const pool = members.length ? data.partners.filter((p) => members.includes(p.id)) : data.partners.filter((p) => p.active);
+        for (const p of pool) weights.set(p.id, 1);
+      }
       const ids = [...weights.keys()];
       const parts = splitCents(need, ids.map((id) => weights.get(id)!));
       pm.uncoveredSplit = ids.map((id, i) => ({ partnerId: id, amount: -parts[i]! }));
