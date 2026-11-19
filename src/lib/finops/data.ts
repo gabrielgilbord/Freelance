@@ -40,8 +40,21 @@ export async function getLedger(): Promise<LedgerData & { isMember: boolean; ema
   };
 }
 
-export async function getMembers(): Promise<string[]> {
+export type Role = "superadmin" | "admin" | "member";
+export interface Member {
+  email: string;
+  role: Role;
+  created_by: string | null;
+  created_at: string;
+}
+
+export async function getTeam(): Promise<{ members: Member[]; me: Member | null }> {
   const sb = await createClient();
-  const { data } = await sb.from("members").select("email").order("created_at");
-  return (data ?? []).map((m) => m.email);
+  const [{ data: auth }, { data }] = await Promise.all([
+    sb.auth.getUser(),
+    sb.from("members").select("email, role, created_by, created_at").order("created_at"),
+  ]);
+  const members = (data ?? []) as Member[];
+  const email = auth.user?.email?.toLowerCase();
+  return { members, me: members.find((m) => m.email === email) ?? null };
 }

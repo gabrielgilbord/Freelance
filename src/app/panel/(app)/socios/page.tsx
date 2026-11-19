@@ -1,13 +1,13 @@
-import { getLedger, getMembers } from "@/lib/finops/data";
+import { getLedger } from "@/lib/finops/data";
 import { computeUntil, currentMonth } from "@/lib/finops/ledger";
 import { PARTNER_COLORS, monthShort , COLOR_NAMES } from "@/lib/finops/format";
-import { addMember, deletePartner, removeMember, savePartner } from "@/app/panel/actions";
-import { Adder, DeleteButton, Swatch, Field, Money, MonthNav, SectionTitle } from "@/components/finops/ui";
+import { deletePartner, savePartner } from "@/app/panel/actions";
+import { Adder, DeleteButton, Swatch, Field, Money, MonthNav } from "@/components/finops/ui";
 
 export default async function PartnersPage({ searchParams }: { searchParams: Promise<{ m?: string }> }) {
   const { m } = await searchParams;
   const month = m && /^\d{4}-\d{2}$/.test(m) ? m : currentMonth();
-  const [data, members] = await Promise.all([getLedger(), getMembers()]);
+  const data = await getLedger();
   const all = computeUntil(data, month);
   const last12 = all.slice(-12);
   const r = all.at(-1)!;
@@ -97,21 +97,6 @@ export default async function PartnersPage({ searchParams }: { searchParams: Pro
         </Adder>
       </section>
 
-      <section className="max-w-xl">
-        <SectionTitle title="Acceso" hint="Emails que pueden entrar en la app. Cada persona crea su cuenta con su email desde la pantalla de entrada." />
-        <ul className="rounded-md border border-line bg-ink-1 px-5 mb-4">
-          {members.map((e) => (
-            <li key={e} className="fin-row grid-cols-[1fr_auto]">
-              <span>{e}</span>
-              {members.length > 1 && <DeleteButton action={removeMember} fields={{ email: e }} label="Quitar acceso" />}
-            </li>
-          ))}
-        </ul>
-        <form action={addMember} className="flex items-end gap-3">
-          <Field label="Dar acceso a" className="flex-1"><input className="fin-input" name="email" type="email" required placeholder="socia@correo.com" /></Field>
-          <button className="fin-btn">Dar acceso</button>
-        </form>
-      </section>
     </div>
   );
 }

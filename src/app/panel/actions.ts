@@ -43,14 +43,6 @@ export async function signIn(_: unknown, f: FormData) {
   redirect("/panel");
 }
 
-export async function signUp(_: unknown, f: FormData) {
-  const sb = await db();
-  const { data, error } = await sb.auth.signUp({ email: req(f, "email"), password: req(f, "password") });
-  if (error) return { error: error.message };
-  if (!data.session) return { info: "Te hemos enviado un email para confirmar la cuenta. Ábrelo y vuelve a entrar." };
-  redirect("/panel");
-}
-
 export async function signOut() {
   const sb = await db();
   await sb.auth.signOut();
@@ -73,16 +65,47 @@ export async function deletePartner(f: FormData) {
   done();
 }
 
-export async function addMember(f: FormData) {
-  const sb = await db();
-  await run(sb.from("members").insert({ email: req(f, "email").toLowerCase() }));
-  done();
+/* Equipo: los usuarios los crea alguien de rango superior (no hay registro público). */
+
+function back(kind: "ok" | "error", msg: string): never {
+  revalidatePath("/panel", "layout");
+  redirect(`/panel/equipo?${kind}=${encodeURIComponent(msg)}`);
 }
 
-export async function removeMember(f: FormData) {
+async function rpc(fn: string, args: Record<string, string>, okMsg: string) {
   const sb = await db();
-  await run(sb.from("members").delete().eq("email", req(f, "email")));
-  done();
+  const { error } = await sb.rpc(fn, args);
+  if (error) back("error", error.message);
+  back("ok", okMsg);
+}
+
+export async function createUser(f: FormData) {
+  const email = req(f, "email").toLowerCase();
+  await rpc("create_panel_user", { p_email: email, p_password: req(f, "password"), p_role: str(f, "role") ?? "member" }, `Usuario ${email} creado. Pásale su contraseña.`);
+}
+
+export async function removeUser(f: FormData) {
+  const email = req(f, "email");
+  await rpc("remove_panel_user", { p_email: email }, `${email} ya no tiene acceso.`);
+}
+
+export async function setRole(f: FormData) {
+  await rpc("set_panel_role", { p_email: req(f, "email"), p_role: req(f, "role") }, "Rol actualizado.");
+}
+
+export async function resetPassword(f: FormData) {
+  const email = req(f, "email");
+  await rpc("reset_panel_password", { p_email: email, p_password: req(f, "password") }, `Contraseña de ${email} cambiada.`);
+}
+
+export async function changeMyPassword(f: FormData) {
+  const pass = req(f, "password");
+  if (pass.length < 8) back("error", "La contraseña debe tener al menos 8 caracteres.");
+  if (pass !== str(f, "confirm")) back("error", "Las contraseñas no coinciden.");
+  const sb = await db();
+  const { error } = await sb.auth.updateUser({ password: pass });
+  if (error) back("error", error.message);
+  back("ok", "Tu contraseña se ha cambiado.");
 }
 
 /* ---------- Fondos ---------- */

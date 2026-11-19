@@ -8,13 +8,14 @@ const LINKS = [
   { href: "/panel/proyectos", label: "Proyectos" },
   { href: "/panel/socios", label: "Socios" },
   { href: "/panel/fondos", label: "Fondos" },
+  { href: "/panel/equipo", label: "Equipo" },
 ];
 
 export function PanelNav() {
   const path = usePathname();
   const m = useSearchParams().get("m");
   const active = (href: string) => (href === "/panel" ? path === "/panel" : path.startsWith(href));
-  const href = (h: string) => (m && h !== "/panel/proyectos" ? `${h}?m=${m}` : h);
+  const href = (h: string) => (m && h !== "/panel/proyectos" && h !== "/panel/equipo" ? `${h}?m=${m}` : h);
 
   return (
     <>
@@ -36,7 +37,7 @@ export function PanelNav() {
       </nav>
 
       <nav aria-label="Panel" className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden">
-        <ul className="grid grid-cols-4">
+        <ul className="grid grid-cols-5">
           {LINKS.map((l) => (
             <li key={l.href}>
               <Link
